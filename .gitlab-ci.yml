@@ -1,0 +1,39 @@
+image: node:18
+
+stages:
+  - build
+##  - test
+
+before_script:
+  - npm install 
+
+build:
+  stage: build
+  script:
+    - npm run build
+  artifacts:
+    paths: 
+      - dist/
+  retry: 1
+
+Prettier check:
+  stage: test
+  needs: [build]
+  script:
+    - npm run prettier-check
+  retry: 1
+
+Eslint:
+  stage: test
+  needs: [build]
+  script:
+    - npm run lint
+  retry: 1
+
+#Vitest: 
+#  stage: test
+#  needs: [build]
+#  script: 
+#    - npm run test
+#  retry: 1
+ 
