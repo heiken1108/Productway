@@ -9,6 +9,7 @@
     align-items: center;
     box-shadow: 5px 5px 8px #888888;
     gap: 70px;
+    background-color: #1c326e49;
 }
 
 .infoContainer {
@@ -16,6 +17,7 @@
     flex-direction: column;
     margin-right: 30px;
 }
+
 
 .todaysItem img {
     margin-top: 20px;
