@@ -1,26 +1,25 @@
 .todaysItem {
-    display: flex;
-    margin: 40px;
-    border-radius: 30px;
-    width: 50%;
-    max-height: 400px;
-    min-height: 250px;
-    overflow: hidden;
-    align-items: center;
-    box-shadow: 5px 5px 8px #888888;
-    gap: 70px;
-    background-color: #1c326e49;
+	display: flex;
+	margin: 40px;
+	border-radius: 30px;
+	width: 50%;
+	max-height: 400px;
+	min-height: 250px;
+	overflow: hidden;
+	align-items: center;
+	box-shadow: 5px 5px 8px #888888;
+	gap: 70px;
+	background-color: #1c326e49;
 }
 
 .infoContainer {
-    display: flex;
-    flex-direction: column;
-    margin-right: 30px;
+	display: flex;
+	flex-direction: column;
+	margin-right: 30px;
 }
 
-
 .todaysItem img {
-    margin-top: 20px;
-    max-height: 150px;
-    width: 150px;
+	margin-top: 20px;
+	max-height: 150px;
+	width: 150px;
 }

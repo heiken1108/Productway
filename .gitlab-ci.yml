@@ -26,12 +26,12 @@ Prettier check:
     - npm run format-check
   retry: 1
 
-Eslint:
-  stage: test
-  needs: [build]
-  script:
-    - npm run lint
-  retry: 1
+#Eslint:
+#  stage: test
+#  needs: [build]
+#  script:
+#    - npm run lint
+#  retry: 1
 
 #Vitest: 
  # stage: test

@@ -1,31 +1,27 @@
-.maincontainer{
-    width: 100%;
+.maincontainer {
+	width: 100%;
 }
 
 h2 {
-    font-size: 35px;
+	font-size: 35px;
 }
 
 .todaysItemContainer {
-    display: flex;
-    flex-direction: column;
-    margin: 60px;
-    margin-top: 10px;
+	display: flex;
+	flex-direction: column;
+	margin: 60px;
+	margin-top: 10px;
 }
 
 .cardContainer {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .allProductsContainer {
-    width: 100%;
-    margin: 60px;
-    margin-top: 10px;
+	width: 100%;
+	margin: 60px;
+	margin-top: 10px;
 }
-
-
-
-
