@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { IProduct } from './data/types';
 import './AllProducts.css'
 import TodaysItem from './Components/TodaysItem/TodaysItem';
+import Header from './Components/Header/Header';
 
 export default function AllStores() {
 	const [products, setProducts] = useState<IProduct[]>([]);
@@ -22,7 +23,7 @@ export default function AllStores() {
 					brand: string;
 					ean: string;
 					image: string;
-					category: any
+					category: any;
 					store: string;
 					description: any;
 					currentPrice: any;
@@ -67,6 +68,7 @@ export default function AllStores() {
 	
 	return (
 		<div className='mainContainer'>
+			<Header products={products} />
 			<div className='todaysItemContainer'>
 				<h2>Velkommen! Her er dagens produkt:</h2>
 				<div className='cardContainer'>
@@ -76,7 +78,7 @@ export default function AllStores() {
 			<div className='allProductsContainer'>
 				<h2> Alle produkter </h2>
 				{products.map(product => (
-					<div>
+					<div key={product.productID}>
 						<p>{product.brand}</p>
 						<p>{product.category}</p>
 						<p>{product.currentPrice}</p>
