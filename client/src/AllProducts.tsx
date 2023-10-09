@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { IProduct } from './data/types';
-import './AllProducts.css'
+import './AllProducts.css';
 import TodaysItem from './Components/TodaysItem/TodaysItem';
 import Header from './Components/Header/Header';
 
@@ -64,18 +64,18 @@ export default function AllStores() {
 			</div>
 		);
 
-	const firstelement = products[997] as IProduct
-	
+	const firstelement = products[997] as IProduct;
+
 	return (
-		<div className='mainContainer'>
+		<div className="mainContainer">
 			<Header products={products} />
-			<div className='todaysItemContainer'>
+			<div className="todaysItemContainer">
 				<h2>Velkommen! Her er dagens produkt:</h2>
-				<div className='cardContainer'>
-					<TodaysItem item={firstelement}/>
+				<div className="cardContainer">
+					<TodaysItem item={firstelement} />
 				</div>
 			</div>
-			<div className='allProductsContainer'>
+			<div className="allProductsContainer">
 				<h2> Alle produkter </h2>
 				{products.map(product => (
 					<div key={product.productID}>

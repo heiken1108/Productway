@@ -4,7 +4,7 @@ import headerIcon from '../../assets/header-icon.svg';
 import Searchbar from '../Searchbar/Searchbar.tsx';
 import { IProduct } from '../../data/types';
 
-export default function Header({ products }: { products: IProduct[]}) {
+export default function Header({ products }: { products: IProduct[] }) {
 	const navigate = useNavigate();
 
 	function handleNavHome() {
@@ -20,7 +20,7 @@ export default function Header({ products }: { products: IProduct[]}) {
 				PRODUCTWAY
 			</h1>
 			<div className="header-spacer">
-				<Searchbar products={products}/>
+				<Searchbar products={products} />
 			</div>
 		</div>
 	);
