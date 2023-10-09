@@ -1,6 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { IProduct } from './data/types';
+import './AllProducts.css'
+import TodaysItem from './Components/TodaysItem/TodaysItem';
 
 export default function AllStores() {
 	const [products, setProducts] = useState<IProduct[]>([]);
@@ -61,23 +63,34 @@ export default function AllStores() {
 			</div>
 		);
 
+	const firstelement = products[997] as IProduct
+	
 	return (
-		<div>
-			{products.map(product => (
-				<div>
-					<p>{product.brand}</p>
-					<p>{product.category}</p>
-					<p>{product.currentPrice}</p>
-					<p>{product.description}</p>
-					<p>{product.ean}</p>
-					<p>{product.image}</p>
-					<p>{product.name}</p>
-					<p>{product.productID}</p>
-					<p>{product.store}</p>
-					<p>{product.weight}</p>
-					<p>{product.weightUnit}</p>
+		<div className='mainContainer'>
+			<div className='todaysItemContainer'>
+				<h2>Velkommen! Her er dagens produkt:</h2>
+				<div className='cardContainer'>
+					<TodaysItem item={firstelement}/>
 				</div>
-			))}
+			</div>
+			<div className='allProductsContainer'>
+				<h2> Alle produkter </h2>
+				{products.map(product => (
+					<div>
+						<p>{product.brand}</p>
+						<p>{product.category}</p>
+						<p>{product.currentPrice}</p>
+						<p>{product.description}</p>
+						<p>{product.ean}</p>
+						<p>{product.image}</p>
+						<p>{product.name}</p>
+						<p>{product.productID}</p>
+						<p>{product.store}</p>
+						<p>{product.weight}</p>
+						<p>{product.weightUnit}</p>
+					</div>
+				))}
+			</div>
 		</div>
 	);
 }

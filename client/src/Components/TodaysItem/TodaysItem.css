@@ -1,0 +1,24 @@
+.todaysItem {
+    display: flex;
+    margin: 40px;
+    border-radius: 30px;
+    width: 50%;
+    max-height: 400px;
+    min-height: 250px;
+    overflow: hidden;
+    align-items: center;
+    box-shadow: 5px 5px 8px #888888;
+    gap: 70px;
+}
+
+.infoContainer {
+    display: flex;
+    flex-direction: column;
+    margin-right: 30px;
+}
+
+.todaysItem img {
+    margin-top: 20px;
+    max-height: 150px;
+    width: 150px;
+}
