@@ -1,0 +1,75 @@
+@import "@flaticon/flaticon-uicons/css/all/all";
+
+.maincontainer {
+	width: 100%;
+}
+
+h2 {
+	font-size: 35px;
+	margin-bottom: 0px;
+}
+
+.todaysItemContainer {
+	display: flex;
+	flex-direction: column;
+	margin: 60px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.cardContainer {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.allProductsContainer {
+	display: flex;
+	flex-direction: column;
+	margin: 60px;
+	align-items: center;
+	margin-top: 0px;
+}
+
+.categoryGrid {
+	margin-top: 0px;
+	width: 70%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.categoryCard {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 250px;
+	height: 250px;
+	text-align: center;
+	font-weight: bold;
+	margin: 50px;
+	margin-top: 20px;
+	box-shadow: 5px 5px 8px #888888;
+	background-color: #1c326e49;
+	border-radius: 30px;
+	cursor: pointer;
+}
+
+.categoryCard:hover {
+	box-shadow: 5px 5px 20px gray;
+}
+
+.categoryCard i {
+	font-size: 90px;
+	margin-bottom: 0px;
+	margin-top: 20px;
+}
+
+.categoryCard p {
+	margin-top: 1px;
+}
+
+
+
+
