@@ -26,28 +26,40 @@ const todaysItem: IProduct = {
 
 const categories = [
 	{
-		name: 'Grønnsaker',
-		icon: 'fi fi-rr-carrot',
+		name: 'Snacks & Godteri',
+		icon: 'fi fi-rr-popcorn',
 	},
 	{
-		name: 'Frukt',
-		icon: 'fi fi-rr-apple-crate',
+		name: 'Personlig artikler',
+		icon: 'fi fi-rr-soap',
 	},
 	{
 		name: 'Kjøtt',
 		icon: 'fi fi-rr-meat',
 	},
 	{
-		name: 'Pålegg',
-		icon: 'fi fi-rr-bread-slice',
+		name: 'Middag',
+		icon: 'fi fi-rr-restaurant',
 	},
 	{
-		name: 'Barneprodukter',
-		icon: 'fi fi-rs-child-head',
+		name: 'Ost',
+		icon: 'fi fi-rr-cheese',
 	},
 	{
 		name: 'Dessert',
 		icon: 'fi fi-rs-pie',
+	},
+	{
+		name: 'Pålegg & Frokost',
+		icon: 'fi fi-rr-bread-slice',
+	},
+	{
+		name: 'Middagstilbehør',
+		icon: 'fi fi-rr-sauce',
+	},
+	{
+		name: 'Drikke',
+		icon: 'fi fi-rr-drink-alt',
 	},
 ];
 

@@ -44,8 +44,8 @@ h2 {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	width: 250px;
-	height: 250px;
+	width: 200px;
+	height: 200px;
 	text-align: center;
 	font-weight: bold;
 	margin: 50px;
@@ -61,7 +61,7 @@ h2 {
 }
 
 .categoryCard i {
-	font-size: 90px;
+	font-size: 70px;
 	margin-bottom: 0px;
 	margin-top: 20px;
 }
