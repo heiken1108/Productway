@@ -22,7 +22,7 @@
 }
 .header-spacer {
 	margin-left: auto;
-	margin-right: 12em;
+	margin-right: 4em;
 	display: flex;
 	flex-direction: row;
 	align-items: center; /* Center vertically */
@@ -31,4 +31,14 @@
 	display: flex;
 	align-items: center;
 	height: 100%; /* Make it the same height as the Header */
-}
+  }
+
+  @media screen and (max-width: 650px ) {
+	.header-spacer {
+		display: none;
+	}
+
+	.search-and-button {
+		margin-left: auto;
+	}
+  }

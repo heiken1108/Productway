@@ -31,7 +31,7 @@ const categories = [
 		icon: 'fi fi-rr-popcorn',
 	},
 	{
-		name: 'Personlig artikler',
+		name: 'Personlige artikler',
 		icon: 'fi fi-rr-soap',
 	},
 	{

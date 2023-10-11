@@ -19,7 +19,7 @@ export default function Searchbar({ products }: { products: IProduct[] }) {
 				renderInput={params => (
 					<TextField {...params} label="Products" />
 				)}
-				sx={{ width: 300 }}
+				sx={{ width: 200 }}
 			/>
 		</div>
 	);
