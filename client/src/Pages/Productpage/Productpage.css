@@ -1,0 +1,21 @@
+.productContent {
+	display: flex;
+	gap: 30px;
+	margin: 40px;
+	margin-top: 10px;
+}
+
+.productImage img {
+	max-width: 500px;
+	max-height: 300px;
+	width: auto;
+	height: auto;
+}
+
+.productInfo {
+	width: 60%;
+}
+
+.productInfo h1 {
+	margin-top: 0px;
+}

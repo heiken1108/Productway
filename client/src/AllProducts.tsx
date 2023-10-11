@@ -1,12 +1,13 @@
-import { useState } from 'react';
-import { IProduct } from '../../data/types';
 import { useQuery } from '@tanstack/react-query';
-import { useParams } from 'react-router-dom';
-import './CategoryPage.css';
+import { useState } from 'react';
+import { IProduct } from './data/types';
+import './AllProducts.css';
+import TodaysItem from './Components/TodaysItem/TodaysItem';
+import { useNavigate } from 'react-router-dom';
 
-export default function CategoryPage() {
+export default function AllStores() {
 	const [products, setProducts] = useState<IProduct[]>([]);
-	const { categoryName } = useParams();
+	const navigate = useNavigate();
 
 	const { isLoading, isError } = useQuery({
 		queryKey: ['Products'],
@@ -64,28 +65,36 @@ export default function CategoryPage() {
 			</div>
 		);
 
+	const firstelement = products[997] as IProduct;
+
 	return (
 		<div className="mainContainer">
-			<p className="title">
-				{' '}
-				Siden for <strong>{categoryName}</strong>
-			</p>
-			{products.map(product => (
-				<div key={product.productID}>
-					<p>{product.brand}</p>
-					<p>{product.category}</p>
-					<p>{product.currentPrice}</p>
-					<p>{product.description}</p>
-					<p>{product.ean}</p>
-					<p>{product.image}</p>
-					<p>{product.name}</p>
-					<p>{product.productID}</p>
-					<p>{product.store}</p>
-					<p>{product.weight}</p>
-					<p>{product.weightUnit}</p>
+			<div className="todaysItemContainer">
+				<h2>Velkommen! Her er dagens produkt:</h2>
+				<div className="cardContainer" onClick={() => navigate('/12')}>
+					{' '}
+					{/*12 skal byttes ut med id til dagens produkt*/}
+					<TodaysItem item={firstelement} />
 				</div>
-			))}
+			</div>
+			<div className="allProductsContainer">
+				<h2> Alle produkter </h2>
+				{products.map(product => (
+					<div key={product.productID}>
+						<p>{product.brand}</p>
+						<p>{product.category}</p>
+						<p>{product.currentPrice}</p>
+						<p>{product.description}</p>
+						<p>{product.ean}</p>
+						<p>{product.image}</p>
+						<p>{product.name}</p>
+						<p>{product.productID}</p>
+						<p>{product.store}</p>
+						<p>{product.weight}</p>
+						<p>{product.weightUnit}</p>
+					</div>
+				))}
+			</div>
 		</div>
 	);
 }
-('');
