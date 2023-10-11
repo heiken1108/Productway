@@ -4,6 +4,7 @@ import TodaysItem from '../../Components/TodaysItem/TodaysItem';
 import { useNavigate } from 'react-router-dom';
 
 const todaysItem: IProduct = {
+	//Mock data. Will be changed with data from backend
 	brand: 'Nestle',
 	category: [
 		'Pålegg & frokost',
@@ -62,7 +63,10 @@ export default function AllStores() {
 		<div className="mainContainer">
 			<div className="todaysItemContainer">
 				<h2>Velkommen! Her er dagens produkt:</h2>
-				<div className="cardContainer">
+				<div
+					className="cardContainer"
+					onClick={() => navigate('/product/12')}
+				>
 					<TodaysItem item={todaysItem} />
 				</div>
 				<h2> Alle produkter </h2>

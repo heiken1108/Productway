@@ -18,7 +18,7 @@ function App() {
 						path="/category/:categoryName"
 						element={<CategoryPage />}
 					/>
-					<Route path="/:id" element={<Productpage />} />
+					<Route path="product/:id" element={<Productpage />} />
 				</Routes>
 			</QueryClientProvider>
 		</Router>
