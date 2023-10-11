@@ -3,7 +3,6 @@ import './ShoppingButton.css';
 
 export default function ShoppingButton() {
 	const navigate = useNavigate();
-
 	function handleNavShopping() {
 		navigate('/shoppingcart');
 	}
