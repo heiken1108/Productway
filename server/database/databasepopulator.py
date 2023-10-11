@@ -29,10 +29,11 @@ headers = {
 }
 
 try:
-    for i in range(1000, 1014):
+    for i in range(2413, 2414):
         api_url = api_url_standard + str(i)
         response = requests.get(api_url, headers=headers)
         if response.status_code == 200:
+            validCategories = ["Dessert", "Pålegg & frokost", "Kjøtt", "Snacks & godteri", "Personlige artikler", "Drikke", "Middag", "Ost", "Middagstilbehør"]
             produkt = response.json()  # Anta at API-et returnerer JSON-data
             productID = produkt["data"]["id"] if produkt["data"]["id"] is not None else 0000000
             name = produkt["data"]["name"] if produkt["data"]["name"] is not None else "Ingen informasjon"
@@ -45,9 +46,10 @@ try:
             weight = produkt["data"]["weight"] 
             weightUnit = produkt["data"]["weight_unit"]
             kategorier = produkt["data"]["category"] if produkt["data"]["category"] is not None else []
-            category = []
+            category = ""
             for kat in kategorier:
-                category.append(kat["name"])
+                if kat["name"] in validCategories:
+                    category = kat["name"]
         
             objekt = {
                 "productID": productID,
@@ -63,11 +65,15 @@ try:
                 "category": category
             }
             json_object = json.dumps(objekt, indent=4)
-            print(json_object)
+            print(productID)
+            #print(ean, image, currentPrice, store, description, weight, weightUnit, category, name, brand)
+            if ean == 00000000 or ean == "0" or image == "Ingen informasjon" or currentPrice == "Ingen informasjon" or store == "Ingen informasjon" or description == "Ingen informasjon" or weight == "Ingen informasjon" or weightUnit == "Ingen informasjon" or category == "" or name == "Ingen informasjon" or brand == "Ingen informasjon":
+                continue
+            #print("Jeg sender inn!!!")
             respons = requests.post(post_url, json=objekt)
             if response.status_code == 200:
                 print("POST-forespørsel var vellykket!")
-                print("Respons:", response.text)
+                #print("Respons:", response.text)
             else:
                 print("Feil ved POST-forespørsel. Statuskode:", response.status_code)
         else:
