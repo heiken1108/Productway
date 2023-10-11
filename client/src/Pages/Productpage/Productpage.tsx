@@ -20,38 +20,6 @@ export default function Productpage() {
 		store: 'Meny',
 	});
 
-	// Vil bli brukt så fort backend tillater det. Enn så lenge så blir data mocket!
-	// const { isLoading, isError } = useQuery({
-	// 	queryKey: [`product${id}`],
-	// 	queryFn: () =>
-	// 		fetch('http://localhost:3001/getProduct/' + { id }).then(res =>
-	// 			res.json(),
-	// 		),
-	// 	onSuccess: rawData => {
-	// 		const product: IProduct = {
-	// 			productID: rawData.data.productID,
-	// 			name: rawData.data.name,
-	// 			brand: rawData.data.brand,
-	// 			ean: rawData.data.ean,
-	// 			image: rawData.data.image,
-	// 			category: rawData.data.category,
-	// 			description: rawData.data.description,
-	// 			currentPrice: rawData.data.currentPrice,
-	// 			weight: rawData.data.weight,
-	// 			weightUnit: rawData.data.weightUnit,
-	// 			store: rawData.data.store,
-	// 		};
-	// 		setProduct(product);
-	// 	},
-	// });
-	/*
-	 * Trenger api kall som henter produktet med id
-	 */
-
-	// if (isLoading) return 'Loading...';
-
-	// if (isError) return 'Error...';
-
 	return (
 		<div>
 			<div className="productContent">
