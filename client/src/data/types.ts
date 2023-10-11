@@ -4,7 +4,7 @@ export interface IProduct {
 	brand: string;
 	ean: string;
 	image: string;
-	category?: string[];
+	category?: string;
 	description?: String;
 	currentPrice?: number;
 	weight?: number;

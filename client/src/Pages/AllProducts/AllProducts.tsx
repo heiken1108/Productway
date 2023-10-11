@@ -6,11 +6,7 @@ import { useNavigate } from 'react-router-dom';
 const todaysItem: IProduct = {
 	//Mock data. Will be changed with data from backend
 	brand: 'Nestle',
-	category: [
-		'Pålegg & frokost',
-		'Frokostblandinger og musli',
-		'Frokostblanding',
-	],
+	category: 'Pålegg & frokost',
 	currentPrice: 54.9,
 	description:
 		'Gi hele familien en god start på dagen! \nHavre Cheerios er sprø \
