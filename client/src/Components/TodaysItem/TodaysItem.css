@@ -6,6 +6,7 @@
 	max-height: 400px;
 	min-height: 250px;
 	overflow: hidden;
+	min-width: 700px;
 	align-items: center;
 	box-shadow: 5px 5px 8px #888888;
 	gap: 70px;
@@ -23,3 +24,31 @@
 	max-height: 150px;
 	width: 150px;
 }
+  
+  @media screen and (max-width: 786px) {
+	.todaysItem{
+		min-width: 0;
+		width: 90%
+	}
+  }
+
+  @media screen and (max-width: 645px) {
+	.todaysItem{
+		min-width: 0;
+		width: 90%;
+		height: auto;
+	}
+
+	.imgContainer {
+		display: none;
+	}
+
+	.todaysItem img {
+		display: none;
+	}
+
+	.infoContainer {
+		margin: 20px;
+	}
+  }
+  

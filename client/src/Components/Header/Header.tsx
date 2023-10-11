@@ -13,10 +13,9 @@ export default function Header({ products }: { products: IProduct[] }) {
 	}
 
 	return (
-		<div className="Header">
+		<div onClick={() => handleNavHome()} className="Header">
 			<img src={headerIcon} alt="Header Icon" className="header-icon" />{' '}
-			{/* Use the imported SVG */}
-			<h1 onClick={() => handleNavHome()} className="header-title">
+			<h1 className="header-title">
 				{' '}
 				PRODUCTWAY
 			</h1>
