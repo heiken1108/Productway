@@ -13,9 +13,14 @@ export default function Header({ products }: { products: IProduct[] }) {
 	}
 
 	return (
-		<div onClick={() => handleNavHome()} className="Header">
-			<img src={headerIcon} alt="Header Icon" className="header-icon" />{' '}
-			<h1 className="header-title">
+		<div className="Header">
+			<img
+				src={headerIcon}
+				alt="Header Icon"
+				className="header-icon"
+				onClick={() => handleNavHome()}
+			/>{' '}
+			<h1 className="header-title" onClick={() => handleNavHome()}>
 				{' '}
 				PRODUCTWAY
 			</h1>

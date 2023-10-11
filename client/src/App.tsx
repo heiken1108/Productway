@@ -15,11 +15,12 @@ function App() {
 				<Header products={[]} />
 				<Routes>
 					<Route path="/" element={<AllStores />} />
+
+					<Route path="/shoppingcart" element={<Shoppingcart />} />
 					<Route
 						path="/category/:categoryName"
 						element={<CategoryPage />}
 					/>
-					<Route path="/Shoppingcart" element={<Shoppingcart />} />
 					<Route path="/product/:id" element={<Productpage />} />
 				</Routes>
 			</QueryClientProvider>
