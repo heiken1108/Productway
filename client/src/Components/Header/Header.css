@@ -22,5 +22,13 @@
 }
 .header-spacer {
 	margin-left: auto;
-	margin-right: 20em;
-}
+	margin-right: 12em;
+	display: flex;
+	flex-direction: row;
+	align-items: center; /* Center vertically */
+  }
+  .search-and-button {
+	display: flex;
+	align-items: center;
+	height: 100%; /* Make it the same height as the Header */
+  }
