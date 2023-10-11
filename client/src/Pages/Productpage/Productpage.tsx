@@ -4,11 +4,7 @@ import './Productpage.css';
 
 const item: IProduct = {
 	brand: 'Nestle',
-	category: [
-		'Pålegg & frokost',
-		'Frokostblandinger og musli',
-		'Frokostblanding',
-	],
+	category: 'Pålegg & frokost',
 	currentPrice: 54.9,
 	description:
 		'Gi hele familien en god start på dagen! \nHavre Cheerios er sprø \
