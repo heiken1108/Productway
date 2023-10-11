@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import CategoryPage from './Pages/CategoryPage/CategoryPage';
 import Productpage from './Pages/Productpage/Productpage.tsx';
 import Header from './Components/Header/Header.tsx';
+import Shoppingcart from './Pages/Shoppingcart/Shoppingcart.tsx';
 
 const queryClient = new QueryClient();
 
@@ -18,7 +19,8 @@ function App() {
 						path="/category/:categoryName"
 						element={<CategoryPage />}
 					/>
-					<Route path="product/:id" element={<Productpage />} />
+					<Route path="/Shoppingcart" element={<Shoppingcart />} />
+					<Route path="/product/:id" element={<Productpage />} />
 				</Routes>
 			</QueryClientProvider>
 		</Router>
