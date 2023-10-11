@@ -1,4 +1,5 @@
 import { IProduct } from '../../data/types';
+import AddToShoppingcart from '../AddToShoppingcart/AddToShoppingcart';
 import './TodaysItem.css';
 
 export default function TodaysItem({ item }: { item: IProduct }) {
@@ -13,6 +14,7 @@ export default function TodaysItem({ item }: { item: IProduct }) {
 					{' '}
 					<strong>Gjennomsnittlig pris: {item.currentPrice}</strong>
 				</p>
+				<AddToShoppingcart id={item.productID} />
 			</div>
 		</div>
 	);
