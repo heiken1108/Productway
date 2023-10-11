@@ -1,4 +1,4 @@
-@import "@flaticon/flaticon-uicons/css/all/all";
+@import '@flaticon/flaticon-uicons/css/all/all';
 
 .maincontainer {
 	width: 100%;
@@ -69,7 +69,3 @@ h2 {
 .categoryCard p {
 	margin-top: 1px;
 }
-
-
-
-

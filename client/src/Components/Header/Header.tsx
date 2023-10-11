@@ -8,7 +8,7 @@ export default function Header({ products }: { products: IProduct[] }) {
 	const navigate = useNavigate();
 
 	function handleNavHome() {
-		navigate('/project1/');
+		navigate('/');
 	}
 
 	return (
