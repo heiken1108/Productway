@@ -5,7 +5,6 @@ export default function AddToShoppingcart({ id }: { id: number }) {
 	function handleAddToShoppingcart() {
 		if (localStorage.getItem('myShoppingcart') === null) {
 			localStorage.setItem('myShoppingcart', id.toString());
-			console.log(localStorage.getItem('myShoppingcart'));
 		} else {
 			localStorage.setItem(
 				'myShoppingcart',
