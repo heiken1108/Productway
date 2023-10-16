@@ -1,26 +1,57 @@
 // import { useParams } from 'react-router-dom';
 import { IProduct } from '../../data/types';
 import './Productpage.css';
+import { GET_PRODUCT_BY_PRODUCT_ID } from '../../queries';
+import { useQuery } from '@apollo/client';
+import { useParams } from 'react-router-dom';
 
-const item: IProduct = {
-	brand: 'Nestle',
-	category: 'Pålegg & frokost',
-	currentPrice: 54.9,
+const dummyItem: IProduct = {
+	brand: '',
+	category: '',
+	currentPrice: 0,
 	description:
-		'Gi hele familien en god start på dagen! \nHavre Cheerios er sprø \
-	fullkornsringer med 92% fullkorn og et høyt innhold av fiber. Produktet er også \
-	nøkkelhullsmerket.',
-	ean: '5900020037046',
-	image: 'https://bilder.ngdata.no/5900020037046/kmh/large.jpg',
-	name: 'Cheerios Havre 375g Nestle',
-	productID: 1011,
-	store: 'Joker',
-	weight: 375,
-	weightUnit: 'g',
+		'',
+	ean: '',
+	image: '',
+	name: '',
+	productID: 0,
+	store: '',
+	weight: 0,
+	weightUnit: '',
 };
 
+function getProductById(id: number) {
+	const { loading, error, data } = useQuery(GET_PRODUCT_BY_PRODUCT_ID, {
+		variables: { productID: id }, 
+	});
+	
+	if (loading || !data) {
+		return dummyItem;
+	}
+	
+	const product = data.getProductByProductID;
+	const item: IProduct = {
+		brand: product.brand,
+		category: product.category,
+		currentPrice: product.currentPrice,
+		description: product.description,
+		ean: product.ean,
+		image: product.image,
+		name: product.name,
+		productID: product.productID,
+		store: product.store,
+		weight: product.weight,
+		weightUnit: product.weightUnit,
+	};
+	console.log(item);
+	return item;
+}
+
 export default function Productpage() {
-	// const { id } = useParams();
+	const { id } = useParams();
+
+	const item = getProductById(Number(id));
+	
 
 	return (
 		<div className='productContainer'>

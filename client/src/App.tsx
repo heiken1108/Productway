@@ -6,6 +6,7 @@ import Productpage from './Pages/Productpage/Productpage.tsx';
 import Header from './Components/Header/Header.tsx';
 import Shoppingcart from './Pages/Shoppingcart/Shoppingcart.tsx';
 
+
 const queryClient = new QueryClient();
 
 function App() {

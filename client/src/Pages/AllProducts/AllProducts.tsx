@@ -2,28 +2,27 @@ import { IProduct } from '../../data/types';
 import './AllProducts.css';
 import TodaysItem from '../../Components/TodaysItem/TodaysItem';
 import { useNavigate } from 'react-router-dom';
+import { useQuery } from "@apollo/client";
+import { GET_DATA } from '../../queries';
 
-const todaysItem: IProduct = {
-	//Mock data. Will be changed with data from backend
-	brand: 'Nestle',
-	category: 'Pålegg & frokost',
-	currentPrice: 54.9,
+const dummyItem: IProduct = {
+	brand: '',
+	category: '',
+	currentPrice: 0,
 	description:
-		'Gi hele familien en god start på dagen! \nHavre Cheerios er sprø \
-	fullkornsringer med 92% fullkorn og et høyt innhold av fiber. Produktet er også \
-	nøkkelhullsmerket.',
-	ean: '5900020037046',
-	image: 'https://bilder.ngdata.no/5900020037046/kmh/large.jpg',
-	name: 'Cheerios Havre 375g Nestle',
-	productID: 1011,
-	store: 'Joker',
-	weight: 375,
-	weightUnit: 'g',
+		'',
+	ean: '',
+	image: '',
+	name: '',
+	productID: 0,
+	store: '',
+	weight: 0,
+	weightUnit: '',
 };
 
 const categories = [
 	{
-		name: 'Snacks & Godteri',
+		name: 'Snacks & godteri',
 		icon: 'fi fi-rr-popcorn',
 	},
 	{
@@ -47,7 +46,7 @@ const categories = [
 		icon: 'fi fi-rs-pie',
 	},
 	{
-		name: 'Pålegg & Frokost',
+		name: 'Pålegg & frokost',
 		icon: 'fi fi-rr-bread-slice',
 	},
 	{
@@ -60,7 +59,29 @@ const categories = [
 	},
 ];
 
+function getAllProducts() {
+	const { data, loading, error } = useQuery(GET_DATA);
+	if (loading || !data) {
+		return dummyItem;
+	}
+	const item: IProduct = {
+		brand: data.getAllProducts[0].brand,
+		category: data.getAllProducts[0].category,
+		currentPrice: data.getAllProducts[0].currentPrice,
+		description: data.getAllProducts[0].description,
+		ean: data.getAllProducts[0].ean,
+		image: data.getAllProducts[0].image,
+		name: data.getAllProducts[0].name,
+		productID: data.getAllProducts[0].productID,
+		store: data.getAllProducts[0].store,
+		weight: data.getAllProducts[0].weight,
+		weightUnit: data.getAllProducts[0].weightUnit,
+	};
+	return item;
+}
+
 export default function AllStores() {
+	const todaysItem = getAllProducts();
 	const navigate = useNavigate();
 
 	function handleCategoryClick(link: string) {
@@ -73,9 +94,9 @@ export default function AllStores() {
 				<h2>Velkommen! Her er dagens produkt:</h2>
 				<div
 					className="cardContainer"
-					onClick={() => navigate('/product/12')}
+					onClick={() => navigate('/product/' + todaysItem.productID)}
 				>
-					<TodaysItem item={todaysItem} />
+					<TodaysItem item={todaysItem} /> 
 				</div>
 				<h2> Alle produkter </h2>
 			</div>
@@ -85,7 +106,7 @@ export default function AllStores() {
 						<div
 							className="categoryCard"
 							onClick={() =>
-								handleCategoryClick(category.name.toLowerCase())
+								handleCategoryClick(category.name)
 							}
 						>
 							<i className={category.icon}></i>

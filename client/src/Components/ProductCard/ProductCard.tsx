@@ -13,7 +13,7 @@ export default function ProductCard({item}: {item: IProduct}) {
             </div>
             <div className='textDiv'>
                 <h6 className='tittel'>{item.name}</h6>
-                <p className='prisParagraph'>Pris: {item.currentPrice} @ {item.store}</p>
+                <p className='prisParagraph'>Pris: <strong>{item.currentPrice} kr</strong> @ {item.store}</p>
             </div>
         </div>
     );
