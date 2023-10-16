@@ -34,7 +34,7 @@ try:
         response = requests.get(api_url, headers=headers)
         if response.status_code == 200:
             validCategories = ["Dessert", "Pålegg & frokost", "Kjøtt", "Snacks & godteri", "Personlige artikler", "Drikke", "Middag", "Ost", "Middagstilbehør"]
-            produkt = response.json()  # Anta at API-et returnerer JSON-data
+            produkt = response.json()  
             productID = produkt["data"]["id"] if produkt["data"]["id"] is not None else 0000000
             name = produkt["data"]["name"] if produkt["data"]["name"] is not None else "Ingen informasjon"
             brand = produkt["data"]["brand"] if produkt["data"]["brand"] is not None else "Ingen informasjon"

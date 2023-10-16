@@ -1,34 +1,30 @@
 const express = require("express");
-const app = express();
-const mongoose = require('mongoose');
-const ProductModel = require("./models/products");
-
 const cors = require('cors')
-app.use(cors())
-app.use(express.json())
+const mongoose = require('mongoose');
+const { ApolloServer } = require('apollo-server-express');
+const typeDefs = require("./typeDefs");
+const resolvers = require("./resolvers");
 
-mongoose.connect(
-    "mongodb+srv://aksman:BGYHWeYkfo413C3C@productway.ftsvyzi.mongodb.net/productway?retryWrites=true&w=majority"
-)
 
-app.get("/getProducts", async (req, res) => {
-    try {
-        const products = await ProductModel.find({});
-        res.json(products)
-    } catch (error) {
-        console.error(err);
-        res.status(500).json({error: "Feil ved innhenting av produkter"})
-    }
-})
 
-app.post("/addProduct", async (req, res) => {
-    const product = req.body;
-    const newProduct = new ProductModel(product);
-    await newProduct.save();
 
-    res.json(product);
-})
+async function startServer() {
+    const app = express();
+    app.use(cors())
+    app.use(express.json())
+    const apolloServer = new ApolloServer({
+        typeDefs,
+        resolvers
+    })
 
-app.listen(3001, () => {
-    console.log("SERVER RUNS PERFECTLY");
-})
+    await apolloServer.start();
+
+    apolloServer.applyMiddleware({app: app});
+
+    await mongoose.connect(
+        "mongodb+srv://aksman:BGYHWeYkfo413C3C@productway.ftsvyzi.mongodb.net/productway?retryWrites=true&w=majority"
+    )
+
+    app.listen(4000, () => console.log("Server er starta (SERVER RUNS PERFECTLY)"))
+}
+startServer();
