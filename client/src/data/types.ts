@@ -5,7 +5,7 @@ export interface IProduct {
 	ean: string;
 	image: string;
 	category?: string;
-	description?: String;
+	description?: string;
 	currentPrice?: number;
 	weight?: number;
 	weightUnit?: string;

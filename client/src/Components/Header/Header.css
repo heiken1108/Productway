@@ -31,9 +31,9 @@
 	display: flex;
 	align-items: center;
 	height: 100%; /* Make it the same height as the Header */
-  }
+}
 
-  @media screen and (max-width: 650px ) {
+@media screen and (max-width: 650px) {
 	.header-spacer {
 		display: none;
 	}
@@ -41,4 +41,4 @@
 	.search-and-button {
 		margin-left: auto;
 	}
-  }
+}

@@ -24,16 +24,16 @@
 	max-height: 150px;
 	width: 150px;
 }
-  
-  @media screen and (max-width: 786px) {
-	.todaysItem{
-		min-width: 0;
-		width: 90%
-	}
-  }
 
-  @media screen and (max-width: 645px) {
-	.todaysItem{
+@media screen and (max-width: 786px) {
+	.todaysItem {
+		min-width: 0;
+		width: 90%;
+	}
+}
+
+@media screen and (max-width: 645px) {
+	.todaysItem {
 		min-width: 0;
 		width: 90%;
 		height: auto;
@@ -50,5 +50,4 @@
 	.infoContainer {
 		margin: 20px;
 	}
-  }
-  
+}

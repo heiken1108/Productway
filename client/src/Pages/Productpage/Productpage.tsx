@@ -1,69 +1,41 @@
-// import { useParams } from 'react-router-dom';
-import { IProduct } from '../../data/types';
 import './Productpage.css';
 import { GET_PRODUCT_BY_PRODUCT_ID } from '../../queries';
 import { useQuery } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 
-const dummyItem: IProduct = {
-	brand: '',
-	category: '',
-	currentPrice: 0,
-	description:
-		'',
-	ean: '',
-	image: '',
-	name: '',
-	productID: 0,
-	store: '',
-	weight: 0,
-	weightUnit: '',
-};
-
-function getProductById(id: number) {
-	const { loading, error, data } = useQuery(GET_PRODUCT_BY_PRODUCT_ID, {
-		variables: { productID: id }, 
-	});
-	
-	if (loading || !data) {
-		return dummyItem;
-	}
-	
-	const product = data.getProductByProductID;
-	const item: IProduct = {
-		brand: product.brand,
-		category: product.category,
-		currentPrice: product.currentPrice,
-		description: product.description,
-		ean: product.ean,
-		image: product.image,
-		name: product.name,
-		productID: product.productID,
-		store: product.store,
-		weight: product.weight,
-		weightUnit: product.weightUnit,
-	};
-	console.log(item);
-	return item;
-}
-
 export default function Productpage() {
 	const { id } = useParams();
 
-	const item = getProductById(Number(id));
-	
+	const { data, loading, error } = useQuery(GET_PRODUCT_BY_PRODUCT_ID, {
+		variables: { productID: 1024 },
+	});
+
+	if (loading) {
+		return <h3>{id} loading...</h3>;
+	}
+
+	if (error) {
+		return <h3>Det har skjedd en feil...</h3>;
+	}
 
 	return (
-		<div className='productContainer'>
+		<div className="productContainer">
 			<div className="productContent">
 				<div className="productImage">
-					<img src={item.image} alt="Image not found" />
+					<img
+						src={data.getProductByProductID.image}
+						alt="Image not found"
+					/>
 				</div>
 				<div className="productInfo">
-					<h1>{item.name}</h1>
-					<h4>{'Merke: ' + item.brand}</h4>
-					<p>{item.description}</p>
-					<p>{'Pris: kr ' + item.currentPrice + ',-'}</p>
+					<h1>{data.getProductByProductID.name}</h1>
+					<h4>{'Merke: ' + data.getProductByProductID.brand}</h4>
+					<p>{data.getProductByProductID.description}</p>
+					<p>
+						{'Pris: kr ' +
+							data.getProductByProductID.currentPrice +
+							',-'}
+					</p>
 					<p>⭐⭐⭐⭐⭐</p>
 				</div>
 			</div>
