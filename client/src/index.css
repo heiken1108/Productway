@@ -2,7 +2,6 @@
 	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 	line-height: 1.5;
 	font-weight: 400;
-	
 
 	color-scheme: light dark;
 	color: rgba(255, 255, 255, 0.87);
@@ -16,9 +15,9 @@
 }
 
 #root {
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box; /* This ensures padding and border are included in the width */
+	width: 100%;
+	max-width: 100%;
+	box-sizing: border-box; /* This ensures padding and border are included in the width */
 }
 
 a {
@@ -31,12 +30,11 @@ a:hover {
 }
 
 body {
-    margin: 0;
-    display: flex;
-    min-height: 100vh;
-    background-color: #cad2c5;
+	margin: 0;
+	display: flex;
+	min-height: 100vh;
+	background-color: #cad2c5;
 }
-
 
 h1 {
 	font-size: 3.2em;

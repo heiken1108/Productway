@@ -1,24 +1,6 @@
-import { IProduct } from '../../data/types';
 import './AllProducts.css';
 import TodaysItem from '../../Components/TodaysItem/TodaysItem';
 import { useNavigate } from 'react-router-dom';
-import { useQuery } from "@apollo/client";
-import { GET_DATA } from '../../queries';
-
-const dummyItem: IProduct = {
-	brand: '',
-	category: '',
-	currentPrice: 0,
-	description:
-		'',
-	ean: '',
-	image: '',
-	name: '',
-	productID: 0,
-	store: '',
-	weight: 0,
-	weightUnit: '',
-};
 
 const categories = [
 	{
@@ -59,29 +41,7 @@ const categories = [
 	},
 ];
 
-function getAllProducts() {
-	const { data, loading, error } = useQuery(GET_DATA);
-	if (loading || !data) {
-		return dummyItem;
-	}
-	const item: IProduct = {
-		brand: data.getAllProducts[0].brand,
-		category: data.getAllProducts[0].category,
-		currentPrice: data.getAllProducts[0].currentPrice,
-		description: data.getAllProducts[0].description,
-		ean: data.getAllProducts[0].ean,
-		image: data.getAllProducts[0].image,
-		name: data.getAllProducts[0].name,
-		productID: data.getAllProducts[0].productID,
-		store: data.getAllProducts[0].store,
-		weight: data.getAllProducts[0].weight,
-		weightUnit: data.getAllProducts[0].weightUnit,
-	};
-	return item;
-}
-
 export default function AllStores() {
-	const todaysItem = getAllProducts();
 	const navigate = useNavigate();
 
 	function handleCategoryClick(link: string) {
@@ -92,11 +52,8 @@ export default function AllStores() {
 		<div className="mainContainer">
 			<div className="todaysItemContainer">
 				<h2>Velkommen! Her er dagens produkt:</h2>
-				<div
-					className="cardContainer"
-					onClick={() => navigate('/product/' + todaysItem.productID)}
-				>
-					<TodaysItem item={todaysItem} /> 
+				<div className="cardContainer">
+					<TodaysItem />
 				</div>
 				<h2> Alle produkter </h2>
 			</div>
@@ -105,9 +62,7 @@ export default function AllStores() {
 					{categories.map(category => (
 						<div
 							className="categoryCard"
-							onClick={() =>
-								handleCategoryClick(category.name)
-							}
+							onClick={() => handleCategoryClick(category.name)}
 						>
 							<i className={category.icon}></i>
 							<p> {category.name} </p>
