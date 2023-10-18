@@ -54,3 +54,20 @@ export const GET_PRODUCTS_BY_CATEGORY = gql`
 		}
 	}
 `;
+
+export const SET_RATING_BY_PRODUCT_ID = gql`
+	mutation AddRating($rating: Int!, $productID: Int!, $userID: Int!) {
+		addRating(
+			ratingInput: {
+				rating: $rating
+				productID: $productID
+				userID: $userID
+			}
+		) {
+			_id
+			productID
+			rating
+			userID
+		}
+	}
+`;
