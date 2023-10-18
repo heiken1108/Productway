@@ -1,4 +1,5 @@
 const ProductModel = require("./models/products");
+const RatingModel = require("./models/ratings");
 
 const resolvers = {
     Query: {
@@ -21,8 +22,22 @@ const resolvers = {
         },
         getProductsByPriceRange: async (parent, { minPrice, maxPrice }) => {
             return await ProductModel.find({ currentPrice: { $gte: minPrice, $lte: maxPrice } });
-        }
+        },
+        getRatings: async () => {
+            return RatingModel.find();
+        },
+        getRatingsByProductID: async (_, { productID }) => {
+            return await RatingModel.find({ productID: productID });
+        },
     },
+    Mutation: {
+        addRating: async(_, {ratingInput}) => {
+            const {rating, productID, userID} = ratingInput;
+            const ratingProduct = new RatingModel({rating: rating, productID: productID, userID: userID});
+            await ratingProduct.save();
+            return ratingProduct;
+        }
+    }
 };
 
 module.exports = resolvers;
