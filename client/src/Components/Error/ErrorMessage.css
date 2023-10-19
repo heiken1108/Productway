@@ -1,0 +1,31 @@
+.ErrorPage {
+	display: flex;
+	position: absolute;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	width: 100vw;
+	top: 0;
+	left: 0;
+	margin: 0;
+	user-select: none;
+	pointer-events: none;
+}
+
+.errorMessage {
+	text-align: center;
+	padding: 20px;
+	background-color: #ffdddd;
+	border: 1px solid #ff0000;
+	border-radius: 5px;
+	user-select: none;
+}
+
+.errorIcon {
+	font-size: 48px;
+	margin-bottom: 10px;
+}
+
+.errorText {
+	font-size: 18px;
+}

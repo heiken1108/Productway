@@ -3,6 +3,8 @@ import './TodaysItem.css';
 import { GET_PRODUCT_BY_PRODUCT_ID } from '../../queries';
 import { useQuery } from '@apollo/client';
 import { useNavigate } from 'react-router-dom';
+import ErrorMessage from '../Error/ErrorMessage';
+import LoadingAnimation from '../Loading/LoadingAnimation';
 
 export default function TodaysItem() {
 	const navigate = useNavigate();
@@ -10,13 +12,28 @@ export default function TodaysItem() {
 		variables: { productID: 1024 },
 	});
 
-	if (loading) {
-		return <h1>Loading...</h1>;
-	}
-
-	if (error) {
-		return <h1>Det har skjedd en feil...</h1>;
-	}
+	if (loading)
+		return (
+			<div
+				className="todaysItem"
+				style={{ display: 'flex', justifyContent: 'center' }}
+			>
+				<LoadingAnimation />
+			</div>
+		);
+	if (error)
+		return (
+			<div
+				className="todaysItem"
+				style={{
+					display: 'flex',
+					justifyContent: 'center',
+					alignItems: 'center',
+				}}
+			>
+				<ErrorMessage />
+			</div>
+		);
 
 	return (
 		<div
