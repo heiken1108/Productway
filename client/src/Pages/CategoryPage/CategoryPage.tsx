@@ -17,6 +17,8 @@ export default function CategoryPage() {
 
 	const products = data.getProductsByCategory;
 
+	let keycounter = 1;
+
 	return (
 		<>
 			<h1 className="title">
@@ -24,7 +26,7 @@ export default function CategoryPage() {
 			</h1>
 			<div className="ProductsContainer">
 				{products.map((product: IProduct) => {
-					return <ProductCard item={product} />;
+					return <ProductCard key={keycounter++} item={product} />;
 				})}
 			</div>
 		</>
