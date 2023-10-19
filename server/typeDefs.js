@@ -36,6 +36,7 @@ const typeDefs = gql`
         getProductsByCategory(category: String!): [ProductModel]
         getProductsBySearch(search: String!): [ProductModel]
         getProductsByPriceRange(minPrice: Float!, maxPrice: Float!): [ProductModel]
+        getProductsByFilters(name: String, category: String, minPrice: Float, maxPrice: Float): [ProductModel]
         getRatings: [RatingModel]
         getRatingsByProductID(productID: Int!): [RatingModel]
     }

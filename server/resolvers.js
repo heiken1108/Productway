@@ -23,6 +23,23 @@ const resolvers = {
         getProductsByPriceRange: async (parent, { minPrice, maxPrice }) => {
             return await ProductModel.find({ currentPrice: { $gte: minPrice, $lte: maxPrice } });
         },
+        getProductsByFilters: async (parent, { name, category, minPrice, maxPrice }) => {
+            const filters = {};
+            if (name) {
+                const regex = new RegExp(name, 'i');
+                filters.name = { $regex: regex } ;
+            }
+            if (category) {
+                filters.category = category;
+            }
+            if (minPrice !== undefined) {
+                filters.currentPrice = {$gte: minPrice};
+            }
+            if (maxPrice !== undefined) {
+                filters.currentPrice = {...filters.currentPrice, $lte: maxPrice};
+            }
+            return await ProductModel.find(filters);
+        },
         getRatings: async () => {
             return RatingModel.find();
         },
