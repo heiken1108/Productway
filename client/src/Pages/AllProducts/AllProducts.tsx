@@ -48,6 +48,8 @@ export default function AllStores() {
 		navigate('/category/' + link);
 	}
 
+	let keycounter = 1;
+
 	return (
 		<div className="mainContainer">
 			<div className="todaysItemContainer">
@@ -61,6 +63,7 @@ export default function AllStores() {
 				<div className="categoryGrid">
 					{categories.map(category => (
 						<div
+							key={keycounter++}
 							className="categoryCard"
 							onClick={() => handleCategoryClick(category.name)}
 						>
