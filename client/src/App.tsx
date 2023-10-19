@@ -5,6 +5,7 @@ import CategoryPage from './Pages/CategoryPage/CategoryPage';
 import Productpage from './Pages/Productpage/Productpage.tsx';
 import Header from './Components/Header/Header.tsx';
 import Shoppingcart from './Pages/Shoppingcart/Shoppingcart.tsx';
+import ResultsPage from './Pages/ResultsPage/ResultsPage.tsx';
 
 const queryClient = new QueryClient();
 
@@ -22,6 +23,7 @@ function App() {
 						element={<CategoryPage />}
 					/>
 					<Route path="/product/:id" element={<Productpage />} />
+					<Route path="/results" element={<ResultsPage />} />
 				</Routes>
 			</QueryClientProvider>
 		</Router>

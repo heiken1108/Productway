@@ -71,3 +71,49 @@ export const SET_RATING_BY_PRODUCT_ID = gql`
 		}
 	}
 `;
+
+export const GET_PRODUCTS_BY_SEARCHTERM = gql`
+	query GetProductsBySearch($search: String!) {
+		getProductsBySearch(search: $search) {
+			brand
+			category
+			currentPrice
+			description
+			ean
+			image
+			name
+			productID
+			store
+			weight
+			weightUnit
+		}
+	}
+`;
+
+export const GET_PRODUCT_BY_FILTERS = gql`
+	query GetProductsByFilters(
+		$search: String
+		$category: String
+		$minPrice: Float
+		$maxPrice: Float
+	) {
+		getProductsByFilters(
+			name: $search
+			category: $category
+			minPrice: $minPrice
+			maxPrice: $maxPrice
+		) {
+			brand
+			currentPrice
+			category
+			description
+			ean
+			image
+			name
+			productID
+			store
+			weight
+			weightUnit
+		}
+	}
+`;
