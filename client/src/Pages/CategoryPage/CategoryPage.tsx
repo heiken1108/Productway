@@ -4,14 +4,16 @@ import './CategoryPage.css';
 import ProductCard from '../../Components/ProductCard/ProductCard';
 import { GET_PRODUCTS_BY_CATEGORY } from '../../queries';
 import { useQuery } from '@apollo/client';
+import LoadingContainer from '../../Components/Loading/LoadingContainer';
+import ErrorContainer from '../../Components/Error/ErrorContainer';
 
 export default function CategoryPage() {
 	const { categoryName } = useParams();
 	const { loading, error, data } = useQuery(GET_PRODUCTS_BY_CATEGORY, {
 		variables: { category: categoryName },
 	});
-	if (loading) return <p>Loading...</p>;
-	if (error) return <p>Error :(</p>;
+	if (loading) return <LoadingContainer />;
+	if (error) return <ErrorContainer />;
 
 	const products = data.getProductsByCategory;
 

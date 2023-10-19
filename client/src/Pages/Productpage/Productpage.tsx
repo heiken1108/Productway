@@ -4,7 +4,7 @@ import {
 	SET_RATING_BY_PRODUCT_ID,
 } from '../../queries';
 import { useMutation, useQuery } from '@apollo/client';
-import { useParams } from 'react-router-dom';
+import LoadingContainer from '../../Components/Loading/LoadingContainer';
 import { styled } from '@mui/material/styles';
 import Rating, { IconContainerProps } from '@mui/material/Rating';
 import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
@@ -13,6 +13,8 @@ import SentimentSatisfiedIcon from '@mui/icons-material/SentimentSatisfied';
 import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAltOutlined';
 import SentimentVerySatisfiedIcon from '@mui/icons-material/SentimentVerySatisfied';
 import React from 'react';
+import { useParams } from 'react-router-dom';
+import ErrorContainer from '../../Components/Error/ErrorContainer';
 
 /*
  * Styling for the rating icons
@@ -69,8 +71,8 @@ export default function Productpage() {
 		variables: { productID: Number(id) },
 	});
 
-	if (loading) return <p>Loading...</p>;
-	if (error) return <p>Error :(</p>;
+	if (loading) return <LoadingContainer />;
+	if (error) return <ErrorContainer />;
 
 	const postRating = (newRating: number) => {
 		mutateFunction({
