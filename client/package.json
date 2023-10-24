@@ -17,12 +17,14 @@
 		"@emotion/styled": "^11.11.0",
 		"@flaticon/flaticon-uicons": "^2.4.0",
 		"@mui/icons-material": "^5.14.13",
+		"@mui/joy": "^5.0.0-beta.11",
 		"@mui/material": "^5.14.12",
 		"@tanstack/react-query": "^4.35.7",
 		"graphql": "^16.8.1",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
-		"react-router-dom": "^6.16.0"
+		"react-router-dom": "^6.16.0",
+		"recoil": "^0.7.7"
 	},
 	"devDependencies": {
 		"@types/react": "^18.2.15",

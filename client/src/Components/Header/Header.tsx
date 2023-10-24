@@ -1,11 +1,10 @@
 import './Header.css';
 import { useNavigate } from 'react-router-dom';
 import headerIcon from '../../assets/header-icon.svg';
-import Searchbar from '../Searchbar/Searchbar.tsx';
-import { IProduct } from '../../data/types';
 import ShoppingButton from '../ShoppingButton/ShoppingButton.tsx';
+import Searchbar from '../Searchbar/Searchbar.tsx';
 
-export default function Header({ products }: { products: IProduct[] }) {
+export default function Header() {
 	const navigate = useNavigate();
 
 	function handleNavHome() {
@@ -25,7 +24,7 @@ export default function Header({ products }: { products: IProduct[] }) {
 				PRODUCTWAY
 			</h1>
 			<div className="header-spacer">
-				<Searchbar products={products} />
+				<Searchbar />
 			</div>
 			<div className="search-and-button">
 				<ShoppingButton />
