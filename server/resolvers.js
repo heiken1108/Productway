@@ -18,7 +18,20 @@ const resolvers = {
         },
         getProductsBySearch: async (parent, { search }) => {
             const regex = new RegExp(search, 'i');
-            return await ProductModel.find({ name: { $regex: regex } });
+            return await ProductModel.aggregate([
+                {
+                    $match: {name: {$regex: regex} }
+                },
+                {
+                    $group: {
+                        _id: "$name",
+                        firstProduct: {$first: "$$ROOT"},
+                    }
+                },
+                {
+                    $replaceRoot: {newRoot: "$firstProduct"}
+                }
+            ]);
         },
         getProductsByPriceRange: async (parent, { minPrice, maxPrice }) => {
             return await ProductModel.find({ currentPrice: { $gte: minPrice, $lte: maxPrice } });
