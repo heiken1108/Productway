@@ -15,6 +15,7 @@ import React, { useEffect, useState } from 'react';
 import AddToFavourite from '../../Components/AddToFavourite/AddToFavourite';
 import { useParams } from 'react-router-dom';
 import { useMutation, useQuery } from '@apollo/client';
+import { v4 as uuidv4 } from 'uuid';
 
 /*
  * Styling for the rating icons
@@ -103,7 +104,7 @@ export default function Productpage() {
 		mutateFunction({
 			variables: {
 				productID: Number(data.getProductByProductID.productID),
-				userID: Number(userID),
+				userID: userID,
 				rating: Number(newRating),
 			},
 		});
@@ -115,10 +116,15 @@ export default function Productpage() {
 	 * @description Function for updating the rating of the product the user is currently viewing
 	 */
 	const putRating = (newRating: number) => {
+		console.log(
+			Number(data.getProductByProductID.productID),
+			userID,
+			Number(newRating),
+		);
 		updateMutateFunction({
 			variables: {
 				productID: Number(data.getProductByProductID.productID),
-				userID: Number(userID),
+				userID: userID,
 				rating: Number(newRating),
 			},
 		});
@@ -161,8 +167,8 @@ export default function Productpage() {
 	function getOrSetUserID() {
 		const userID = localStorage.getItem('userID');
 		if (userID === null) {
-			const newUserID = Math.floor(Math.random() * 1000000000);
-			localStorage.setItem('userID', newUserID.toString());
+			const newUserID = uuidv4();
+			localStorage.setItem('userID', newUserID);
 			return newUserID;
 		}
 		return userID;

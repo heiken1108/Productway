@@ -68,7 +68,7 @@ export const GET_PRODUCTS_BY_CATEGORY = gql`
  * Mutation to add a rating a product in the database, using its ProductID to identify it
  */
 export const SET_RATING_BY_PRODUCT_ID = gql`
-	mutation AddRating($rating: Int!, $productID: Int!, $userID: Int!) {
+	mutation AddRating($rating: Int!, $productID: Int!, $userID: String!) {
 		addRating(
 			ratingInput: {
 				rating: $rating
@@ -140,7 +140,7 @@ export const GET_PRODUCT_BY_FILTERS = gql`
  * Mutation to update the rating of a product in the database, using its ProductID and the users UserID  to identify the specific rating-record
  */
 export const UPDATE_RATING_BY_PRODUCT_ID_AND_USERID = gql`
-	mutation UpdateRating($rating: Int!, $productID: Int!, $userID: Int!) {
+	mutation UpdateRating($rating: Int!, $productID: Int!, $userID: String!) {
 		updateRating(
 			ratingInput: {
 				rating: $rating

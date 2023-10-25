@@ -12,7 +12,7 @@ const RatingSchema = new mongoose.Schema({
         required: true
     },
     userID: {
-        type: Number,
+        type: String,
         required: true
     }
 })
