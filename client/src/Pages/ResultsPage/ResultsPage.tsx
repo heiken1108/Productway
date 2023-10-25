@@ -12,6 +12,10 @@ export default function CategoryPage() {
 	const category = undefined;
 	const minPrice = undefined;
 	const maxPrice = undefined;
+
+	/**
+	 * @description Query to get products by filters. Returns a list of products called data Can be accessed by data.getProductsByFilters
+	 */
 	const { loading, error, data } = useQuery(GET_PRODUCT_BY_FILTERS, {
 		variables: {
 			search: searchTerm,

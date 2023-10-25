@@ -1,5 +1,8 @@
 const {gql} = require('apollo-server-express');
 
+/**
+ * Type definitions to define the schemas and operations that can be performed on the data, including both queries and mutations
+ */
 const typeDefs = gql`
     type ProductModel {
         _id: ID
@@ -43,6 +46,7 @@ const typeDefs = gql`
 
     type Mutation {
         addRating(ratingInput: RatingInput!): RatingModel
+        updateRating(ratingInput: RatingInput!): RatingModel
     }
 `;
 

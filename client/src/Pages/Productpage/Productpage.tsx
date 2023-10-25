@@ -2,6 +2,7 @@ import './Productpage.css';
 import {
 	GET_PRODUCT_BY_PRODUCT_ID,
 	SET_RATING_BY_PRODUCT_ID,
+	UPDATE_RATING_BY_PRODUCT_ID_AND_USERID,
 } from '../../queries';
 import { styled } from '@mui/material/styles';
 import Rating, { IconContainerProps } from '@mui/material/Rating';
@@ -67,6 +68,9 @@ export default function Productpage() {
 	const userID = getOrSetUserID();
 	const [myRating, setMyRating] = useState(0);
 	const [mutateFunction] = useMutation(SET_RATING_BY_PRODUCT_ID);
+	const [updateMutateFunction] = useMutation(
+		UPDATE_RATING_BY_PRODUCT_ID_AND_USERID,
+	);
 	const { data, loading, error } = useQuery(GET_PRODUCT_BY_PRODUCT_ID, {
 		variables: { productID: Number(id) },
 	});
@@ -90,8 +94,28 @@ export default function Productpage() {
 		setMyRating(Number(rating));
 	}, [id]);
 
+	/**
+	 *
+	 * @param newRating
+	 * @description Function for posting a new rating of the product the user is currently viewing
+	 */
 	const postRating = (newRating: number) => {
 		mutateFunction({
+			variables: {
+				productID: Number(data.getProductByProductID.productID),
+				userID: Number(userID),
+				rating: Number(newRating),
+			},
+		});
+	};
+
+	/**
+	 *
+	 * @param newRating
+	 * @description Function for updating the rating of the product the user is currently viewing
+	 */
+	const putRating = (newRating: number) => {
+		updateMutateFunction({
 			variables: {
 				productID: Number(data.getProductByProductID.productID),
 				userID: Number(userID),
@@ -120,6 +144,7 @@ export default function Productpage() {
 				 * Api call to update the rating in the backend
 				 * sender inn productID og rating.
 				 */
+				putRating(rating);
 			}
 		}
 
