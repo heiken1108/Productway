@@ -1,4 +1,3 @@
-import AddToShoppingcart from '../AddToShoppingcart/AddToShoppingcart';
 import './TodaysItem.css';
 import { GET_PRODUCT_BY_PRODUCT_ID } from '../../queries';
 import { useQuery } from '@apollo/client';
@@ -54,7 +53,6 @@ export default function TodaysItem() {
 						{data.getProductByProductID.currentPrice}
 					</strong>
 				</p>
-				<AddToShoppingcart id={data.getProductByProductID.productID} />
 			</div>
 		</div>
 	);

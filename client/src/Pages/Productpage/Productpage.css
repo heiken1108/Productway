@@ -19,6 +19,12 @@
 	width: auto;
 	height: auto;
 }
+.rateAndShopContainer {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin-right: 20px;
+}
 
 .productInfo {
 	width: 60%;
@@ -26,6 +32,9 @@
 
 .productInfo h1 {
 	margin-top: 0px;
+}
+.productInfo p {
+	font-size: larger;
 }
 
 @media screen and (max-width: 470px) {
