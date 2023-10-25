@@ -23,13 +23,13 @@ const typeDefs = gql`
         _id: ID
         productID: Int!
         rating: Int!
-        userID: Int!
+        userID: String!
     }
 
     input RatingInput {
         rating: Int!
         productID: Int!
-        userID: Int!
+        userID: String!
     }
 
     type Query {
