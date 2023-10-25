@@ -11,7 +11,7 @@ export default function ProductCard({ item }: { item: IProduct }) {
 			onClick={() => navigate('/product/' + item.productID)}
 		>
 			<div className="imgDiv">
-				<img src={item.image} alt={item.name} />
+				<img src={item.image} alt={item.name} loading="lazy" />
 			</div>
 			<div className="textDiv">
 				<h6 className="tittel">{item.name}</h6>

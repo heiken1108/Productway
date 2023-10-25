@@ -42,7 +42,7 @@ export default function TodaysItem() {
 			}
 		>
 			<div className="imgContainer"></div>
-			<img src={data.getProductByProductID.image}></img>
+			<img loading="lazy" src={data.getProductByProductID.image}></img>
 			<div className="infoContainer">
 				<h3>{data.getProductByProductID.name}</h3>
 				<p>{data.getProductByProductID.description}</p>
