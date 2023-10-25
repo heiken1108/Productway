@@ -8,6 +8,10 @@ const resolvers = {
             const products = await ProductModel.find();
             return products;
         },
+        getProductsWithLimit: async (_, { limit, page }) => {
+            const products = await ProductModel.find().limit(limit).skip((page - 1) * limit);
+            return products;
+        },
         //Implementation of GraphQL-query to find a product by its productID in the MongoDB-database
         getProductByProductID: async (_, { productID }) => {
             return await ProductModel.findOne({ productID });
@@ -55,6 +59,23 @@ const resolvers = {
                 filters.currentPrice = {...filters.currentPrice, $lte: maxPrice};
             }
             return await ProductModel.find(filters);
+        },
+        getProductsByFiltersWithLimit: async (parent, { name, category, minPrice, maxPrice, limit, page }) => {
+            const filters = {};
+            if (name) {
+                const regex = new RegExp(name, 'i');
+                filters.name = { $regex: regex } ;
+            }
+            if (category) {
+                filters.category = category;
+            }
+            if (minPrice !== undefined) {
+                filters.currentPrice = {$gte: minPrice};
+            }
+            if (maxPrice !== undefined) {
+                filters.currentPrice = {...filters.currentPrice, $lte: maxPrice};
+            }
+            return await ProductModel.find(filters).limit(limit).skip((page - 1) * limit);
         },
         //Implementation of GraphQL-query to find all ratings in the MongoDB-database
         getRatings: async () => {

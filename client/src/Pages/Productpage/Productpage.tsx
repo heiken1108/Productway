@@ -16,6 +16,8 @@ import AddToFavourite from '../../Components/AddToFavourite/AddToFavourite';
 import { useParams } from 'react-router-dom';
 import { useMutation, useQuery } from '@apollo/client';
 import { v4 as uuidv4 } from 'uuid';
+import ErrorContainer from '../../Components/Error/ErrorContainer';
+import LoadingContainer from '../../Components/Loading/LoadingContainer';
 
 /*
  * Styling for the rating icons
@@ -188,8 +190,8 @@ export default function Productpage() {
 			updateRating(newValue);
 		}
 	};
-	if (loading) return <p>Loading...</p>;
-	if (error) return <p>Error :(</p>;
+	if (loading) return <LoadingContainer />;
+	if (error) return <ErrorContainer />;
 
 	return (
 		<div className="productContainer">
