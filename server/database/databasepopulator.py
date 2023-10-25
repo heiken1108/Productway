@@ -21,7 +21,7 @@ import time
 
 # API-endepunkt for å hente produkt-objekter én etter én
 api_url_standard = "https://kassal.app/api/v1/products/id/"  # Endre til ditt API-endepunkt
-post_url = "http://localhost:3001/addProduct"
+post_url = "http://localhost:5713/addProduct"
 
 # Legg til API-nøkkelen i en HTTP-forespørselsheader
 headers = {
@@ -29,7 +29,7 @@ headers = {
 }
 
 try:
-    for i in range(2413, 2414):
+    for i in range(3000, 4000):
         api_url = api_url_standard + str(i)
         response = requests.get(api_url, headers=headers)
         if response.status_code == 200:
@@ -42,7 +42,7 @@ try:
             image = produkt["data"]["image"] if produkt["data"]["image"] is not None else "Ingen informasjon"
             currentPrice = produkt["data"]["current_price"] if produkt["data"]["current_price"] is not None else "Ingen informasjon"
             store = produkt["data"]["store"]["name"] if produkt["data"]["store"]["name"] is not None else "Ingen informasjon"
-            description = produkt["data"]["description"]
+            description = produkt["data"]["description"] if produkt["data"]["description"] is not None else "Ingen informasjon"
             weight = produkt["data"]["weight"] 
             weightUnit = produkt["data"]["weight_unit"]
             kategorier = produkt["data"]["category"] if produkt["data"]["category"] is not None else []

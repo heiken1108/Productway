@@ -21,6 +21,24 @@ export const GET_DATA = gql`
 	}
 `;
 
+export const GET_DATA_WITH_LIMIT = gql`
+	query GetProductsWithLimit($limit: Int!, $page: Int!) {
+		getProductsWithLimit(limit: $limit, page: $page) {
+			brand
+			category
+			currentPrice
+			description
+			ean
+			image
+			name
+			productID
+			store
+			weight
+			weightUnit
+		}
+	}
+`;
+
 /*
  * Query to get a single products from the database, using ProductID to identify it
  */
@@ -120,6 +138,38 @@ export const GET_PRODUCT_BY_FILTERS = gql`
 			category: $category
 			minPrice: $minPrice
 			maxPrice: $maxPrice
+		) {
+			brand
+			currentPrice
+			category
+			description
+			ean
+			image
+			name
+			productID
+			store
+			weight
+			weightUnit
+		}
+	}
+`;
+
+export const GET_PRODUCT_BY_FILTERS_WITH_LIMIT = gql`
+	query getProductsByFiltersWithLimit(
+		$search: String
+		$category: String
+		$minPrice: Float
+		$maxPrice: Float
+		$limit: Int!
+		$page: Int!
+	) {
+		getProductsByFiltersWithLimit(
+			name: $search
+			category: $category
+			minPrice: $minPrice
+			maxPrice: $maxPrice
+			limit: $limit
+			page: $page
 		) {
 			brand
 			currentPrice
