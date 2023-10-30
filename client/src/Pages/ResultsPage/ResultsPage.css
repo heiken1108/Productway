@@ -12,15 +12,15 @@
 	width: 100;
 }
 
-.ProductsContainer {
+/* .productsContainer {
 	width: 100%;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: space-around;
-}
+} */
 
-.prod2 {
+.productsContainer {
 	grid-template-columns: repeat(auto-fill, minmax(19rem, 1fr));
 	justify-content: start;
 	justify-items: center;
@@ -29,12 +29,15 @@
 	padding: 20px;
 }
 
-.ButtonContainer {
+.buttonContainer {
 	display: flex;
 	justify-content: center;
 	margin-bottom: 50px;
 }
 
-.loadButton {
-	display: inline-block; /* Behandle knappen som en inline-blokk for å sentrere horisontalt */
+.noItems {
+	display: flex;
+	width: 100%;
+	margin-top: 100px;
+	justify-content: center;
 }

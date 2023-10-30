@@ -40,11 +40,11 @@ const typeDefs = gql`
         getProductsByCategory(category: String!): [ProductModel]
         getProductsBySearch(search: String!): [ProductModel]
         getProductsByPriceRange(minPrice: Float!, maxPrice: Float!): [ProductModel]
-        getProductsByFilters(name: String, category: String, minPrice: Float, maxPrice: Float): [ProductModel]
-        getProductsByFiltersWithLimit(name: String, category: String, minPrice: Float, maxPrice: Float, limit: Int!, page: Int!): [ProductModel]
+        getProductsByFilters(name: String, categories: [String], minPrice: Float, maxPrice: Float, sortOrder: Int): [ProductModel]
+        getProductsByFiltersWithLimit(name: String, categories: [String], minPrice: Float, maxPrice: Float, limit: Int!, page: Int!, sortOrder: Int): [ProductModel]
         getRatings: [RatingModel]
         getRatingsByProductID(productID: Int!): [RatingModel]
-    }
+        getCountProductsByFilters(name: String, categories: [String], minPrice: Float, maxPrice: Float): Int    }
 
     type Mutation {
         addRating(ratingInput: RatingInput!): RatingModel

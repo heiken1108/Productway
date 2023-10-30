@@ -4,8 +4,8 @@ import { gql } from '@apollo/client';
  * Query to get all products from the database
  */
 export const GET_DATA = gql`
-	query Query {
-		getAllProducts {
+	query Query($sortOrder: Int) {
+		getAllProducts(sortOrder: $sortOrder) {
 			brand
 			category
 			currentPrice
@@ -65,8 +65,8 @@ export const GET_PRODUCT_BY_PRODUCT_ID = gql`
  * Query to get all products from the database of a specific category
  */
 export const GET_PRODUCTS_BY_CATEGORY = gql`
-	query GetProductsByCategory($category: String!) {
-		getProductsByCategory(category: $category) {
+	query GetProductsByCategory($category: String!, $sortOrder: Int) {
+		getProductsByCategory(category: $category, sortOrder: $sortOrder) {
 			brand
 			category
 			currentPrice
@@ -129,15 +129,17 @@ export const GET_PRODUCTS_BY_SEARCHTERM = gql`
 export const GET_PRODUCT_BY_FILTERS = gql`
 	query GetProductsByFilters(
 		$search: String
-		$category: String
+		$categories: [String]
 		$minPrice: Float
 		$maxPrice: Float
+		$sortOrder: Int
 	) {
 		getProductsByFilters(
 			name: $search
-			category: $category
+			categories: $categories
 			minPrice: $minPrice
 			maxPrice: $maxPrice
+			sortOrder: $sortOrder
 		) {
 			brand
 			currentPrice
@@ -157,17 +159,19 @@ export const GET_PRODUCT_BY_FILTERS = gql`
 export const GET_PRODUCT_BY_FILTERS_WITH_LIMIT = gql`
 	query getProductsByFiltersWithLimit(
 		$search: String
-		$category: String
+		$categories: [String]
 		$minPrice: Float
 		$maxPrice: Float
+		$sortOrder: Int
 		$limit: Int!
 		$page: Int!
 	) {
 		getProductsByFiltersWithLimit(
 			name: $search
-			category: $category
+			categories: $categories
 			minPrice: $minPrice
 			maxPrice: $maxPrice
+			sortOrder: $sortOrder
 			limit: $limit
 			page: $page
 		) {
@@ -186,6 +190,21 @@ export const GET_PRODUCT_BY_FILTERS_WITH_LIMIT = gql`
 	}
 `;
 
+export const GET_COUNT_PRODUCTS_BY_FILTERS = gql`
+	query Query(
+		$name: String
+		$categories: [String]
+		$minPrice: Float
+		$maxPrice: Float
+	) {
+		getCountProductsByFilters(
+			name: $name
+			categories: $categories
+			minPrice: $minPrice
+			maxPrice: $maxPrice
+		)
+	}
+`;
 /*
  * Mutation to update the rating of a product in the database, using its ProductID and the users UserID  to identify the specific rating-record
  */
