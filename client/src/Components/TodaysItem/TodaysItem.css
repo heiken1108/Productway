@@ -9,7 +9,7 @@
 	min-width: 700px;
 	align-items: center;
 	box-shadow: 5px 5px 8px #888888;
-	gap: 70px;
+	gap: 40px;
 	background-color: #1c326e49;
 	position: relative;
 }
@@ -20,10 +20,20 @@
 	margin-right: 30px;
 }
 
-.todaysItem img {
-	margin-top: 20px;
-	max-height: 150px;
-	width: 150px;
+.imgContainer img {
+	width: 100%;
+	max-height: 250px;
+	object-fit: contain;
+}
+
+.imgContainer {
+	display: flex;
+	align-items: center;
+	max-height: 250px;
+	min-height: 200px;
+	max-width: 200px;
+	min-width: 200px;
+	margin: 40px;
 }
 
 @media screen and (max-width: 786px) {

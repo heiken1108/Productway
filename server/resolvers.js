@@ -4,9 +4,14 @@ const RatingModel = require("./models/ratings");
 const resolvers = {
     Query: {
         //Implementation of GraphQL-query to find all products in the MongoDB-database
-        getAllProducts: async () => {
-            const products = await ProductModel.find();
-            return products;
+        getAllProducts: async (_, {sortOrder}) => {
+            if (sortOrder === 1){
+                return await ProductModel.find().sort({currentPrice: 1});
+            } else if (sortOrder === -1){
+                return await ProductModel.find().sort({currentPrice: -1});
+            } else {
+                return await ProductModel.find();
+            }
         },
         getProductsWithLimit: async (_, { limit, page }) => {
             const products = await ProductModel.find().limit(limit).skip((page - 1) * limit);
@@ -18,7 +23,13 @@ const resolvers = {
         },
         //Implementation of GraphQL-query to find all products in the MongoDB-database with a specific category
         getProductsByCategory: async (parent, { category }) => {
-            return await ProductModel.find({ category: category });
+            if (sortOrder === 1){
+                return await ProductModel.find({ category: category }).sort({currentPrice: 1});
+            } else if (sortOrder === -1){
+                return await ProductModel.find({ category: category }).sort({currentPrice: -1});
+            } else {
+                return await ProductModel.find({ category: category });
+            }
         },
         //Implementation of GraphQL-query to find all products in the MongoDB-database that matches a specific search term
         getProductsBySearch: async (parent, { search }) => {
@@ -43,14 +54,14 @@ const resolvers = {
             return await ProductModel.find({ currentPrice: { $gte: minPrice, $lte: maxPrice } });
         },
         //Implementation of GraphQL-query to find all products in the MongoDB-database that matches a specific search term, category and price range
-        getProductsByFilters: async (parent, { name, category, minPrice, maxPrice }) => {
+        getProductsByFilters: async (parent, { name, categories, minPrice, maxPrice, sortOrder }) => {
             const filters = {};
             if (name) {
                 const regex = new RegExp(name, 'i');
                 filters.name = { $regex: regex } ;
             }
-            if (category) {
-                filters.category = category;
+            if (categories && categories.length > 0) {
+                filters.category = { $in: categories };
             }
             if (minPrice !== undefined) {
                 filters.currentPrice = {$gte: minPrice};
@@ -58,16 +69,24 @@ const resolvers = {
             if (maxPrice !== undefined) {
                 filters.currentPrice = {...filters.currentPrice, $lte: maxPrice};
             }
-            return await ProductModel.find(filters);
+            let producs;
+            if (sortOrder === 1) {
+                producs = await ProductModel.find(filters).sort({ currentPrice: 1 }); // Stigende rekkefølge
+            } else if (sortOrder === -1) {
+                producs = await ProductModel.find(filters).sort({ currentPrice: -1 }); // Synkende rekkefølge
+            } else {
+                producs = await ProductModel.find(filters); // Ingen spesifisert rekkefølge, returner som det er
+            }
+            return producs;
         },
-        getProductsByFiltersWithLimit: async (parent, { name, category, minPrice, maxPrice, limit, page }) => {
+        getProductsByFiltersWithLimit: async (parent, { name, categories, minPrice, maxPrice, limit, page, sortOrder }) => {
             const filters = {};
             if (name) {
                 const regex = new RegExp(name, 'i');
                 filters.name = { $regex: regex } ;
             }
-            if (category) {
-                filters.category = category;
+            if (categories && categories.length > 0) {
+                filters.category = { $in: categories };
             }
             if (minPrice !== undefined) {
                 filters.currentPrice = {$gte: minPrice};
@@ -75,8 +94,34 @@ const resolvers = {
             if (maxPrice !== undefined) {
                 filters.currentPrice = {...filters.currentPrice, $lte: maxPrice};
             }
-            return await ProductModel.find(filters).limit(limit).skip((page - 1) * limit);
+            let products;
+            if (sortOrder === 1) {
+                products = await ProductModel.find(filters).sort({ currentPrice: 1 }).limit(limit).skip((page - 1) * limit); // Stigende rekkefølge
+            } else if (sortOrder === -1) {
+                products = await ProductModel.find(filters).sort({ currentPrice: -1 }).limit(limit).skip((page - 1) * limit); // Synkende rekkefølge
+            } else {
+                products = await ProductModel.find(filters).limit(limit).skip((page - 1) * limit); // Ingen spesifisert rekkefølge, returner som det er
+            }
+            return products;
         },
+        getCountProductsByFilters: async (parent, { name, categories, minPrice, maxPrice }) => {
+            const filters = {};
+            if (name) {
+                const regex = new RegExp(name, 'i');
+                filters.name = { $regex: regex } ;
+            }
+            if (categories && categories.length > 0) {
+                filters.category = { $in: categories };
+            }
+            if (minPrice !== undefined) {
+                filters.currentPrice = {$gte: minPrice};
+            }
+            if (maxPrice !== undefined) {
+                filters.currentPrice = {...filters.currentPrice, $lte: maxPrice};
+            }
+            const count = await ProductModel.count(filters);
+            return count
+},
         //Implementation of GraphQL-query to find all ratings in the MongoDB-database
         getRatings: async () => {
             return RatingModel.find();
