@@ -158,7 +158,7 @@ export const GET_PRODUCT_BY_FILTERS = gql`
 
 export const GET_PRODUCT_BY_FILTERS_WITH_LIMIT = gql`
 	query getProductsByFiltersWithLimit(
-		$search: String
+		$searchTerm: String
 		$categories: [String]
 		$minPrice: Float
 		$maxPrice: Float
@@ -167,7 +167,7 @@ export const GET_PRODUCT_BY_FILTERS_WITH_LIMIT = gql`
 		$page: Int!
 	) {
 		getProductsByFiltersWithLimit(
-			name: $search
+			searchTerm: $searchTerm
 			categories: $categories
 			minPrice: $minPrice
 			maxPrice: $maxPrice
@@ -192,13 +192,13 @@ export const GET_PRODUCT_BY_FILTERS_WITH_LIMIT = gql`
 
 export const GET_COUNT_PRODUCTS_BY_FILTERS = gql`
 	query Query(
-		$name: String
+		$searchTerm: String
 		$categories: [String]
 		$minPrice: Float
 		$maxPrice: Float
 	) {
 		getCountProductsByFilters(
-			name: $name
+			searchTerm: $searchTerm
 			categories: $categories
 			minPrice: $minPrice
 			maxPrice: $maxPrice

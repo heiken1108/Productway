@@ -79,10 +79,10 @@ const resolvers = {
             }
             return producs;
         },
-        getProductsByFiltersWithLimit: async (parent, { name, categories, minPrice, maxPrice, limit, page, sortOrder }) => {
+        getProductsByFiltersWithLimit: async (parent, { searchTerm, categories, minPrice, maxPrice, limit, page, sortOrder }) => {
             const filters = {};
-            if (name) {
-                const regex = new RegExp(name, 'i');
+            if (searchTerm) {
+                const regex = new RegExp(searchTerm, 'i');
                 filters.name = { $regex: regex } ;
             }
             if (categories && categories.length > 0) {
@@ -104,10 +104,10 @@ const resolvers = {
             }
             return products;
         },
-        getCountProductsByFilters: async (parent, { name, categories, minPrice, maxPrice }) => {
+        getCountProductsByFilters: async (parent, { searchTerm, categories, minPrice, maxPrice }) => {
             const filters = {};
-            if (name) {
-                const regex = new RegExp(name, 'i');
+            if (searchTerm) {
+                const regex = new RegExp(searchTerm, 'i');
                 filters.name = { $regex: regex } ;
             }
             if (categories && categories.length > 0) {

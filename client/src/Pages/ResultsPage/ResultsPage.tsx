@@ -41,7 +41,7 @@ export default function ResultsPage() {
 		error: productsError,
 	} = useQuery(GET_PRODUCT_BY_FILTERS_WITH_LIMIT, {
 		variables: {
-			search: searchTerm,
+			searchTerm: searchTerm,
 			categories: selectedCategories,
 			minPrice: minPrice,
 			maxPrice: maxPrice,
@@ -57,7 +57,7 @@ export default function ResultsPage() {
 		error: countError,
 	} = useQuery(GET_COUNT_PRODUCTS_BY_FILTERS, {
 		variables: {
-			search: searchTerm,
+			searchTerm: searchTerm,
 			categories: selectedCategories,
 			minPrice: minPrice,
 			maxPrice: maxPrice,
