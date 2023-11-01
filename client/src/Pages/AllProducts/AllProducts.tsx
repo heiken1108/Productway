@@ -1,8 +1,10 @@
-import './AllProducts.css';
-import TodaysItem from '../../Components/TodaysItem/TodaysItem';
 import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
+
+import TodaysItem from '../../Components/TodaysItem/TodaysItem';
 import { categoryFilterState } from '../../store/atoms';
+
+import './AllProducts.css';
 
 const categories = [
 	{

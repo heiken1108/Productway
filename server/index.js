@@ -5,6 +5,12 @@ const { ApolloServer } = require('apollo-server-express');
 const typeDefs = require("./typeDefs");
 const resolvers = require("./resolvers");
 
+/**
+ * Starts the server by creating an Express app, setting up middleware, and connecting to a MongoDB database.
+ * @async
+ * @function startServer
+ * @returns {Promise<void>}
+ */
 async function startServer() {
     const app = express();
     app.use(cors())
@@ -22,6 +28,6 @@ async function startServer() {
         "mongodb+srv://aksman:BGYHWeYkfo413C3C@productway.ftsvyzi.mongodb.net/productway?retryWrites=true&w=majority"
     )
 
-    app.listen(4000, () => console.log("Server er starta (SERVER RUNS PERFECTLY)"))
+    app.listen(4000, () => console.log("SERVER RUNS PERFECTLY"))
 }
 startServer();

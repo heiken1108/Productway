@@ -77,3 +77,8 @@ export const sliderFilterState = atom({
 	key: 'sliderFilterState',
 	default: [0, 200],
 });
+
+export const resetSearchBarState = atom({
+	key: 'resetSearchBarState',
+	default: false,
+});

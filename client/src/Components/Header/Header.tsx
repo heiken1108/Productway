@@ -1,9 +1,10 @@
-import './Header.css';
 import { useNavigate } from 'react-router-dom';
-import headerIcon from '../../assets/header-icon.svg';
-import Searchbar from '../Searchbar/Searchbar.tsx';
-import MyPageButton from '../MyPageButton/MyPageButton.tsx';
 
+import headerIcon from '../../assets/header-icon.svg';
+import MyPageButton from '../MyPageButton/MyPageButton.tsx';
+import Searchbar from '../Searchbar/Searchbar.tsx';
+
+import './Header.css';
 /*
  * This component is the header of the website.
  */

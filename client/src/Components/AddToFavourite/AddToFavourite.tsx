@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import Snackbar from '@mui/material/Snackbar';
-import MuiAlert, { AlertProps } from '@mui/material/Alert';
-import React from 'react';
+import React, { useState } from 'react';
+
 import { Button } from '@mui/base';
+import MuiAlert, { AlertProps } from '@mui/material/Alert';
+import Snackbar from '@mui/material/Snackbar';
 
 /*
  * Alert component from MUI, used with Snackbar.

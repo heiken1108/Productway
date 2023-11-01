@@ -1,6 +1,7 @@
-import { useNavigate } from 'react-router-dom';
-import './MyPageButton.css';
 import { Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+
+import './MyPageButton.css';
 
 /*
  * This component is a button that navigates to the MyPage component.
