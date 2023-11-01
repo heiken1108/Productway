@@ -1,9 +1,11 @@
-import './TodaysItem.css';
-import { GET_PRODUCT_BY_PRODUCT_ID } from '../../queries';
 import { useQuery } from '@apollo/client';
 import { useNavigate } from 'react-router-dom';
+
+import { GET_PRODUCT_BY_PRODUCT_ID } from '../../queries';
 import ErrorMessage from '../Error/ErrorMessage';
 import LoadingAnimation from '../Loading/LoadingAnimation';
+
+import './TodaysItem.css';
 
 export default function TodaysItem() {
 	const navigate = useNavigate();

@@ -1,11 +1,14 @@
-import { useQuery, QueryResult } from '@apollo/client';
-import { Autocomplete } from '@mui/joy';
-import { GET_PRODUCTS_BY_SEARCHTERM } from '../../queries';
 import { useEffect, useState } from 'react';
-import { IProduct } from '../../data/types';
+
+import { QueryResult, useQuery } from '@apollo/client';
+import { Autocomplete } from '@mui/joy';
 import { useNavigate } from 'react-router-dom';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+
+import { IProduct } from '../../data/types';
+import { GET_PRODUCTS_BY_SEARCHTERM } from '../../queries';
 import {
+	resetSearchBarState,
 	searchTermState,
 	serchTermForResultPageState,
 } from '../../store/atoms';
@@ -15,12 +18,16 @@ import {
  */
 export default function SearchBar(): JSX.Element {
 	// Local state for the search bar component
+
+	const searchTermFromSessionStorage = sessionStorage.getItem('searchTerm');
 	const [open, setOpen] = useState(false);
 	const [searchTerm, setSearchTerm] = useRecoilState(searchTermState);
 	const [debouncedValue, setDebouncedValue] = useState(searchTerm);
 	const setSerchTermForResultPage = useSetRecoilState(
 		serchTermForResultPageState,
 	);
+
+	const resetSearchBar = useRecoilValue(resetSearchBarState);
 
 	// React Router hook for navigation
 	const navigate = useNavigate();
@@ -35,12 +42,23 @@ export default function SearchBar(): JSX.Element {
 	// Extract the products from the query result
 	const products = data?.getProductsBySearch || [];
 
+	useEffect(() => {
+		if (searchTermFromSessionStorage !== null) {
+			setSearchTerm(searchTermFromSessionStorage);
+		}
+	}, [searchTermFromSessionStorage, setSearchTerm]);
+
+	useEffect(() => {
+		setSearchTerm('');
+	}, [resetSearchBar, setSearchTerm]);
+
 	/**
 	 * A hook that debounces the search term state to avoid making too many requests to the server.
 	 */
 	useEffect(() => {
 		const debouncer = setTimeout(() => {
 			setDebouncedValue(searchTerm);
+			sessionStorage.setItem('searchTerm', searchTerm);
 		}, 1000);
 
 		// Clear the timeout when the component unmounts or when the search term changes.
@@ -88,6 +106,7 @@ export default function SearchBar(): JSX.Element {
 				onKeyDown={event => {
 					if (event.key === 'Enter') {
 						setSerchTermForResultPage(searchTerm);
+						sessionStorage.setItem('searchTerm', searchTerm);
 						navigate('/results');
 					}
 				}}

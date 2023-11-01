@@ -1,11 +1,13 @@
-import { IProduct } from '../../data/types';
-import { useParams } from 'react-router-dom';
-import './CategoryPage.css';
-import ProductCard from '../../Components/ProductCard/ProductCard';
-import { GET_PRODUCTS_BY_CATEGORY } from '../../queries';
 import { useQuery } from '@apollo/client';
-import LoadingContainer from '../../Components/Loading/LoadingContainer';
+import { useParams } from 'react-router-dom';
+
 import ErrorContainer from '../../Components/Error/ErrorContainer';
+import LoadingContainer from '../../Components/Loading/LoadingContainer';
+import ProductCard from '../../Components/ProductCard/ProductCard';
+import { IProduct } from '../../data/types';
+import { GET_PRODUCTS_BY_CATEGORY } from '../../queries';
+
+import './CategoryPage.css';
 
 export default function CategoryPage() {
 	const { categoryName } = useParams();

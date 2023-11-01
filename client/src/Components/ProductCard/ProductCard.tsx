@@ -1,5 +1,7 @@
 import { useNavigate } from 'react-router-dom';
+
 import { IProduct } from '../../data/types';
+
 import './ProductCard.css';
 
 export default function ProductCard({ item }: { item: IProduct }) {

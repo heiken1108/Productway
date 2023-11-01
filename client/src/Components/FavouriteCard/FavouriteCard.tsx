@@ -1,9 +1,11 @@
 import { useQuery } from '@apollo/client';
+
 import { GET_PRODUCT_BY_PRODUCT_ID } from '../../queries';
-import LoadingAnimation from '../Loading/LoadingAnimation';
 import ErrorMessage from '../Error/ErrorMessage';
-import './FavouriteCard.css';
+import LoadingAnimation from '../Loading/LoadingAnimation';
 import ProductCard from '../ProductCard/ProductCard';
+
+import './FavouriteCard.css';
 
 interface FavouriteCardProps {
 	id: number;

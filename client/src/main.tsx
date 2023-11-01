@@ -1,8 +1,10 @@
 import React from 'react';
+
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import ReactDOM from 'react-dom/client';
+
 import App from './App.tsx';
 import './index.css';
-import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 
 const client = new ApolloClient({
 	uri: 'http://localhost:4000/graphql', //Denne må endres når vi endrer til VM

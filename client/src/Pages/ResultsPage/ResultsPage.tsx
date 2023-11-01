@@ -1,40 +1,56 @@
+import { useEffect, useState } from 'react';
+
+import { useQuery } from '@apollo/client';
+import { Pagination, Stack } from '@mui/material';
+import { useRecoilValue } from 'recoil';
+
+import ErrorContainer from '../../Components/Error/ErrorContainer';
+import Filterbar from '../../Components/Filterbar/Filterbar';
+import LoadingContainer from '../../Components/Loading/LoadingContainer';
+import ProductCard from '../../Components/ProductCard/ProductCard';
 import { IProduct } from '../../data/types';
 import {
 	GET_COUNT_PRODUCTS_BY_FILTERS,
 	GET_PRODUCT_BY_FILTERS_WITH_LIMIT,
 } from '../../queries';
-import { useQuery } from '@apollo/client';
-import ProductCard from '../../Components/ProductCard/ProductCard';
-import './ResultsPage.css';
-import { useRecoilValue } from 'recoil';
 import {
 	categoryFilterState,
 	serchTermForResultPageState,
 	sliderFilterState,
 	sortingFilterState,
 } from '../../store/atoms';
-import ErrorContainer from '../../Components/Error/ErrorContainer';
-import LoadingContainer from '../../Components/Loading/LoadingContainer';
-import Filterbar from '../../Components/Filterbar/Filterbar';
+
 import './ResultsPage.css';
-import { useEffect, useState } from 'react';
-import { Pagination, Stack } from '@mui/material';
 
 export default function ResultsPage() {
+	//Recoil state search variables
 	const searchTerm = useRecoilValue(serchTermForResultPageState);
 	const minPrice = useRecoilValue(sliderFilterState)[0];
 	const maxPrice = useRecoilValue(sliderFilterState)[1];
 	const descendingOrder = useRecoilValue(sortingFilterState)[0].showStatus;
 	const ascendingOrder = useRecoilValue(sortingFilterState)[1].showStatus;
-	const sortOrder = descendingOrder ? 1 : ascendingOrder ? -1 : 0;
-	const limit = 12;
-	const [currentPage, setCurrentPage] = useState(1);
 	const categoryFilter = useRecoilValue(categoryFilterState);
 
+	// Local state for pagination. Default value set to 1
+	const [currentPage, setCurrentPage] = useState(1);
+
+	// Sort order for the query. 1 = descending, -1 = ascending, 0 = no sorting
+	const sortOrder = descendingOrder ? 1 : ascendingOrder ? -1 : 0;
+
+	// Number of products to be displayed per page
+	const limit = 12;
+
+	// Reset the current page to 1 when the search term or the category filter changes
+	useEffect(() => {
+		setCurrentPage(1);
+	}, [searchTerm, categoryFilter, minPrice, maxPrice, sortOrder]);
+
+	// Filter the categories to only show the ones that are selected
 	const selectedCategories = categoryFilter
 		.filter(category => category.showStatus)
 		.map(category => category.name);
 
+	// Apollo Client hook for fetching data
 	const {
 		data: products,
 		loading: productsLoading,
@@ -51,6 +67,7 @@ export default function ResultsPage() {
 		},
 	});
 
+	// Apollo Client hook for fetching the number of products that match the search term and the filters
 	const {
 		data: numberOfProducts,
 		loading: countLoading,
@@ -64,15 +81,17 @@ export default function ResultsPage() {
 		},
 	});
 
+	// Number of pages calculated from the number of products and the limit
 	const numberOfPages =
 		numberOfProducts && products
 			? Math.ceil(numberOfProducts.getCountProductsByFilters / limit)
 			: 1;
 
-	useEffect(() => {
-		setCurrentPage(1);
-	}, [searchTerm, categoryFilter, minPrice, maxPrice, sortOrder]);
-
+	/**
+	 * Handles the change of the current page in the pagination component.
+	 * @param _event - The event that triggered the page change.
+	 * @param page - The new page number.
+	 */
 	const handlePageChange = (
 		_event: React.ChangeEvent<unknown>,
 		page: number,

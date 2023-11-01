@@ -1,23 +1,26 @@
-import './Productpage.css';
+import React, { useEffect, useState } from 'react';
+
+import { useMutation, useQuery } from '@apollo/client';
+import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
+import SentimentSatisfiedIcon from '@mui/icons-material/SentimentSatisfied';
+import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAltOutlined';
+import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
+import SentimentVerySatisfiedIcon from '@mui/icons-material/SentimentVerySatisfied';
+import Rating, { IconContainerProps } from '@mui/material/Rating';
+import { styled } from '@mui/material/styles';
+import { useParams } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
+
+import AddToFavourite from '../../Components/AddToFavourite/AddToFavourite';
+import ErrorContainer from '../../Components/Error/ErrorContainer';
+import LoadingContainer from '../../Components/Loading/LoadingContainer';
 import {
 	GET_PRODUCT_BY_PRODUCT_ID,
 	SET_RATING_BY_PRODUCT_ID,
 	UPDATE_RATING_BY_PRODUCT_ID_AND_USERID,
 } from '../../queries';
-import { styled } from '@mui/material/styles';
-import Rating, { IconContainerProps } from '@mui/material/Rating';
-import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
-import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
-import SentimentSatisfiedIcon from '@mui/icons-material/SentimentSatisfied';
-import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAltOutlined';
-import SentimentVerySatisfiedIcon from '@mui/icons-material/SentimentVerySatisfied';
-import React, { useEffect, useState } from 'react';
-import AddToFavourite from '../../Components/AddToFavourite/AddToFavourite';
-import { useParams } from 'react-router-dom';
-import { useMutation, useQuery } from '@apollo/client';
-import { v4 as uuidv4 } from 'uuid';
-import ErrorContainer from '../../Components/Error/ErrorContainer';
-import LoadingContainer from '../../Components/Loading/LoadingContainer';
+
+import './Productpage.css';
 
 /*
  * Styling for the rating icons
