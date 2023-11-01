@@ -10,7 +10,7 @@ import './TodaysItem.css';
 export default function TodaysItem() {
 	const navigate = useNavigate();
 	const { data, loading, error } = useQuery(GET_PRODUCT_BY_PRODUCT_ID, {
-		variables: { productID: 1024 },
+		variables: { productID: 1020 },
 	});
 
 	if (loading)
@@ -43,8 +43,12 @@ export default function TodaysItem() {
 				navigate('/product/' + data.getProductByProductID.productID)
 			}
 		>
-			<div className="imgContainer"></div>
-			<img loading="lazy" src={data.getProductByProductID.image}></img>
+			<div className="imgContainer">
+				<img
+					loading="lazy"
+					src={data.getProductByProductID.image}
+				></img>
+			</div>
 			<div className="infoContainer">
 				<h3>{data.getProductByProductID.name}</h3>
 				<p>{data.getProductByProductID.description}</p>
