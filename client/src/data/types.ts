@@ -11,3 +11,10 @@ export interface IProduct {
 	weightUnit?: string;
 	store: string;
 }
+
+export interface IRating {
+	rating: number;
+	productID: number;
+	userID: string;
+	_id: string;
+}

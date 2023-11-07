@@ -1,23 +1,23 @@
 import FavouriteContainer from '../../Components/FavouriteContainer/FavouriteContainer';
-import './MyPage.css';
+import MyRatingsDisplay from '../../Components/MyRatingsDisplay/MyRatingsDisplay';
 
+import './MyPage.css';
 /*
  * Page for displaying user's favourite items and ratings
  */
 export default function MyPage() {
+	const userID = localStorage.getItem('userID') || '';
 	return (
 		<div className="MyPage">
-			<h1>My page</h1>
-			<div className="row-content">
+			<h1>Min side</h1>
+			<div className="content-container">
 				<div className="MyFavourites">
-					<h1>My favorite items</h1>
-
-					<FavouriteContainer />
+					<h1>Mine favoritter</h1>
+					<FavouriteContainer userID={userID} />
 				</div>
-			</div>
-			<div className="row-content">
 				<div className="MyRatings">
-					<h1>My ratings</h1>
+					<h1>Mine vurderinger</h1>
+					<MyRatingsDisplay userID={userID || ''} />
 				</div>
 			</div>
 		</div>
