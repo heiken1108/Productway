@@ -1,3 +1,5 @@
+//eslint and prettier are contradictory. Therefor esling disable no-mixed-spaces-and-tabs
+/* eslint-disable no-mixed-spaces-and-tabs */
 import { useEffect, useState } from 'react';
 
 import DeleteIcon from '@mui/icons-material/Cancel';
@@ -138,9 +140,23 @@ function Filterbar() {
 					<Chip
 						key={filter.key}
 						label={filter.name}
-						icon={<i className={filter.icon} />}
+						icon={
+							<i
+								className={filter.icon}
+								style={{
+									color: filter.showStatus
+										? 'white'
+										: 'inherit',
+								}}
+							/>
+						}
 						variant={filter.showStatus ? 'filled' : 'outlined'}
 						onClick={() => toggleCategoryChip(filter.key)}
+						style={
+							filter.showStatus
+								? { backgroundColor: '#287094', color: 'white' }
+								: {}
+						}
 					/>
 				))}
 			</div>
@@ -151,9 +167,26 @@ function Filterbar() {
 						<Chip
 							key={filter.key}
 							label={filter.name}
-							icon={<i className={filter.icon} />}
+							icon={
+								<i
+									className={filter.icon}
+									style={{
+										color: filter.showStatus
+											? 'white'
+											: 'inherit',
+									}}
+								/>
+							}
 							variant={filter.showStatus ? 'filled' : 'outlined'}
 							onClick={() => toggleFilterChip(filter.key)}
+							style={
+								filter.showStatus
+									? {
+											backgroundColor: '#287094',
+											color: 'white',
+									  }
+									: {}
+							}
 						/>
 					))}
 				</div>

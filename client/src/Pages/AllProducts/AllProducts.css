@@ -53,10 +53,11 @@ h2 {
 	font-weight: bold;
 	margin: 50px;
 	margin-top: 20px;
-	box-shadow: 5px 5px 8px #888888;
-	background-color: #1c326e49;
+	box-shadow: 2px 2px 4px #888888;
+	background-color: #ffffff;
 	border-radius: 30px;
 	cursor: pointer;
+	color: #4f4f4f;
 }
 
 .categoryCard:hover {

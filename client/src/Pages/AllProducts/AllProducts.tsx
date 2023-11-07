@@ -60,11 +60,13 @@ export default function AllStores() {
 
 	function handleCategoryClick(key: number) {
 		setCategoryData(prevChipData => {
-			return prevChipData.map(chip =>
+			const newChipData = prevChipData.map(chip =>
 				chip.key === key
 					? { ...chip, showStatus: !chip.showStatus }
 					: { ...chip, showStatus: false },
 			);
+			sessionStorage.setItem('categoryData', JSON.stringify(newChipData));
+			return newChipData;
 		});
 		navigate('/results');
 	}

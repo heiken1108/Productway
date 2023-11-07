@@ -17,7 +17,7 @@ export default function MyPageButton() {
 				variant="contained"
 				onClick={handleNavShopping}
 				size="large"
-				sx={{ background: '#1c326e49' }}
+				sx={{ background: '#287094' }}
 			>
 				My page
 			</Button>
