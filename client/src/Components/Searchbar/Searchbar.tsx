@@ -13,6 +13,8 @@ import {
 	serchTermForResultPageState,
 } from '../../store/atoms';
 
+import './Searchbar.css';
+
 /**
  * A search bar component that allows users to search for products.
  */
@@ -68,7 +70,7 @@ export default function SearchBar(): JSX.Element {
 	}, [searchTerm]);
 
 	return (
-		<div>
+		<div className="searchBar">
 			<Autocomplete
 				open={open}
 				onOpen={() => {
@@ -101,7 +103,6 @@ export default function SearchBar(): JSX.Element {
 				style={{
 					height: '3.5rem',
 					backgroundColor: 'white',
-					width: '500px',
 				}}
 				onKeyDown={event => {
 					if (event.key === 'Enter') {

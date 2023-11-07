@@ -1,4 +1,13 @@
-.Searchbar {
-	background-color: white;
-	border-radius: 0.9dvh;
+.searchBar .MuiAutocomplete-root {
+	width: 500px;
+}
+
+@media (max-width: 1100px) {
+	.searchBar {
+		width: 95%;
+	}
+
+	.searchBar .MuiAutocomplete-root {
+		width: 100%;
+	}
 }

@@ -15,21 +15,27 @@ export default function Header() {
 	}
 	return (
 		<div className="Header">
-			<img
-				src={headerIcon}
-				alt="Header Icon"
-				className="header-icon"
-				onClick={() => handleNavHome()}
-			/>{' '}
-			<h1 className="header-title" onClick={() => handleNavHome()}>
-				{' '}
-				PRODUCTWAY
-			</h1>
-			<div className="header-spacer">
-				<Searchbar />
+			<div className="desktopHeader">
+				<img
+					src={headerIcon}
+					alt="Header Icon"
+					className="header-icon"
+					onClick={() => handleNavHome()}
+				/>{' '}
+				<h1 className="header-title" onClick={() => handleNavHome()}>
+					PRODUCTWAY
+				</h1>
+				<div className="header-spacer">
+					<Searchbar />
+				</div>
+				<div className="search-and-button">
+					<MyPageButton />
+				</div>
 			</div>
-			<div className="search-and-button">
-				<MyPageButton />
+			<div className="mobileSearchBar">
+				<div className="mobileSpacer">
+					<Searchbar />
+				</div>
 			</div>
 		</div>
 	);

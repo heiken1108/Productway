@@ -3,12 +3,19 @@
 .Header {
 	background-color: #023246;
 	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.desktopHeader {
+	display: flex;
 	flex-direction: row;
 	align-items: center; /* Center vertically */
-	font-size: calc(4px + 0.8vmin);
+	font-size: calc(2px + 0.8vmin);
 	color: white;
 	font-family: 'Montserrat', sans-serif;
 	user-select: none;
+	width: 100%;
 }
 
 .header-icon {
@@ -33,7 +40,32 @@
 	height: 100%; /* Make it the same height as the Header */
 }
 
-@media screen and (max-width: 650px) {
+.mobileSearchBar {
+	display: none;
+}
+
+.mobileSpacer {
+	margin-bottom: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+}
+
+.desktopHeader img {
+	height: calc(30px + 0.5vmin);
+}
+
+@media screen and (max-width: 1100px) {
+	.Header {
+		align-items: center;
+	}
+
+	.mobileSearchBar {
+		display: flex;
+		width: 100%;
+	}
+
 	.header-spacer {
 		display: none;
 	}
