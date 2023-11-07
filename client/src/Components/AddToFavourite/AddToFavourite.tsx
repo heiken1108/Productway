@@ -77,7 +77,7 @@ export default function AddToFavourite({
 						aria-label="like"
 						style={{
 							backgroundColor: addedToFavourite
-								? 'yellow'
+								? '#287094'
 								: 'grey',
 						}}
 						onClick={handleAddToFavorite}
