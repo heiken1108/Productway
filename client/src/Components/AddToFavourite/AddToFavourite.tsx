@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Button } from '@mui/base';
+import { Button } from '@mui/material';
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
 
@@ -46,7 +46,14 @@ export default function AddToFavourite({ id }: { id: number }) {
 	return (
 		<div className="addToFavourite">
 			<div>
-				<Button onClick={handleAddToFavourite}>
+				<Button
+					onClick={handleAddToFavourite}
+					variant="contained"
+					sx={{
+						background: '#287094',
+						color: 'white',
+					}}
+				>
 					Legg til som favoritt
 				</Button>
 			</div>
@@ -58,7 +65,10 @@ export default function AddToFavourite({ id }: { id: number }) {
 				<Alert
 					onClose={handleClose}
 					severity="success"
-					sx={{ width: '100%' }}
+					sx={{
+						width: '100%',
+						backgroundColor: '#00B894',
+					}}
 				>
 					Lagt til i handleliste!
 				</Alert>

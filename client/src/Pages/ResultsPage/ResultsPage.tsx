@@ -45,6 +45,10 @@ export default function ResultsPage() {
 		setCurrentPage(1);
 	}, [searchTerm, categoryFilter, minPrice, maxPrice, sortOrder]);
 
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
+
 	// Filter the categories to only show the ones that are selected
 	const selectedCategories = categoryFilter
 		.filter(category => category.showStatus)
@@ -108,15 +112,17 @@ export default function ResultsPage() {
 			products.getProductsByFiltersWithLimit.length > 0 &&
 			!productsLoading ? (
 				<div>
-					<div className="productsContainer">
-						{products.getProductsByFiltersWithLimit.map(
-							(product: IProduct) => (
-								<ProductCard
-									item={product}
-									key={product.productID}
-								/>
-							),
-						)}
+					<div className="centerContainer">
+						<div className="productsContainer">
+							{products.getProductsByFiltersWithLimit.map(
+								(product: IProduct) => (
+									<ProductCard
+										item={product}
+										key={product.productID}
+									/>
+								),
+							)}
+						</div>
 					</div>
 					<div className="buttonContainer">
 						{countLoading ? (
