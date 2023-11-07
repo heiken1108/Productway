@@ -1,32 +1,35 @@
-import { useEffect, useState } from 'react';
+import { useQuery } from '@apollo/client';
 
+import { IProduct } from '../../data/types';
+import { GET_FAVORITES_BY_USER_ID } from '../../queries';
+import ErrorMessage from '../Error/ErrorMessage';
 import FavouriteCard from '../FavouriteCard/FavouriteCard';
+import LoadingAnimation from '../Loading/LoadingAnimation';
 
 import './FavouriteContainer.css';
-
 /*
  * This component is a container for the favourite cards.
  */
-export default function FavouriteContainer() {
-	const [ids, setIds] = useState<number[]>([]);
-	/*
-	 * This useEffect hook is used to get the favourite items from the local storage.
-	 */
-	useEffect(() => {
-		const myFavourite = localStorage.getItem('myFavourite');
-		if (myFavourite === null) {
-			setIds([]);
-		} else {
-			setIds(myFavourite.split(',').map(Number));
-		}
-	}, []);
+export default function FavouriteContainer({ userID }: { userID: string }) {
+	const { data, loading, error } = useQuery(GET_FAVORITES_BY_USER_ID, {
+		variables: { userID: userID },
+	});
 
+	const favorites = data?.getFavoritesByUserID || [];
+
+	if (loading) return <LoadingAnimation />;
+	if (error) return <ErrorMessage />;
 	return (
 		<div className="FavouriteContainer">
-			{ids.length === 0 ? (
-				<h1>Favourite is empty</h1>
+			{favorites.length === 0 ? (
+				<p>Ingen favoritter</p>
 			) : (
-				ids.map(id => <FavouriteCard key={id} id={id} />)
+				favorites.map((item: IProduct) => (
+					<FavouriteCard
+						key={item.productID}
+						item={item as IProduct}
+					/>
+				))
 			)}
 		</div>
 	);

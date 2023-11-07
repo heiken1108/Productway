@@ -1,64 +1,110 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import { Button } from '@mui/material';
+import { useMutation, useQuery } from '@apollo/client';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import { Box, Fab } from '@mui/material';
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
 
-/*
- * Alert component from MUI, used with Snackbar.
- */
-const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
-	function Alert(props, ref) {
-		return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-	},
-);
+import { IProduct } from '../../data/types';
+import {
+	ADD_FAVORITE,
+	GET_FAVORITES_BY_USER_ID,
+	REMOVE_FAVORITE,
+} from '../../queries';
 
-/*
- * This component is a button that adds an item to the favourite list.
- */
-export default function AddToFavourite({ id }: { id: number }) {
+const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
+	return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
+export default function AddToFavourite({
+	productID,
+	userID,
+}: {
+	productID: number;
+	userID: string;
+}) {
+	const [openAddedSnackbar, setOpenAddedSnackbar] = useState(false);
+	const [removeSnackbar, setRemoveSnackbar] = useState(false);
 	const [addedToFavourite, setAddedToFavourite] = useState(false);
 
-	/*
-	 * This function adds the item to the favourite list in the local storage.
-	 */
-	function handleAddToFavourite() {
-		setAddedToFavourite(true);
-		if (localStorage.getItem('myFavourite') === null) {
-			localStorage.setItem('myFavourite', id.toString());
+	const [addFavoriteMutation] = useMutation(ADD_FAVORITE);
+	const [removeFavoriteMutation] = useMutation(REMOVE_FAVORITE);
+
+	const { data, refetch } = useQuery(GET_FAVORITES_BY_USER_ID, {
+		variables: { userID: userID },
+	});
+	const favorites = data?.getFavoritesByUserID || [];
+	const favoritesArray = favorites.map((item: IProduct) => {
+		return item.productID;
+	});
+
+	useEffect(() => {
+		setAddedToFavourite(favoritesArray.includes(productID));
+	}, [favoritesArray, productID]);
+
+	async function handleAddToFavorite() {
+		if (!addedToFavourite) {
+			setOpenAddedSnackbar(true);
+			await addFavoriteMutation({
+				variables: {
+					userID: userID,
+					productID: productID,
+				},
+			});
 		} else {
-			localStorage.setItem(
-				'myFavourite',
-				localStorage.getItem('myFavourite') + ',' + id.toString(),
-			);
-			console.log(
-				localStorage.getItem('myFavourite') + ',' + id.toString(),
-			);
+			await removeFavoriteMutation({
+				variables: {
+					userID: userID,
+					productID: productID,
+				},
+			});
+			setRemoveSnackbar(true);
 		}
+		refetch();
 	}
-	/*
-	 * This function closes the snackbar after autoHideDuration.
-	 */
+
 	const handleClose = () => {
-		setAddedToFavourite(false);
+		setOpenAddedSnackbar(false);
+		setRemoveSnackbar(false);
 	};
 
 	return (
 		<div className="addToFavourite">
 			<div>
-				<Button
-					onClick={handleAddToFavourite}
-					variant="contained"
-					sx={{
-						background: '#287094',
-						color: 'white',
-					}}
-				>
-					Legg til som favoritt
-				</Button>
+				<Box sx={{ '& > :not(style)': { m: 1 } }}>
+					<Fab
+						aria-label="like"
+						style={{
+							backgroundColor: addedToFavourite
+								? 'yellow'
+								: 'grey',
+						}}
+						onClick={handleAddToFavorite}
+					>
+						<FavoriteIcon
+							style={{
+								color: addedToFavourite ? 'red' : 'white',
+							}}
+						/>
+					</Fab>
+				</Box>
 			</div>
 			<Snackbar
-				open={addedToFavourite}
+				open={removeSnackbar}
+				autoHideDuration={4000}
+				onClose={handleClose}
+			>
+				<Alert
+					onClose={handleClose}
+					severity="error"
+					sx={{ width: '100%' }}
+				>
+					Fjernet fra favoritter!
+				</Alert>
+			</Snackbar>
+			<Snackbar
+				open={openAddedSnackbar}
 				autoHideDuration={4000}
 				onClose={handleClose}
 			>
@@ -70,7 +116,7 @@ export default function AddToFavourite({ id }: { id: number }) {
 						backgroundColor: '#00B894',
 					}}
 				>
-					Lagt til i handleliste!
+					Lagt til i favoritter!
 				</Alert>
 			</Snackbar>
 		</div>

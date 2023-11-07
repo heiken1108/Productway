@@ -1,45 +1,6 @@
 import { gql } from '@apollo/client';
 
 /*
- * Query to get all products from the database
- */
-export const GET_DATA = gql`
-	query Query($sortOrder: Int) {
-		getAllProducts(sortOrder: $sortOrder) {
-			brand
-			category
-			currentPrice
-			description
-			ean
-			image
-			name
-			productID
-			store
-			weight
-			weightUnit
-		}
-	}
-`;
-
-export const GET_DATA_WITH_LIMIT = gql`
-	query GetProductsWithLimit($limit: Int!, $page: Int!) {
-		getProductsWithLimit(limit: $limit, page: $page) {
-			brand
-			category
-			currentPrice
-			description
-			ean
-			image
-			name
-			productID
-			store
-			weight
-			weightUnit
-		}
-	}
-`;
-
-/*
  * Query to get a single products from the database, using ProductID to identify it
  */
 export const GET_PRODUCT_BY_PRODUCT_ID = gql`
@@ -57,47 +18,6 @@ export const GET_PRODUCT_BY_PRODUCT_ID = gql`
 			weight
 			weightUnit
 			store
-		}
-	}
-`;
-
-/*
- * Query to get all products from the database of a specific category
- */
-export const GET_PRODUCTS_BY_CATEGORY = gql`
-	query GetProductsByCategory($category: String!, $sortOrder: Int) {
-		getProductsByCategory(category: $category, sortOrder: $sortOrder) {
-			brand
-			category
-			currentPrice
-			description
-			ean
-			image
-			name
-			productID
-			store
-			weight
-			weightUnit
-		}
-	}
-`;
-
-/*
- * Mutation to add a rating a product in the database, using its ProductID to identify it
- */
-export const SET_RATING_BY_PRODUCT_ID = gql`
-	mutation AddRating($rating: Int!, $productID: Int!, $userID: String!) {
-		addRating(
-			ratingInput: {
-				rating: $rating
-				productID: $productID
-				userID: $userID
-			}
-		) {
-			_id
-			productID
-			rating
-			userID
 		}
 	}
 `;
@@ -126,35 +46,6 @@ export const GET_PRODUCTS_BY_SEARCHTERM = gql`
 /*
  * Query to get all products that matches a collection of filters, including search term, category, and a price range
  */
-export const GET_PRODUCT_BY_FILTERS = gql`
-	query GetProductsByFilters(
-		$search: String
-		$categories: [String]
-		$minPrice: Float
-		$maxPrice: Float
-		$sortOrder: Int
-	) {
-		getProductsByFilters(
-			name: $search
-			categories: $categories
-			minPrice: $minPrice
-			maxPrice: $maxPrice
-			sortOrder: $sortOrder
-		) {
-			brand
-			currentPrice
-			category
-			description
-			ean
-			image
-			name
-			productID
-			store
-			weight
-			weightUnit
-		}
-	}
-`;
 
 export const GET_PRODUCT_BY_FILTERS_WITH_LIMIT = gql`
 	query getProductsByFiltersWithLimit(
@@ -189,7 +80,9 @@ export const GET_PRODUCT_BY_FILTERS_WITH_LIMIT = gql`
 		}
 	}
 `;
-
+/*
+ * query to get the number of productions that matches the filter
+ */
 export const GET_COUNT_PRODUCTS_BY_FILTERS = gql`
 	query Query(
 		$searchTerm: String
@@ -205,21 +98,166 @@ export const GET_COUNT_PRODUCTS_BY_FILTERS = gql`
 		)
 	}
 `;
+
 /*
- * Mutation to update the rating of a product in the database, using its ProductID and the users UserID  to identify the specific rating-record
+ * Query to get a single user from the database, using userID to identify it
  */
-export const UPDATE_RATING_BY_PRODUCT_ID_AND_USERID = gql`
-	mutation UpdateRating($rating: Int!, $productID: Int!, $userID: String!) {
-		updateRating(
-			ratingInput: {
-				rating: $rating
-				productID: $productID
-				userID: $userID
+export const GET_USER_BY_USERID = gql`
+	query Query($userID: String!) {
+		getUserByID(userID: $userID) {
+			_id
+			userID
+			favorites {
+				_id
+				productID
+				name
+				brand
+				ean
+				image
+				category
+				description
+				currentPrice
+				weight
+				weightUnit
+				store
 			}
-		) {
+		}
+	}
+`;
+/*
+ * Query to get all ratings from the database, using userID to identify it
+ */
+export const GET_RATINGS_BY_USER_ID = gql`
+	query Query($userID: String!) {
+		getRatingsByUserID(userID: $userID) {
+			_id
+			userID
+			rating
+			productID
+		}
+	}
+`;
+/*
+ * Query to get a single rating from the database, using ProductID and UserID to identify it
+ */
+export const GET_RATING_BY_PRODUCT_ID_AND_USER_ID = gql`
+	query Query($userID: String!, $productID: Int!) {
+		getRatingByProductIDandUserID(userID: $userID, productID: $productID) {
+			_id
+			userID
+			rating
+			productID
+		}
+	}
+`;
+
+/*
+ * Query to get all products that the user has added as favorite
+ */
+export const GET_FAVORITES_BY_USER_ID = gql`
+	query Query($userID: String!) {
+		getFavoritesByUserID(userID: $userID) {
 			_id
 			productID
-			rating
+			name
+			brand
+			ean
+			image
+			category
+			description
+			currentPrice
+			weight
+			weightUnit
+			store
+		}
+	}
+`;
+/*
+ * Mutation to add a user to the database
+ */
+export const ADD_USER = gql`
+	mutation Mutation($userID: String!) {
+		addUser(userID: $userID) {
+			_id
+			userID
+			favorites {
+				brand
+				_id
+				category
+				currentPrice
+				description
+				ean
+				image
+				name
+				productID
+				store
+				weight
+				weightUnit
+			}
+			ratings {
+				_id
+				productID
+				rating
+				userID
+			}
+		}
+	}
+`;
+/*
+ * Mutation to add a rating to a product, used to both post and put a rating
+ */
+
+export const ADD_RATING = gql`
+	mutation Mutation($userID: String!, $productID: Int!, $rating: Int!) {
+		addRating(userID: $userID, productID: $productID, rating: $rating) {
+			_id
+			userID
+			favorites {
+				_id
+			}
+			ratings {
+				_id
+				productID
+				rating
+			}
+		}
+	}
+`;
+/*
+ * Mutation to remove a rating from a product
+ */
+export const REMOVE_RATING = gql`
+	mutation Mutation($userID: String!, $productID: Int!) {
+		removeRating(userID: $userID, productID: $productID) {
+			_id
+			userID
+			ratings {
+				_id
+				productID
+				rating
+			}
+		}
+	}
+`;
+
+/*
+ * Mutation to add a product as favorite
+ */
+export const ADD_FAVORITE = gql`
+	mutation Mutation($userID: String!, $productID: Int!) {
+		addFavorite(userID: $userID, productID: $productID) {
+			_id
+			userID
+		}
+	}
+`;
+/*
+ * Mutation to remove a product as favorite
+ */
+export const REMOVE_FAVORITE = gql`
+	mutation Mutation($userID: String!, $productID: Int!) {
+		removeFavorite(userID: $userID, productID: $productID) {
+			_id
 			userID
 		}
 	}

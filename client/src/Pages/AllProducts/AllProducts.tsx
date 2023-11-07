@@ -56,6 +56,7 @@ const categories = [
 
 export default function AllStores() {
 	const navigate = useNavigate();
+
 	const setCategoryData = useSetRecoilState(categoryFilterState);
 
 	function handleCategoryClick(key: number) {
