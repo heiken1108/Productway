@@ -13,6 +13,7 @@ export default function Header() {
 	function handleNavHome() {
 		navigate('/');
 	}
+
 	return (
 		<div className="Header">
 			<div className="desktopHeader">

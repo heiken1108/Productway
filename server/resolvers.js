@@ -1,3 +1,4 @@
+const UserModel = require("./models/User");
 const ProductModel = require("./models/products");
 const RatingModel = require("./models/ratings");
 
@@ -20,6 +21,19 @@ const resolvers = {
         //Implementation of GraphQL-query to find a product by its productID in the MongoDB-database
         getProductByProductID: async (_, { productID }) => {
             return await ProductModel.findOne({ productID });
+        },
+        getProductByObjectID: async (_, { ObjectID }) => {
+            try {
+                // Use Mongoose's findById method to find the product by its _id
+                const product = await ProductModel.findById(ObjectID);
+        
+                if (!product) {
+                    throw new Error(`Product with _id ${ObjectID} not found`);
+                }
+                return product;
+            } catch (error) {
+                throw new Error(`Error fetching product: ${error.message}`);
+            }
         },
         //Implementation of GraphQL-query to find all products in the MongoDB-database with a specific category
         getProductsByCategory: async (parent, { category }) => {
@@ -121,29 +135,162 @@ const resolvers = {
             }
             const count = await ProductModel.count(filters);
             return count
-},
-        //Implementation of GraphQL-query to find all ratings in the MongoDB-database
-        getRatings: async () => {
-            return RatingModel.find();
         },
-        //Implementation of GraphQL-query to find all ratings in the MongoDB-database for a specific product, identifying it by its productID
-        getRatingsByProductID: async (_, { productID }) => {
-            return await RatingModel.find({ productID: productID });
+        getRatingsByUserID: async (_, { userID }) => {
+            //return await RatingModel.find({ userID: userID });
+            try {
+                const user = await UserModel.findOne({ userID: userID }).populate('ratings');
+                if (!user) {
+                  throw new Error('User not found');
+                }
+                
+                return user.ratings; // Returnerer alle vurderinger for brukeren
+            } catch (error) {
+                throw new Error(`Failed to get user ratings: ${error.message}`);
+            }
         },
+        getUserByID: async (_, { userID }) => {
+            return await UserModel.findOne({ userID }).populate("favorites");
+        },
+        getUsers: async () => {
+            return UserModel.find().populate("favorites");
+        },
+        getFavoritesByUserID: async (_, { userID }) => {
+            try {
+                const user = await UserModel.findOne({ userID: userID }).populate('favorites');
+            
+                if (!user) {
+                  throw new Error('User not found');
+                }
+            
+                return user.favorites; // Returnerer alle favoritter for brukeren
+            } catch (error) {
+                throw new Error(`Failed to get user favorites: ${error.message}`);
+            }
+        },
+        getRatingByProductIDandUserID: async (_, { productID, userID }) => {
+            try {
+                const rating = await RatingModel.findOne({ productID: productID, userID: userID });
+                return rating;
+            } catch (error) {
+                throw new Error(`Failed to get rating: ${error.message}`);
+            }
+        }
     },
     Mutation: {
         //Implementation of GraphQL-mutation to add a rating to the MongoDB-database, using productID to identify it
-        addRating: async(_, {ratingInput}) => {
-            const {rating, productID, userID} = ratingInput;
-            const ratingProduct = new RatingModel({rating: rating, productID: productID, userID: userID});
-            await ratingProduct.save();
-            return ratingProduct;
+        addRating: async(_, {rating, productID, userID}) => {
+            try {
+                const user = await UserModel.findOne({ userID: userID });
+                if (!user) {
+                    throw new Error("User not found");
+                }
+                const existingRating = await RatingModel.findOne({productID, userID})
+                if (existingRating && existingRating.userID == userID){
+                    existingRating.rating = rating;
+                    await existingRating.save();
+                    return {user, existingRating, userID};
+                } else {
+                    const newRating = new RatingModel({userID, productID, rating})
+                    await newRating.save()
+                    user.ratings.push(newRating)
+                    await user.save()
+                    return {user, newRating, userID};
+                }
+            } catch (error) {
+                throw new Error (`Failed to add rating: ${error.message}`)
+            }
         },
-        //Implementation of GraphQL-mutation to update a rating in the MongoDB-database, using productID and userID to identify it
-        updateRating: async(_, {ratingInput}) => {
-            const {rating, productID, userID} = ratingInput;
-            const ratingProduct = await RatingModel.findOneAndUpdate({productID: productID, userID: userID}, {rating: rating});
-            return ratingProduct;
+        removeRating: async (_, { productID, userID }) => {
+            try {
+                const user = await UserModel.findOne({ userID: userID });
+                if (!user) {
+                    throw new Error("User not found");
+                }
+                const rating = await RatingModel.findOne({ productID: productID, userID: userID });
+                if (!rating) {
+                    throw new Error("Rating not found");
+                }
+                const indexOfRating = user.ratings.indexOf(rating._id);
+                if (indexOfRating === -1) {
+                    throw new Error("Rating is not in ratings");
+                }
+                user.ratings.splice(indexOfRating, 1);
+                await user.save();
+                await RatingModel.deleteOne({ productID: productID, userID: userID });
+                return rating;
+            } catch (error) {
+                throw new Error(`Failed to remove rating: ${error.message}`);
+            }
+        },
+
+        addUser: async (_, { userID }) => {
+            const user = new UserModel({ userID, favorites: [], ratings: [] });
+            return await user.save();
+        },
+        addFavorite: async (_, { userID, productID }) => {
+            try {
+                const user = await UserModel.findOne({ userID: userID });
+                if (!user) {
+                    throw new Error("User not found");
+                }
+                const product = await ProductModel.findOne({ productID: productID });
+                if (!product) {
+                    throw new Error("Product not found");
+                }
+                user.favorites.push(product);
+                await user.save();
+                return user;
+            } catch (error) {
+                throw new Error(`Failed to add favorite: ${error.message}`);
+            }
+        },
+        removeFavorite: async (_, { userID, productID }) => {
+            try {
+                const user  = await UserModel.findOne({ userID: userID });
+                if (!user) {
+                    throw new Error("User not found");
+                }
+                const product = await ProductModel.findOne({ productID: productID });
+                if (!product) {
+                    throw new Error("Product not found");
+                }
+                const index = user.favorites.indexOf(product._id);
+                if (index === -1) {
+                    throw new Error("Product is not in favorites");
+                }
+                user.favorites.splice(index, 1);
+                await user.save();
+                return user;
+            } catch (error) {
+                throw new Error(`Failed to remove favorite: ${error.message}`);
+            }
+
+
+            // try {
+            //     // Sjekk om brukeren eksisterer
+            //     const user = await UserModel.findOne({ userID });
+            
+            //     if (!user) {
+            //         throw new Error("Brukeren ble ikke funnet.");
+            //     }
+            
+            //     // Finn indeksen til produktet i brukerens favoritter
+            //     const index = user.favorites.indexOf(productObjectID);
+            //     if (index === -1) {
+            //         throw new Error("Produktet er ikke i brukerens favoritter.");
+            //     }
+            
+            //     // Fjern produktet fra brukerens favoritter
+            //     user.favorites.splice(index, 1);
+            
+            //     // Lagre endringene til brukeren
+            //     await user.save();
+            
+            //     return user;
+            //     } catch (error) {
+            //     throw new Error(error.message);
+            // }
         }
     }
 };

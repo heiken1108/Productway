@@ -3,27 +3,44 @@
 	width: 100%;
 	flex-direction: column;
 	align-items: center;
-	justify-content: center;
-}
-
-.MyFavourites {
-	flex: 1;
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	justify-content: flex-start;
-}
-.MyRatings {
-	flex: 1;
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
 	justify-content: flex-start;
 }
 
-.row-content {
+.content-container {
+	width: 100%;
 	display: flex;
 	flex-direction: row;
 	align-items: flex-start;
-	justify-content: center;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+}
+
+.MyFavourites {
+	flex: 0 0 70%; /* Takes up 80% of the available width */
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: flex-start;
+	max-width: 100%; /* Prevents overflow on smaller screens */
+}
+.MyRatings {
+	flex: 0 0 30%; /* Takes up 20% of the available width */
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: flex-start;
+	max-width: 100%; /* Prevents overflow on smaller screens */
+}
+@media (max-width: 768px) {
+	.content-container {
+		flex-direction: column; /* Stack MyFavourites and MyRatings on smaller screens */
+		align-items: center;
+		justify-content: flex-start;
+	}
+
+	.MyFavourites,
+	.MyRatings {
+		flex: 0 0 100%; /* Take up full width on smaller screens */
+		max-width: 100%;
+	}
 }

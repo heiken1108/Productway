@@ -9,7 +9,7 @@ import './MyPageButton.css';
 export default function MyPageButton() {
 	const navigate = useNavigate();
 	function handleNavShopping() {
-		navigate('/MyPage');
+		navigate('/myPage');
 	}
 	return (
 		<div className="MyPageButton">
@@ -19,7 +19,7 @@ export default function MyPageButton() {
 				size="medium"
 				sx={{ background: '#287094' }}
 			>
-				My page
+				Min side
 			</Button>
 		</div>
 	);

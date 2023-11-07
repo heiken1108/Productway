@@ -1,241 +1,121 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 import { useMutation, useQuery } from '@apollo/client';
-import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
-import SentimentSatisfiedIcon from '@mui/icons-material/SentimentSatisfied';
-import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAltOutlined';
-import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
-import SentimentVerySatisfiedIcon from '@mui/icons-material/SentimentVerySatisfied';
-import Rating, { IconContainerProps } from '@mui/material/Rating';
-import { styled } from '@mui/material/styles';
 import { useParams } from 'react-router-dom';
-import { v4 as uuidv4 } from 'uuid';
 
 import AddToFavourite from '../../Components/AddToFavourite/AddToFavourite';
 import ErrorContainer from '../../Components/Error/ErrorContainer';
 import LoadingContainer from '../../Components/Loading/LoadingContainer';
+import RatingComponent from '../../Components/RatingComponent/RatingComponent';
 import {
+	ADD_RATING,
 	GET_PRODUCT_BY_PRODUCT_ID,
-	SET_RATING_BY_PRODUCT_ID,
-	UPDATE_RATING_BY_PRODUCT_ID_AND_USERID,
+	GET_RATING_BY_PRODUCT_ID_AND_USER_ID,
+	REMOVE_RATING,
 } from '../../queries';
 
 import './Productpage.css';
 
-/*
- * Styling for the rating icons
- */
-const StyledRating = styled(Rating)(({ theme }) => ({
-	'& .MuiRating-iconEmpty .MuiSvgIcon-root': {
-		color: theme.palette.action.disabled,
-	},
-}));
-
-/*
- * Icons for the rating
- */
-const customIcons: {
-	[index: string]: {
-		icon: React.ReactElement;
-		label: string;
-	};
-} = {
-	1: {
-		icon: <SentimentVeryDissatisfiedIcon color="error" fontSize="large" />,
-		label: 'Very Dissatisfied',
-	},
-	2: {
-		icon: <SentimentDissatisfiedIcon color="error" fontSize="large" />,
-		label: 'Dissatisfied',
-	},
-	3: {
-		icon: <SentimentSatisfiedIcon color="warning" fontSize="large" />,
-		label: 'Neutral',
-	},
-	4: {
-		icon: <SentimentSatisfiedAltIcon color="success" fontSize="large" />,
-		label: 'Satisfied',
-	},
-	5: {
-		icon: <SentimentVerySatisfiedIcon color="success" fontSize="large" />,
-		label: 'Very Satisfied',
-	},
-};
-/*
- * function for displaying the rating icons
- */
-function IconContainer(props: IconContainerProps) {
-	const { value, ...other } = props;
-	return <span {...other}>{customIcons[value].icon}</span>;
-}
-
 export default function Productpage() {
-	const { id } = useParams();
-	const userID = getOrSetUserID();
-	const [myRating, setMyRating] = useState(0);
-	const [mutateFunction] = useMutation(SET_RATING_BY_PRODUCT_ID);
-	const [updateMutateFunction] = useMutation(
-		UPDATE_RATING_BY_PRODUCT_ID_AND_USERID,
-	);
-	const { data, loading, error } = useQuery(GET_PRODUCT_BY_PRODUCT_ID, {
+	const { id } = useParams() as { id: string };
+	const userID = localStorage.getItem('userID') || '';
+	const [setRatingByProductId] = useMutation(ADD_RATING);
+	const [removeRatingByProductId] = useMutation(REMOVE_RATING);
+	const {
+		data: ratingData,
+		loading: ratingLoading,
+		error: ratingError,
+		refetch,
+	} = useQuery(GET_RATING_BY_PRODUCT_ID_AND_USER_ID, {
+		variables: { productID: Number(id), userID: userID },
+	});
+	const {
+		data: productData,
+		loading: productLoading,
+		error: productError,
+	} = useQuery(GET_PRODUCT_BY_PRODUCT_ID, {
 		variables: { productID: Number(id) },
 	});
 
+	// Refetch the rating when the user changes the rating
 	useEffect(() => {
-		function getRating() {
-			const MyRatings = localStorage.getItem('MyRatings');
-			if (MyRatings !== null) {
-				const ratings = MyRatings.split(',');
-				for (let i = 0; i < ratings.length; i++) {
-					const rating = ratings[i].split(':');
-					if (rating[0] === id && rating[1] !== undefined) {
-						return rating[1];
-					}
-				}
-			}
-			return 0;
-		}
-		const rating = getRating();
-
-		setMyRating(Number(rating));
-	}, [id]);
+		refetch();
+	}, [refetch]);
 
 	/**
-	 *
 	 * @param newRating
-	 * @description Function for posting a new rating of the product the user is currently viewing
+	 * @description Function for posting and updating the rating of the product the user is currently viewing
 	 */
-	const postRating = (newRating: number) => {
-		mutateFunction({
+	function updateRating(newRating: number) {
+		setRatingByProductId({
 			variables: {
-				productID: Number(data.getProductByProductID.productID),
+				rating: newRating,
+				productID: productData.getProductByProductID.productID,
 				userID: userID,
-				rating: Number(newRating),
 			},
 		});
-	};
-
-	/**
-	 *
-	 * @param newRating
-	 * @description Function for updating the rating of the product the user is currently viewing
-	 */
-	const putRating = (newRating: number) => {
-		console.log(
-			Number(data.getProductByProductID.productID),
-			userID,
-			Number(newRating),
-		);
-		updateMutateFunction({
-			variables: {
-				productID: Number(data.getProductByProductID.productID),
-				userID: userID,
-				rating: Number(newRating),
-			},
-		});
-	};
-
-	/*
-	 * Function for setting the rating
-	 */
-	function updateRating(rating: number) {
-		const MyRatings = localStorage.getItem('MyRatings');
-		let ratings: string[] = [];
-		if (MyRatings !== null) {
-			ratings = MyRatings.split(',');
-		}
-		let alreadyRated = false;
-		for (let i = 0; i < ratings.length; i++) {
-			const oldRating = ratings[i].split(':');
-			if (oldRating[0] === id) {
-				ratings.splice(i, 1);
-				ratings.push(id + ':' + rating);
-				alreadyRated = true;
-				/*
-				 * Api call to update the rating in the backend
-				 * sender inn productID og rating.
-				 */
-				putRating(rating);
-			}
-		}
-
-		if (!alreadyRated) {
-			ratings.push(id + ':' + rating);
-			/*
-			 * Api call to post the rating to the backend
-			 */
-			postRating(rating);
-		}
-		localStorage.setItem('MyRatings', ratings.join(','));
 	}
 
-	function getOrSetUserID() {
-		const userID = localStorage.getItem('userID');
-		if (userID === null) {
-			const newUserID = uuidv4();
-			localStorage.setItem('userID', newUserID);
-			return newUserID;
-		}
-		return userID;
-	}
-
-	/*
-	 * Function for handling the rating change
+	/** /
+	 * Function for handling the rating change. Also includes a two second delay when rating is changed to
+	 * minimize backend/database calls
+	 * @param _event
+	 * @param newValue
 	 */
 	const handleRatingChange = (
 		_event: React.SyntheticEvent<Element, Event>,
 		newValue: number | null,
 	) => {
-		console.log(newValue);
 		if (newValue !== null && newValue !== undefined) {
-			console.log(newValue);
-			setMyRating(newValue ? Number(newValue) : 0);
 			updateRating(newValue);
+		} else if (newValue === null) {
+			removeRatingByProductId({
+				variables: {
+					productID: productData.getProductByProductID.productID,
+					userID: userID,
+				},
+			});
 		}
 	};
-	if (loading) return <LoadingContainer />;
-	if (error) return <ErrorContainer />;
+
+	// Get the rating from the database, if it exists
+	const rating = ratingData?.getRatingByProductIDandUserID?.rating || 0;
+
+	// If loading or error, display loading animation or loading container
+	if (productLoading || ratingLoading) return <LoadingContainer />;
+	if (productError || ratingError) return <ErrorContainer />;
 
 	return (
 		<div className="productContainer">
 			<div className="productContent">
 				<div className="productImage">
 					<img
-						src={data.getProductByProductID.image}
+						src={productData.getProductByProductID.image}
 						alt="Image not found"
 					/>
 				</div>
 				<div className="productInfo">
-					<h1>{data.getProductByProductID.name}</h1>
-					<h4>{'Merke: ' + data.getProductByProductID.brand}</h4>
-					<p>{data.getProductByProductID.description}</p>
+					<h1>{productData.getProductByProductID.name}</h1>
+					<h4>
+						{'Merke: ' + productData.getProductByProductID.brand}
+					</h4>
+					<p>{productData.getProductByProductID.description}</p>
 					<p>
 						{'Pris: kr ' +
-							data.getProductByProductID.currentPrice +
+							productData.getProductByProductID.currentPrice +
 							',-'}
 					</p>
 					<div className="rateAndShopContainer">
-						<StyledRating
-							name="highlight-selected-only"
-							value={myRating}
-							IconContainerComponent={IconContainer}
-							getLabelText={(value: number) =>
-								customIcons[value].label
-							}
-							highlightSelectedOnly
-							onChange={handleRatingChange}
+						<RatingComponent
+							rating={rating}
+							onRatingChange={handleRatingChange}
 						/>
-						<AddToFavourite id={Number(id)} />
+						<AddToFavourite
+							productID={Number(id)}
+							userID={userID}
+						/>
 					</div>
 				</div>
-			</div>
-			<div>
-				{/* <h1>Kategorier</h1> */}
-				{/* <CategoryCard />  Kortet finnes ikke enda...*/}
-			</div>
-			<div>
-				{/* <h1>Lignende produkter</h1> */}
-				{/* <ProductCard /> Kortet finnes ikke enda... */}
 			</div>
 		</div>
 	);
