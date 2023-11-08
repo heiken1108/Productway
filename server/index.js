@@ -15,24 +15,18 @@ const { ApolloServer } = require('apollo-server-express');
 const typeDefs = require("./typeDefs");
 const resolvers = require("./resolvers");
 
-const corsOptions = {
-    origin: '*',
-    credentials: true
-}
-
 const app = express();
-app.use(cors(corsOptions));
 
 const server = new ApolloServer({
     typeDefs,
     resolvers,
-    cors: false,
+    cors: {"origin": "*"},
 });
 
 async function startApolloServer() {
     await server.start();
 
-    server.applyMiddleware({ app, cors: false });
+    server.applyMiddleware({ app });
 
     app.listen({ port: 4000}, () => {
         console.log(`🚀 Server ready at http://it2810-10.idi.ntnu.no:4000${server.graphqlPath}`);
