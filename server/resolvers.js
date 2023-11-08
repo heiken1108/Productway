@@ -1,6 +1,6 @@
 const UserModel = require("./models/User");
-const ProductModel = require("./models/products");
-const RatingModel = require("./models/ratings");
+const ProductModel = require("./models/Products");
+const RatingModel = require("./models/Ratings");
 
 const resolvers = {
     Query: {
