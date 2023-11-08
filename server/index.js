@@ -25,7 +25,7 @@ async function startServer() {
     apolloServer.applyMiddleware({app: app});
 
     await mongoose.connect(
-        "127.0.0.1:27017"
+        "mongodb://admin:kjottjente1@it2810-10.idi.ntnu.no:27017/"
     )
 
     app.listen(4000, () => console.log("SERVER RUNS PERFECTLY"))
