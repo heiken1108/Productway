@@ -9,7 +9,6 @@ export default function MyPage() {
 	const userID = localStorage.getItem('userID') || '';
 	return (
 		<div className="MyPage">
-			<h1>Min side</h1>
 			<div className="content-container">
 				<div className="MyFavourites">
 					<h1>Mine favoritter</h1>
@@ -17,7 +16,9 @@ export default function MyPage() {
 				</div>
 				<div className="MyRatings">
 					<h1>Mine vurderinger</h1>
-					<MyRatingsDisplay userID={userID || ''} />
+					<div className="ratingsContainer">
+						<MyRatingsDisplay userID={userID || ''} />
+					</div>
 				</div>
 			</div>
 		</div>

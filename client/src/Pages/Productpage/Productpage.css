@@ -9,8 +9,17 @@
 	display: flex;
 	gap: 30px;
 	margin: 40px;
-	margin-top: 70px;
+	margin-top: 100px;
 	justify-content: center;
+}
+
+.productImage {
+	display: flex;
+	align-items: center;
+	background-color: white;
+	width: 350px;
+	justify-content: center;
+	border-radius: 30px;
 }
 
 .productImage img {
@@ -18,12 +27,15 @@
 	max-height: 300px;
 	width: auto;
 	height: auto;
+	overflow: hidden;
+	margin: 20px;
 }
 .rateAndShopContainer {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 	margin-right: 20px;
+	align-items: center;
 }
 
 .productInfo {
@@ -37,8 +49,26 @@
 	font-size: larger;
 }
 
-@media screen and (max-width: 470px) {
-	.productImage {
-		display: none;
+@media screen and (max-width: 900px) {
+	.productContent {
+		flex-direction: column;
+		align-items: center;
+		margin-top: 30px;
+	}
+
+	.productImage img {
+		margin: 20px;
+	}
+
+	.productInfo {
+		width: 100%;
+	}
+
+	.productInfo h1 {
+		font-size: 20px;
+	}
+
+	.rateAndShopContainer {
+		margin-right: 0px;
 	}
 }

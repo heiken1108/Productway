@@ -39,7 +39,7 @@ export default function TodaysItem() {
 			className="todaysItem"
 			onClick={() => navigate('/product/' + data.getRandomItem.productID)}
 		>
-			<div className="imgContainer">
+			<div className="todayImgContainer">
 				<img loading="lazy" src={data.getRandomItem.image}></img>
 			</div>
 			<div className="infoContainer">

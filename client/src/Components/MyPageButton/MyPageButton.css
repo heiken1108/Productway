@@ -9,15 +9,3 @@
 	cursor: pointer;
 	margin: 10px;
 }
-
-i {
-	margin-top: 5px;
-}
-
-@media screen and (max-width: 600px) {
-	.ShoppingButton {
-		font-size: 20px;
-		width: 30px;
-		height: 30px;
-	}
-}

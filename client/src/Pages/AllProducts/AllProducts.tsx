@@ -63,7 +63,7 @@ export default function AllStores() {
 		setCategoryData(prevChipData => {
 			const newChipData = prevChipData.map(chip =>
 				chip.key === key
-					? { ...chip, showStatus: !chip.showStatus }
+					? { ...chip, showStatus: true }
 					: { ...chip, showStatus: false },
 			);
 			sessionStorage.setItem('categoryData', JSON.stringify(newChipData));
