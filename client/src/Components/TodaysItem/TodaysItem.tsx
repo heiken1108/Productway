@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client';
 import { useNavigate } from 'react-router-dom';
 
-import { GET_PRODUCT_BY_PRODUCT_ID } from '../../queries';
+import { GET_PRODUCT_BY_PRODUCT_ID, GET_RANDOM_ITEM } from '../../queries';
 import ErrorMessage from '../Error/ErrorMessage';
 import LoadingAnimation from '../Loading/LoadingAnimation';
 
@@ -9,9 +9,7 @@ import './TodaysItem.css';
 
 export default function TodaysItem() {
 	const navigate = useNavigate();
-	const { data, loading, error } = useQuery(GET_PRODUCT_BY_PRODUCT_ID, {
-		variables: { productID: 1020 },
-	});
+	const { data, loading, error } = useQuery(GET_RANDOM_ITEM);
 
 	if (loading)
 		return (
@@ -40,23 +38,23 @@ export default function TodaysItem() {
 		<div
 			className="todaysItem"
 			onClick={() =>
-				navigate('/product/' + data.getProductByProductID.productID)
+				navigate('/product/' + data.getRandomItem.productID)
 			}
 		>
 			<div className="imgContainer">
 				<img
 					loading="lazy"
-					src={data.getProductByProductID.image}
+					src={data.getRandomItem.image}
 				></img>
 			</div>
 			<div className="infoContainer">
-				<h3>{data.getProductByProductID.name}</h3>
-				<p>{data.getProductByProductID.description}</p>
+				<h3>{data.getRandomItem.name}</h3>
+				<p>{data.getRandomItem.description}</p>
 				<p>
 					{' '}
 					<strong>
 						Gjennomsnittlig pris:{' '}
-						{data.getProductByProductID.currentPrice}
+						{data.getRandomItem.currentPrice}
 					</strong>
 				</p>
 			</div>

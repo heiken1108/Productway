@@ -14,6 +14,11 @@ const resolvers = {
                 return await ProductModel.find();
             }
         },
+        getRandomItem: async () => {
+            const count = await ProductModel.count();
+            const random = Math.floor(Math.random() * count);
+            return await ProductModel.findOne().skip(random);
+        },
         getProductsWithLimit: async (_, { limit, page }) => {
             const products = await ProductModel.find().limit(limit).skip((page - 1) * limit);
             return products;
