@@ -77,7 +77,7 @@ export default function AllStores() {
 	return (
 		<div className="mainContainer">
 			<div className="todaysItemContainer">
-				<h2>Velkommen! Her er dagens produkt:</h2>
+				<h2>Velkommen! Her er ditt anbefalte produkt:</h2>
 				<div className="cardContainer">
 					<TodaysItem />
 				</div>
