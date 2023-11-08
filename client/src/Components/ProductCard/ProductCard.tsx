@@ -19,7 +19,7 @@ export default function ProductCard({ item }: { item: IProduct }) {
 			</div>
 			<div
 				className="productCard"
-				onClick={() => navigate('/product/' + item.productID)}
+				onClick={() => navigate('/project2/product/' + item.productID)}
 			>
 				<div className="imgDiv">
 					<img src={item.image} alt={item.name} loading="lazy" />

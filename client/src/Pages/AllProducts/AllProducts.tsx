@@ -69,7 +69,7 @@ export default function AllStores() {
 			sessionStorage.setItem('categoryData', JSON.stringify(newChipData));
 			return newChipData;
 		});
-		navigate('/results');
+		navigate('/project2/results');
 	}
 
 	let keycounter = 1;
