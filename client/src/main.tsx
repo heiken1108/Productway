@@ -7,7 +7,8 @@ import App from './App.tsx';
 import './index.css';
 
 const client = new ApolloClient({
-	uri: 'it2810-10.idi.ntnu.no:4000/project2', //Denne må endres når vi endrer til VM
+	uri: 'http://it2810-10.idi.ntnu.no:4000/graphql', //Denne må endres når vi endrer til VM
+	credentials: 'include',
 	cache: new InMemoryCache(),
 });
 
