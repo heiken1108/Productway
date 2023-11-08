@@ -43,7 +43,7 @@ export default function TodaysItem() {
 				navigate('/product/' + data.getProductByProductID.productID)
 			}
 		>
-			<div className="imgContainer">
+			<div className="todayImgContainer">
 				<img
 					loading="lazy"
 					src={data.getProductByProductID.image}

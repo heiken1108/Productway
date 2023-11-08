@@ -29,13 +29,13 @@
 	color: #333333;
 }
 
-.imgContainer img {
+.todayImgContainer img {
 	width: 100%;
 	max-height: 250px;
 	object-fit: contain;
 }
 
-.imgContainer {
+.todayImgContainer {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -51,20 +51,23 @@
 	}
 }
 
-@media screen and (max-width: 645px) {
+@media screen and (max-width: 715px) {
 	.todaysItem {
 		min-width: 0;
 		width: 90%;
 		height: auto;
 	}
 
-	.imgContainer {
-		display: none;
-	}
-
 	.todaysItem img {
 		display: none;
 	}
+
+	.todayImgContainer {
+		display: none;
+		width: 0px;
+		margin: 0px;
+	}
+	
 
 	.infoContainer {
 		margin: 20px;
