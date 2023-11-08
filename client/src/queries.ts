@@ -23,22 +23,22 @@ export const GET_PRODUCT_BY_PRODUCT_ID = gql`
 `;
 
 export const GET_RANDOM_ITEM = gql`
-query Query {
-	getRandomItem {
-		_id
-		productID
-		name
-		brand
-		ean
-		image
-		category
-		description
-		currentPrice
-		weight
-		weightUnit
-		store
+	query Query {
+		getRandomItem {
+			_id
+			productID
+			name
+			brand
+			ean
+			image
+			category
+			description
+			currentPrice
+			weight
+			weightUnit
+			store
+		}
 	}
-}
 `;
 
 /*
