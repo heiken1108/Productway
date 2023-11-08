@@ -32,11 +32,14 @@ function App() {
 			<RecoilRoot>
 				<Header />
 				<Routes>
-					<Route path="/" element={<AllStores />} />
+					<Route path="/project2/" element={<AllStores />} />
 
-					<Route path="/myPage" element={<MyPage />} />
-					<Route path="/product/:id" element={<Productpage />} />
-					<Route path="/results" element={<ResultsPage />} />
+					<Route path="/project2/myPage" element={<MyPage />} />
+					<Route
+						path="/project2/product/:id"
+						element={<Productpage />}
+					/>
+					<Route path="/project2/results" element={<ResultsPage />} />
 				</Routes>
 			</RecoilRoot>
 		</Router>

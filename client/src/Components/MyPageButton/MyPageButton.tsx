@@ -9,7 +9,7 @@ import './MyPageButton.css';
 export default function MyPageButton() {
 	const navigate = useNavigate();
 	function handleNavShopping() {
-		navigate('/myPage');
+		navigate('/project2/myPage');
 	}
 	return (
 		<div className="MyPageButton">
