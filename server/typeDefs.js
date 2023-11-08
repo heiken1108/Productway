@@ -42,6 +42,7 @@ const typeDefs = gql`
     type Query {
         hello: String
         getAllProducts: [ProductModel]
+        getRandomItem: ProductModel
         getProductsWithLimit(limit: Int!, page: Int!): [ProductModel]
         getProductByProductID(productID: Int!): ProductModel
         getProductByObjectID(ObjectID: ID!): ProductModel
