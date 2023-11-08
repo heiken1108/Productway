@@ -26,7 +26,7 @@ const server = new ApolloServer({
 async function startApolloServer() {
     await server.start();
 
-    server.applyMiddleware({ app });
+    server.applyMiddleware({ app, cors: {origin: true, optionsSuccessStatus:200, credentials:true} });
 
     app.listen({ port: 4000}, () => {
         console.log(`🚀 Server ready at http://it2810-10.idi.ntnu.no:4000${server.graphqlPath}`);
