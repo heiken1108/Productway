@@ -16,7 +16,7 @@ const typeDefs = require("./typeDefs");
 const resolvers = require("./resolvers");
 
 const corsOptions = {
-    origin: 'http://it2810-10.idi.ntnu.no',
+    origin: '*',
     credentials: true
 }
 
