@@ -75,6 +75,14 @@ The website is designed in a way to tackle the possible variants of screen-sizes
 ### Testing
 TODO, when testing is created
 
+To run the E2E-tests, run the following commands:
+```
+cd playwright
+npm install
+npm run test
+```
+Kjøh
+
 
 ## State management
 
