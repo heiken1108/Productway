@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { useQuery } from '@apollo/client';
 import { Pagination, Stack } from '@mui/material';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 
 import ErrorContainer from '../../Components/Error/ErrorContainer';
 import Filterbar from '../../Components/Filterbar/Filterbar';
@@ -141,7 +141,8 @@ export default function ResultsPage() {
 					</div>
 				</div>
 			) : (
-				!productsLoading && (
+				!productsLoading &&
+				!productsError && (
 					<div className="noItems">
 						<strong>
 							{'Ingen produkter matcher søket ditt :('}

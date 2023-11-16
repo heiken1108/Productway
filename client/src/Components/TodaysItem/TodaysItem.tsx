@@ -1,15 +1,27 @@
 import { useQuery } from '@apollo/client';
 import { useNavigate } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
 
 import { GET_RANDOM_ITEM } from '../../queries';
 import ErrorMessage from '../Error/ErrorMessage';
 import LoadingAnimation from '../Loading/LoadingAnimation';
 
 import './TodaysItem.css';
+import { navigateHistory } from '../../store/atoms';
 
 export default function TodaysItem() {
 	const navigate = useNavigate();
 	const { data, loading, error } = useQuery(GET_RANDOM_ITEM);
+	const setPrevPage = useSetRecoilState(navigateHistory);
+
+	/**
+	 * Function for handleing navigating on click, also contain setting the previous
+	 * page so that the backbutton on productpage will redirect to the right page
+	 */
+	function handleNavigate() {
+		setPrevPage('/project2/');
+		navigate('/project2/product/' + data.getRandomItem.productID);
+	}
 
 	if (loading)
 		return (
@@ -35,12 +47,7 @@ export default function TodaysItem() {
 		);
 
 	return (
-		<div
-			className="todaysItem"
-			onClick={() =>
-				navigate('/project2/product/' + data.getRandomItem.productID)
-			}
-		>
+		<div className="todaysItem" onClick={() => handleNavigate()}>
 			<div className="todayImgContainer">
 				<img loading="lazy" src={data.getRandomItem.image}></img>
 			</div>
