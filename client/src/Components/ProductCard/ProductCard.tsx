@@ -15,6 +15,7 @@ export default function ProductCard({ item }: { item: IProduct }) {
 				<AddToFavorite
 					productID={Number(item.productID)}
 					userID={userID}
+					key={item.productID}
 				/>
 			</div>
 			<div
