@@ -67,6 +67,7 @@ export default function MyRatingsItem({
 		<ListItem button>
 			<ListItemText
 				primary={data.getProductByProductID.name || 'No name'}
+				primaryTypographyProps={{ style: { fontWeight: 'bold' } }}
 				secondary={
 					<React.Fragment>
 						<RatingComponent
