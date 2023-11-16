@@ -57,7 +57,7 @@ export default function TodaysItem() {
 				<p>
 					{' '}
 					<strong>
-						Gjennomsnittlig pris: {data.getRandomItem.currentPrice}
+						Gjennomsnittlig pris: {data.getRandomItem.currentPrice} kr
 					</strong>
 				</p>
 			</div>

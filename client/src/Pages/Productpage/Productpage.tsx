@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 
 import { useMutation, useQuery } from '@apollo/client';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import AddToFavourite from '../../Components/AddToFavourite/AddToFavourite';
 import ErrorContainer from '../../Components/Error/ErrorContainer';
@@ -15,13 +15,14 @@ import {
 } from '../../queries';
 
 import './Productpage.css';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { navigateHistory } from '../../store/atoms';
 
 export default function Productpage() {
 	const { id } = useParams() as { id: string };
 	const navigate = useNavigate();
-	const prevPage = useRecoilValue(navigateHistory);
+	const location = useLocation();
+	const [prevPage, setPrevPage] = useRecoilState(navigateHistory);
 	const userID = localStorage.getItem('userID') || '';
 	const [setRatingByProductId] = useMutation(ADD_RATING);
 	const [removeRatingByProductId] = useMutation(REMOVE_RATING);
@@ -82,6 +83,12 @@ export default function Productpage() {
 		}
 	};
 
+	function handleNavigateBack() {
+		const currentNav = prevPage
+		setPrevPage(location.pathname)
+		navigate(currentNav)
+	}
+
 	// Get the rating from the database, if it exists
 	const rating = ratingData?.getRatingByProductIDandUserID?.rating || 0;
 
@@ -91,7 +98,7 @@ export default function Productpage() {
 
 	return (
 		<div>
-			<button onClick={() => navigate(prevPage)}>&#x2190; Tilbake</button>
+			<button onClick={() => handleNavigateBack()}>&#x2190; Tilbake</button>
 			<div className="productContainer">
 				<div className="productContent">
 					<div className="productImage">
