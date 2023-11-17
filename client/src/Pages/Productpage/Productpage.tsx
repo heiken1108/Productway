@@ -117,63 +117,71 @@ export default function Productpage() {
 		return <LoadingContainer />;
 	if (productError || ratingError || averageRatingError)
 		return <ErrorContainer />;
-		return (
-			<div>
-			  <button onClick={() => handleNavigateBack()}>&#x2190; Tilbake</button>
-			  <div className="productContainer">
+	return (
+		<div>
+			<button onClick={() => handleNavigateBack()}>
+				&#x2190; Tilbake
+			</button>
+			<div className="productContainer">
 				<div className="productContent">
-				  <div className="productImage">
-					<img
-					  src={productData.getProductByProductID.image}
-					  alt="Image not found"
-					/>
-				  </div>
-				  <div className="productInfo">
-					<h1>{productData.getProductByProductID.name}</h1>
-					<h4>{'Merke: ' + productData.getProductByProductID.brand}</h4>
-					<p>{productData.getProductByProductID.description}</p>
-					<p>
-					  {'Pris: kr ' +
-						productData.getProductByProductID.currentPrice +
-						',-'}
-					</p>
-					<div className="averageRatingContainer">
-					  {averageRatingData.getAverageProductRating !== 0 &&
-					  averageRatingData.getAverageProductRating !== undefined ? (
-						<>
-						  <p>
-							{'Gjennomsnittlig vurdering: '}
-							<strong>
-							  {averageRatingData.getAverageProductRating}
-							</strong>
-						  </p>
-						  <div>
-							{
-							  customIcons[
-								Math.round(
-								  averageRatingData.getAverageProductRating,
-								)
-							  ].icon
-							}
-						  </div>
-						</>
-					  ) : (
-						<p>Ingen har vurdert produktet</p>
-					  )}
+					<div className="productImage">
+						<img
+							src={productData.getProductByProductID.image}
+							alt="Image not found"
+						/>
 					</div>
-					<div className="rateAndShopContainer">
-					  <RatingComponent
-						rating={rating}
-						onRatingChange={handleRatingChange}
-					  />
-					  <AddToFavourite
-						productID={Number(id)}
-						userID={userID}
-					  />
+					<div className="productInfo">
+						<h1>{productData.getProductByProductID.name}</h1>
+						<h4>
+							{'Merke: ' +
+								productData.getProductByProductID.brand}
+						</h4>
+						<p>{productData.getProductByProductID.description}</p>
+						<p>
+							{'Pris: kr ' +
+								productData.getProductByProductID.currentPrice +
+								',-'}
+						</p>
+						<div className="averageRatingContainer">
+							{averageRatingData.getAverageProductRating !== 0 &&
+							averageRatingData.getAverageProductRating !==
+								undefined ? (
+								<>
+									<p>
+										{'Gjennomsnittlig vurdering: '}
+										<strong>
+											{
+												averageRatingData.getAverageProductRating
+											}
+										</strong>
+									</p>
+									<div>
+										{
+											customIcons[
+												Math.round(
+													averageRatingData.getAverageProductRating,
+												)
+											].icon
+										}
+									</div>
+								</>
+							) : (
+								<p>Ingen har vurdert produktet</p>
+							)}
+						</div>
+						<div className="rateAndShopContainer">
+							<RatingComponent
+								rating={rating}
+								onRatingChange={handleRatingChange}
+							/>
+							<AddToFavourite
+								productID={Number(id)}
+								userID={userID}
+							/>
+						</div>
 					</div>
-				  </div>
 				</div>
-			  </div>
 			</div>
-		  );
-}		  
+		</div>
+	);
+}
