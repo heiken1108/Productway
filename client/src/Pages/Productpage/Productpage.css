@@ -59,6 +59,10 @@
 	font-size: larger;
 }
 
+button {
+	margin: 20px;
+}
+
 @media screen and (max-width: 900px) {
 	.productContent {
 		flex-direction: column;

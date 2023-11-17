@@ -1,13 +1,21 @@
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
 
 import { IProduct } from '../../data/types';
+import { navigateHistory } from '../../store/atoms';
 import AddToFavorite from '../AddToFavourite/AddToFavourite.tsx';
-
 import './ProductCard.css';
 
 export default function ProductCard({ item }: { item: IProduct }) {
 	const navigate = useNavigate();
+	const location = useLocation();
 	const userID = localStorage.getItem('userID') || '';
+	const setPrevPage = useSetRecoilState(navigateHistory);
+
+	function handleNavigate() {
+		setPrevPage(location.pathname);
+		navigate('/project2/product/' + item.productID);
+	}
 
 	return (
 		<div className="productCardContainer">
@@ -18,10 +26,7 @@ export default function ProductCard({ item }: { item: IProduct }) {
 					key={item.productID}
 				/>
 			</div>
-			<div
-				className="productCard"
-				onClick={() => navigate('/project2/product/' + item.productID)}
-			>
+			<div className="productCard" onClick={() => handleNavigate()}>
 				<div className="imgDiv">
 					<img src={item.image} alt={item.name} loading="lazy" />
 				</div>

@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 
 import { useApolloClient, useMutation, useQuery } from '@apollo/client';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
 
 import AddToFavourite from '../../Components/AddToFavourite/AddToFavourite';
 import ErrorContainer from '../../Components/Error/ErrorContainer';
@@ -15,12 +16,15 @@ import {
 	GET_RATING_BY_PRODUCT_ID_AND_USER_ID,
 	REMOVE_RATING,
 } from '../../queries';
+import { navigateHistory } from '../../store/atoms';
 
 import './Productpage.css';
 
 export default function Productpage() {
 	const { id } = useParams() as { id: string };
+	const navigate = useNavigate();
 	const userID = localStorage.getItem('userID') || '';
+	const prevPage = useRecoilValue(navigateHistory);
 	const [setRatingByProductId] = useMutation(ADD_RATING);
 	const [removeRatingByProductId] = useMutation(REMOVE_RATING);
 	const {
@@ -102,6 +106,10 @@ export default function Productpage() {
 		}
 	};
 
+	function handleNavigateBack() {
+		navigate(prevPage);
+	}
+
 	// Get the rating from the database, if it exists
 	const rating = ratingData?.getRatingByProductIDandUserID?.rating || 0;
 	// If loading or error, display loading animation or loading container
@@ -110,62 +118,67 @@ export default function Productpage() {
 	if (productError || ratingError || averageRatingError)
 		return <ErrorContainer />;
 	return (
-		<div className="productContainer">
-			<div className="productContent">
-				<div className="productImage">
-					<img
-						src={productData.getProductByProductID.image}
-						alt="Image not found"
-					/>
-				</div>
-				<div className="productInfo">
-					<h1>{productData.getProductByProductID.name}</h1>
-					<h4>
-						{'Merke: ' + productData.getProductByProductID.brand}
-					</h4>
-					<p>{productData.getProductByProductID.description}</p>
-					<p>
-						{'Pris: kr ' +
-							productData.getProductByProductID.currentPrice +
-							',-'}
-					</p>
-					<div className="averageRatingContainer">
-						{averageRatingData.getAverageProductRating !== 0 &&
-						averageRatingData.getAverageProductRating !==
-							undefined ? (
-							<>
-								<p>
-									{'Gjennomsnittlig vurdering: '}
-									<strong>
-										{
-											averageRatingData.getAverageProductRating
-										}
-									</strong>
-								</p>
-								<div>
-									{
-										customIcons[
-											Math.round(
-												averageRatingData.getAverageProductRating,
-											)
-										].icon
-									}
-								</div>
-							</>
-						) : (
-							<p>Ingen har vurdert produktet</p>
-						)}
+		<div>
+			<button onClick={() => handleNavigateBack()}>
+				&#x2190; Tilbake
+			</button>
+			<div className="productContainer">
+				<div className="productContent">
+					<div className="productImage">
+						<img
+							src={productData.getProductByProductID.image}
+							alt="Image not found"
+						/>
 					</div>
-
-					<div className="rateAndShopContainer">
-						<RatingComponent
-							rating={rating}
-							onRatingChange={handleRatingChange}
-						/>
-						<AddToFavourite
-							productID={Number(id)}
-							userID={userID}
-						/>
+					<div className="productInfo">
+						<h1>{productData.getProductByProductID.name}</h1>
+						<h4>
+							{'Merke: ' +
+								productData.getProductByProductID.brand}
+						</h4>
+						<p>{productData.getProductByProductID.description}</p>
+						<p>
+							{'Pris: kr ' +
+								productData.getProductByProductID.currentPrice +
+								',-'}
+						</p>
+						<div className="averageRatingContainer">
+							{averageRatingData.getAverageProductRating !== 0 &&
+							averageRatingData.getAverageProductRating !==
+								undefined ? (
+								<>
+									<p>
+										{'Gjennomsnittlig vurdering: '}
+										<strong>
+											{
+												averageRatingData.getAverageProductRating
+											}
+										</strong>
+									</p>
+									<div>
+										{
+											customIcons[
+												Math.round(
+													averageRatingData.getAverageProductRating,
+												)
+											].icon
+										}
+									</div>
+								</>
+							) : (
+								<p>Ingen har vurdert produktet</p>
+							)}
+						</div>
+						<div className="rateAndShopContainer">
+							<RatingComponent
+								rating={rating}
+								onRatingChange={handleRatingChange}
+							/>
+							<AddToFavourite
+								productID={Number(id)}
+								userID={userID}
+							/>
+						</div>
 					</div>
 				</div>
 			</div>
