@@ -70,23 +70,8 @@ export default function Productpage() {
 		refetch();
 	}, [refetch]);
 
-	/**
-	 * @param newRating
-	 * @description Function for posting and updating the rating of the product the user is currently viewing
-	 */
-	function updateRating(newRating: number) {
-		setRatingByProductId({
-			variables: {
-				rating: newRating,
-				productID: productData.getProductByProductID.productID,
-				userID: userID,
-			},
-		});
-	}
-
 	/** /
-	 * Function for handling the rating change. Also includes a two second delay when rating is changed to
-	 * minimize backend/database calls
+	 * Function for handling the rating change.
 	 * @param _event
 	 * @param newValue
 	 */
@@ -94,9 +79,15 @@ export default function Productpage() {
 		_event: React.SyntheticEvent<Element, Event>,
 		newValue: number | null,
 	) => {
-		if (newValue !== null && newValue !== undefined) {
-			updateRating(newValue);
-		} else if (newValue === null) {
+		if (newValue !== undefined && newValue !== null && newValue !== 0) {
+			setRatingByProductId({
+				variables: {
+					rating: newValue,
+					productID: productData.getProductByProductID.productID,
+					userID: userID,
+				},
+			});
+		} else {
 			removeRatingByProductId({
 				variables: {
 					productID: productData.getProductByProductID.productID,
