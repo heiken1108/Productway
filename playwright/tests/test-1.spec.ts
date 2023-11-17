@@ -1,6 +1,4 @@
 import { test, expect } from '@playwright/test';
-//Ikke aktiv farge:
-//Aktiv farge: background-color: rgb(40, 112, 148); color: white;
 
 test('Test Filtrering 1', async ({ page }) => {
   await page.goto('http://localhost:5173/project2/results');
