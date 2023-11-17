@@ -40,20 +40,12 @@ const typeDefs = gql`
     }
 
     type Query {
-        hello: String
-        getAllProducts: [ProductModel]
         getRandomItem: ProductModel
-        getProductsWithLimit(limit: Int!, page: Int!): [ProductModel]
         getProductByProductID(productID: Int!): ProductModel
-        getProductByObjectID(ObjectID: ID!): ProductModel
-        getProductsByCategory(category: String!): [ProductModel]
         getProductsBySearch(search: String!): [ProductModel]
         getProductsByFilters(name: String, categories: [String], minPrice: Float, maxPrice: Float, sortOrder: Int): [ProductModel]
         getProductsByFiltersWithLimit(searchTerm: String, categories: [String], minPrice: Float, maxPrice: Float, limit: Int!, page: Int!, sortOrder: Int): [ProductModel]
-        getUsers: [UserModel]
-        getUserByID(userID: String!): UserModel
         getCountProductsByFilters(searchTerm: String, categories: [String], minPrice: Float, maxPrice: Float): Int
-        getProductsByPriceRange(minPrice: Float, maxPrice: Float): [ProductModel]
         getRatingsByUserID(userID: String!): [RatingModel]
         getFavoritesByUserID(userID: String!): [ProductModel]
         getRatingByProductIDandUserID(productID: Int!, userID: String!): RatingModel
