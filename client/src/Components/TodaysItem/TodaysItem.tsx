@@ -37,6 +37,7 @@ export default function TodaysItem() {
 	return (
 		<div
 			className="todaysItem"
+			data-testid="TodaysItem"
 			onClick={() =>
 				navigate('/project2/product/' + data.getRandomItem.productID)
 			}

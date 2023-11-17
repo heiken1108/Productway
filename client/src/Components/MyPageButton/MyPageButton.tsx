@@ -18,6 +18,7 @@ export default function MyPageButton() {
 				onClick={handleNavShopping}
 				size="medium"
 				sx={{ background: '#287094' }}
+				data-testid="MyPageButton"
 			>
 				Min side
 			</Button>

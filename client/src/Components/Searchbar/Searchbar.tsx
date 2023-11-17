@@ -89,6 +89,7 @@ export default function SearchBar(): JSX.Element {
 				options={loading ? [] : products}
 				freeSolo
 				placeholder="Søk etter produkter..."
+				data-testid="SearchBar"
 				getOptionLabel={(option: string | IProduct) => {
 					if (typeof option === 'string') {
 						return option;
