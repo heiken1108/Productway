@@ -180,6 +180,19 @@ const resolvers = {
             } catch (error) {
                 throw new Error(`Failed to get rating: ${error.message}`);
             }
+        },
+        getAverageProductRating: async (_, { productID }) => {
+            try {
+                const ratings = await RatingModel.find({ productID: productID });
+                if (ratings.length === 0) {
+                    return 0;
+                }
+                const sum = ratings.reduce((acc, rating) => acc + rating.rating, 0);
+                const average = sum / ratings.length;
+                return parseFloat(average.toFixed(2));
+            } catch (error) {
+                return 0;
+            }
         }
     },
     Mutation: {

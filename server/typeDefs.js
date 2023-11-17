@@ -57,6 +57,7 @@ const typeDefs = gql`
         getRatingsByUserID(userID: String!): [RatingModel]
         getFavoritesByUserID(userID: String!): [ProductModel]
         getRatingByProductIDandUserID(productID: Int!, userID: String!): RatingModel
+        getAverageProductRating(productID: Int!): Float
     }
 
     type Mutation {

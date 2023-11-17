@@ -38,6 +38,16 @@
 	align-items: center;
 }
 
+.averageRatingContainer {
+	display: flex;
+	flex-direction: row;
+	margin-top: 0px;
+}
+.averageRatingContainer p {
+	margin: 5px;
+	margin-left: 0px;
+}
+
 .productInfo {
 	width: 60%;
 }

@@ -258,6 +258,14 @@ export const REMOVE_RATING = gql`
 		}
 	}
 `;
+/*
+ * query to get the average rating by productID
+ */
+export const GET_AVERAGE_RATING_BY_PRODUCT_ID = gql`
+	query GetAverageRating($productID: Int!) {
+		getAverageProductRating(productID: $productID)
+	}
+`;
 
 /*
  * Mutation to add a product as favorite

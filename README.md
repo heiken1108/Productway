@@ -1,7 +1,5 @@
 ## Project 2
 
-VM-passord: kjottjente1
-
 # Productway
 The application allows a user to search for groceryproducts in order to look up information, such as price, rate the product or favorite it. It uses a pre-populated database of products and their information to present the information and perform searches. The user is able to search by name, filter by one or more categories, include a price range, and order the presented items by price
 

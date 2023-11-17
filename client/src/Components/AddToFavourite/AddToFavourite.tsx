@@ -79,6 +79,7 @@ export default function AddToFavourite({
 							backgroundColor: addedToFavourite
 								? '#287094'
 								: 'grey',
+							outline: 'none',
 						}}
 						onClick={handleAddToFavorite}
 					>
