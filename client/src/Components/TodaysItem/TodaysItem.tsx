@@ -3,11 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 
 import { GET_RANDOM_ITEM } from '../../queries';
+import { navigateHistory } from '../../store/atoms';
 import ErrorMessage from '../Error/ErrorMessage';
 import LoadingAnimation from '../Loading/LoadingAnimation';
-
 import './TodaysItem.css';
-import { navigateHistory } from '../../store/atoms';
 
 export default function TodaysItem() {
 	const navigate = useNavigate();
@@ -57,7 +56,8 @@ export default function TodaysItem() {
 				<p>
 					{' '}
 					<strong>
-						Gjennomsnittlig pris: {data.getRandomItem.currentPrice} kr
+						Gjennomsnittlig pris: {data.getRandomItem.currentPrice}{' '}
+						kr
 					</strong>
 				</p>
 			</div>

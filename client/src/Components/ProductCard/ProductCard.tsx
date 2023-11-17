@@ -1,16 +1,15 @@
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
 
 import { IProduct } from '../../data/types';
+import { navigateHistory } from '../../store/atoms';
 import AddToFavorite from '../AddToFavourite/AddToFavourite.tsx';
-
 import './ProductCard.css';
-import { useSetRecoilState } from 'recoil';
-import { navigateHistory } from '../../store/atoms.tsx';
 
 export default function ProductCard({ item }: { item: IProduct }) {
 	const navigate = useNavigate();
-	const userID = localStorage.getItem('userID') || '';
 	const location = useLocation();
+	const userID = localStorage.getItem('userID') || '';
 	const setPrevPage = useSetRecoilState(navigateHistory);
 
 	function handleNavigate() {

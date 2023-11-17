@@ -1,8 +1,8 @@
-import { useEffect, useRef} from 'react';
+import { useEffect, useState } from 'react';
 
 import { useQuery } from '@apollo/client';
 import { Pagination, Stack } from '@mui/material';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'recoil';
 
 import ErrorContainer from '../../Components/Error/ErrorContainer';
 import Filterbar from '../../Components/Filterbar/Filterbar';
@@ -15,11 +15,9 @@ import {
 } from '../../queries';
 import {
 	categoryFilterState,
-	pageHistory,
 	serchTermForResultPageState,
 	sliderFilterState,
 	sortingFilterState,
-	navigateHistory
 } from '../../store/atoms';
 
 import './ResultsPage.css';
@@ -32,10 +30,9 @@ export default function ResultsPage() {
 	const descendingOrder = useRecoilValue(sortingFilterState)[0].showStatus;
 	const ascendingOrder = useRecoilValue(sortingFilterState)[1].showStatus;
 	const categoryFilter = useRecoilValue(categoryFilterState);
-	const [prevPage, setPrevPage] = useRecoilState(navigateHistory)
 
 	// Global state for pagination, to keep track of right page if returned from productpage
-	const [currentPage, setCurrentPage] = useRecoilState(pageHistory);
+	const [currentPage, setCurrentPage] = useState(1);
 
 	// Sort order for the query. 1 = descending, -1 = ascending, 0 = no sorting
 	const sortOrder = descendingOrder ? 1 : ascendingOrder ? -1 : 0;
@@ -44,21 +41,9 @@ export default function ResultsPage() {
 	const limit = 12;
 
 	// Reset the current page to 1 when the search term or the category filter changes
-	const isFirstRender = useRef(true);
-
 	useEffect(() => {
-	  if (isFirstRender.current) {
-		isFirstRender.current = false;
-		return;
-	  }
-	
-	  if (prevPage && prevPage.substring(0, 18) !== '/project2/product/') {
 		setCurrentPage(1);
-		setPrevPage("");
-	  }
 	}, [searchTerm, categoryFilter, minPrice, maxPrice, sortOrder]);
-	
-	  
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
