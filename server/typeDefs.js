@@ -1,5 +1,4 @@
-const {gql} = require('apollo-server-express');
-
+import { gql } from 'apollo-server-express';
 /**
  * Type definitions to define the schemas and operations that can be performed on the data, including both queries and mutations
  */
@@ -61,4 +60,4 @@ const typeDefs = gql`
     }
 `;
 
-module.exports = typeDefs;
+export default typeDefs;

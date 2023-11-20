@@ -1,6 +1,4 @@
-const mongoose = require('mongoose')
-//const ProductModel = require('./products')
-
+import mongoose from 'mongoose';
 
 const RatingSchema = new mongoose.Schema({
     productID: {
@@ -15,7 +13,7 @@ const RatingSchema = new mongoose.Schema({
         type: String,
         required: true
     }
-})
+});
 
-const RatingModel = mongoose.model("ratings", RatingSchema)
-module.exports = RatingModel
+const RatingModel = mongoose.model("ratings", RatingSchema);
+export default RatingModel;
