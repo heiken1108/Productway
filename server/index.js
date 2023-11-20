@@ -1,26 +1,23 @@
-const mongoose = require('mongoose');
-const { ApolloServer } = require('apollo-server-express');
-const { mergeResolvers } = require('@graphql-tools/merge');
-const express = require('express');
+import mongoose from 'mongoose';
+import { ApolloServer } from 'apollo-server-express';
+import { mergeResolvers } from '@graphql-tools/merge';
+import express from 'express';
 
-const productResolver = require('./resolvers/productResolver.js');
-const ratingResolver = require('./resolvers/ratingResolver.js');
-const userResolver = require('./resolvers/userResolver.js');
+import productResolver from './resolvers/productResolver.js';
+import ratingResolver from './resolvers/ratingResolver.js';
+import userResolver from './resolvers/userResolver.js';
 
-const typeDefs = require('./typeDefs');
+import typeDefs from './typeDefs.js';
 
-mongoose.connect("mongodb://admin:kjottjente1@it2810-10.idi.ntnu.no:27017/productway?authSource=admin&authMechanism=DEFAULT", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose.connect("mongodb://admin:kjottjente1@it2810-10.idi.ntnu.no:27017/productway?authSource=admin&authMechanism=DEFAULT");
 
 mongoose.connection.once('open', () => {
-  console.log('Connected to database JA');
+  console.log('Connected to mongoDB');
 });
 
 const app = express();
 
-const mergedResolver = mergeResolvers([productResolver, ratingResolver, userResolver])
+const mergedResolver = mergeResolvers([productResolver, ratingResolver, userResolver]);
 
 const server = new ApolloServer({
   typeDefs,

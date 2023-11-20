@@ -1,5 +1,5 @@
-const RatingModel = require("../models/Ratings");
-const UserModel = require("../models/User");
+import RatingModel from "../models/Ratings.js";
+import UserModel from "../models/User.js";
 
 const ratingResolver = {
     Query: {
@@ -88,4 +88,4 @@ const ratingResolver = {
     }
 }
 
-module.exports = ratingResolver;
+export default ratingResolver;

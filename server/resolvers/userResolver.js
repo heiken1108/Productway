@@ -1,5 +1,5 @@
-const UserModel = require("../models/User");
-const ProductModel = require("../models/Products");
+import UserModel from "../models/User.js";
+import ProductModel from "../models/Products.js";
 
 const userResolver = {
     Query: {
@@ -16,7 +16,6 @@ const userResolver = {
                 throw new Error(`Failed to get user favorites: ${error.message}`);
             }
         },
-
     },
     Mutation: {
         addUser: async (_, { userID }) => {
@@ -66,4 +65,4 @@ const userResolver = {
     }
 }
 
-module.exports = userResolver;
+export default userResolver;

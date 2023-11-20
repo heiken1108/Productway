@@ -1,4 +1,4 @@
-const ProductModel = require("../models/Products");
+import ProductModel from "../models/Products.js";
 
 const productResolver = {
     Query: {
@@ -15,16 +15,16 @@ const productResolver = {
             const regex = new RegExp(search, 'i');
             return await ProductModel.aggregate([
                 {
-                    $match: {name: {$regex: regex} }
+                    $match: { name: { $regex: regex } }
                 },
                 {
                     $group: {
                         _id: "$name",
-                        firstProduct: {$first: "$$ROOT"},
+                        firstProduct: { $first: "$$ROOT" },
                     }
                 },
                 {
-                    $replaceRoot: {newRoot: "$firstProduct"}
+                    $replaceRoot: { newRoot: "$firstProduct" }
                 }
             ]);
         },
@@ -33,42 +33,42 @@ const productResolver = {
             const filters = {};
             if (name) {
                 const regex = new RegExp(name, 'i');
-                filters.name = { $regex: regex } ;
+                filters.name = { $regex: regex };
             }
             if (categories && categories.length > 0) {
                 filters.category = { $in: categories };
             }
             if (minPrice !== undefined) {
-                filters.currentPrice = {$gte: minPrice};
+                filters.currentPrice = { $gte: minPrice };
             }
             if (maxPrice !== undefined) {
-                filters.currentPrice = {...filters.currentPrice, $lte: maxPrice};
+                filters.currentPrice = { ...filters.currentPrice, $lte: maxPrice };
             }
-            let producs;
+            let products;
             if (sortOrder === 1) {
-                producs = await ProductModel.find(filters).sort({ currentPrice: 1 }); // Stigende rekkefølge
+                products = await ProductModel.find(filters).sort({ currentPrice: 1 }); // Stigende rekkefølge
             } else if (sortOrder === -1) {
-                producs = await ProductModel.find(filters).sort({ currentPrice: -1 }); // Synkende rekkefølge
+                products = await ProductModel.find(filters).sort({ currentPrice: -1 }); // Synkende rekkefølge
             } else {
-                producs = await ProductModel.find(filters); // Ingen spesifisert rekkefølge, returner som det er
+                products = await ProductModel.find(filters); // Ingen spesifisert rekkefølge, returner som det er
             }
             return producs;
         },
-        
+
         getProductsByFiltersWithLimit: async (parent, { searchTerm, categories, minPrice, maxPrice, limit, page, sortOrder }) => {
             const filters = {};
             if (searchTerm) {
                 const regex = new RegExp(searchTerm, 'i');
-                filters.name = { $regex: regex } ;
+                filters.name = { $regex: regex };
             }
             if (categories && categories.length > 0) {
                 filters.category = { $in: categories };
             }
             if (minPrice !== undefined) {
-                filters.currentPrice = {$gte: minPrice};
+                filters.currentPrice = { $gte: minPrice };
             }
             if (maxPrice !== undefined) {
-                filters.currentPrice = {...filters.currentPrice, $lte: maxPrice};
+                filters.currentPrice = { ...filters.currentPrice, $lte: maxPrice };
             }
             let products;
             if (sortOrder === 1) {
@@ -85,19 +85,19 @@ const productResolver = {
             const filters = {};
             if (searchTerm) {
                 const regex = new RegExp(searchTerm, 'i');
-                filters.name = { $regex: regex } ;
+                filters.name = { $regex: regex };
             }
             if (categories && categories.length > 0) {
                 filters.category = { $in: categories };
             }
             if (minPrice !== undefined) {
-                filters.currentPrice = {$gte: minPrice};
+                filters.currentPrice = { $gte: minPrice };
             }
             if (maxPrice !== undefined) {
-                filters.currentPrice = {...filters.currentPrice, $lte: maxPrice};
+                filters.currentPrice = { ...filters.currentPrice, $lte: maxPrice };
             }
             const count = await ProductModel.count(filters);
-            return count
+            return count;
         },
 
         getAverageProductRating: async (_, { productID }) => {
@@ -116,4 +116,4 @@ const productResolver = {
     }
 };
 
-module.exports = productResolver;
+export default productResolver;
