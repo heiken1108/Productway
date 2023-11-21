@@ -100,7 +100,6 @@ export default function Productpage() {
 	function handleNavigateBack() {
 		navigate(prevPage);
 	}
-
 	// Get the rating from the database, if it exists
 	const rating = ratingData?.getRatingByProductIDandUserID?.rating || 0;
 	// If loading or error, display loading animation or loading container
@@ -129,9 +128,18 @@ export default function Productpage() {
 						</h4>
 						<p>{productData.getProductByProductID.description}</p>
 						<p>
-							{'Pris: kr ' +
-								productData.getProductByProductID.currentPrice +
-								',-'}
+							Pris:{' '}
+							{
+								<strong>
+									kr{' '}
+									{
+										productData.getProductByProductID
+											.currentPrice
+									}
+									,-
+								</strong>
+							}{' '}
+							hos {productData.getProductByProductID.store}
 						</p>
 						<div className="averageRatingContainer">
 							{averageRatingData.getAverageProductRating !== 0 &&
