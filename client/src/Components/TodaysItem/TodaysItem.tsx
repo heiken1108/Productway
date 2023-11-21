@@ -46,7 +46,11 @@ export default function TodaysItem() {
 		);
 
 	return (
-		<div className="todaysItem" onClick={() => handleNavigate()}>
+		<div
+			className="todaysItem"
+			onClick={() => handleNavigate()}
+			data-testid="TodaysItem"
+		>
 			<div className="todayImgContainer">
 				<img loading="lazy" src={data.getRandomItem.image}></img>
 			</div>
