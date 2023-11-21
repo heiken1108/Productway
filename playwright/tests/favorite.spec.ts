@@ -12,7 +12,7 @@ test.describe('Test favorite-functionality', () => {
          * Checks that is hasn´t been favorited
          */
         await page.getByText('Byggryn Hele 550g boks Møllerens').click();
-        await expect(page.getByLabel('like')).toHaveAttribute('style', 'background-color: grey;');
+        await expect(page.getByLabel('like')).toHaveAttribute('style', 'background-color: grey; outline: none;');
 
         /**
          * Favorites the product, Byggryn
@@ -20,7 +20,7 @@ test.describe('Test favorite-functionality', () => {
          * Checks that it gives feedback that it has been favorited
          */
         await page.getByLabel('like').click();
-        await expect(page.getByLabel('like')).toHaveAttribute('style', 'background-color: rgb(40, 112, 148);');
+        await expect(page.getByLabel('like')).toHaveAttribute('style', 'background-color: rgb(40, 112, 148); outline: none;');
         await expect(page.getByText('Lagt til i favoritter!')).toBeVisible();
 
         /**
@@ -43,7 +43,7 @@ test.describe('Test favorite-functionality', () => {
          * Checks that it gives feedback that it has been removed as a favorite
          */
         await page.getByLabel('like').click();
-        await expect(page.getByLabel('like')).toHaveAttribute('style', 'background-color: grey;');
+        await expect(page.getByLabel('like')).toHaveAttribute('style', 'background-color: grey; outline: none;');
         await expect(page.getByText('Fjernet fra favoritter!')).toBeVisible();
 
         /**

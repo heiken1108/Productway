@@ -1,3 +1,4 @@
 .addToFavourite {
-	z-index: 4;
+	position: fixed;
+	z-index: 10000;
 }

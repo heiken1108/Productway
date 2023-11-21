@@ -20,7 +20,6 @@ export async function getProducts(page: PageType): Promise<PageType[]> {
 
     let cont = 0;
     while (Products.length === 0 && cont < 1000) {
-    //console.log("Prøver med forsøk: ", cont);
         Products = await page.$$('*:is(:text("Pris: "))');
         cont++;
     }

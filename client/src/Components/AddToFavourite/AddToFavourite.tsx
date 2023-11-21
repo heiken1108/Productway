@@ -74,11 +74,13 @@ export default function AddToFavourite({
 			<div>
 				<Box sx={{ '& > :not(style)': { m: 1 } }}>
 					<Fab
+						data-testid="favoriteIcon"
 						aria-label="like"
 						style={{
 							backgroundColor: addedToFavourite
 								? '#287094'
 								: 'grey',
+							outline: 'none',
 						}}
 						onClick={handleAddToFavorite}
 					>

@@ -1,36 +1,38 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
+import { ApolloServer } from 'apollo-server-express';
+import { mergeResolvers } from '@graphql-tools/merge';
+import express from 'express';
 
-mongoose.connect("mongodb://admin:kjottjente1@it2810-10.idi.ntnu.no:27017/productway?authSource=admin&authMechanism=DEFAULT", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-})
+import productResolver from './resolvers/productResolver.js';
+import ratingResolver from './resolvers/ratingResolver.js';
+import userResolver from './resolvers/userResolver.js';
+
+import typeDefs from './typeDefs.js';
+
+mongoose.connect("mongodb://admin:kjottjente1@it2810-10.idi.ntnu.no:27017/productway?authSource=admin&authMechanism=DEFAULT");
 
 mongoose.connection.once('open', () => {
-    console.log('Connected to database');
+  console.log('Connected to mongoDB');
 });
-
-const express = require("express");
-const cors = require('cors')
-const { ApolloServer } = require('apollo-server-express');
-const typeDefs = require("./typeDefs");
-const resolvers = require("./resolvers");
 
 const app = express();
 
+const mergedResolver = mergeResolvers([productResolver, ratingResolver, userResolver]);
+
 const server = new ApolloServer({
-    typeDefs,
-    resolvers,
-    cors: {"origin": "*"},
+  typeDefs,
+  resolvers: mergedResolver,
+  cors: { origin: true, optionsSuccessStatus: 200, credentials: true },
 });
 
 async function startApolloServer() {
-    await server.start();
+  await server.start();
 
-    server.applyMiddleware({ app, cors: {origin: true, optionsSuccessStatus:200, credentials:true} });
+  server.applyMiddleware({ app, cors: { origin: true, optionsSuccessStatus: 200, credentials: true } });
 
-    app.listen({ port: 4000}, () => {
-        console.log(`🚀 Server ready at http://it2810-10.idi.ntnu.no:4000${server.graphqlPath}`);
-    });
+  app.listen({ port: 4000 }, () => {
+    console.log(`🚀 Server ready at http://it2810-10.idi.ntnu.no:4000${server.graphqlPath}`);
+  });
 }
 
 startApolloServer();

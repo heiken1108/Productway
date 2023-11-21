@@ -31,7 +31,7 @@ export default function ResultsPage() {
 	const ascendingOrder = useRecoilValue(sortingFilterState)[1].showStatus;
 	const categoryFilter = useRecoilValue(categoryFilterState);
 
-	// Local state for pagination. Default value set to 1
+	// Global state for pagination, to keep track of right page if returned from productpage
 	const [currentPage, setCurrentPage] = useState(1);
 
 	// Sort order for the query. 1 = descending, -1 = ascending, 0 = no sorting
@@ -141,7 +141,8 @@ export default function ResultsPage() {
 					</div>
 				</div>
 			) : (
-				!productsLoading && (
+				!productsLoading &&
+				!productsError && (
 					<div className="noItems">
 						<strong>
 							{'Ingen produkter matcher søket ditt :('}

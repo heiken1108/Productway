@@ -16,8 +16,8 @@ export default defineConfig({
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
-  //retries: process.env.CI ? 2 : 0,
-  retries: 3,
+  retries: process.env.CI ? 3 : 3,
+  //retries: 3,
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   //workers: 10,
@@ -26,7 +26,7 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: 'http://localhost:5173/project2/',
+    baseURL: 'http://localhost:5173/project2/', //DENNE MÅ ENDRES NÅR VI YEETER OPP PÅ VM
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
@@ -42,12 +42,12 @@ export default defineConfig({
     /*{
       name: 'firefox',
       use: { ...devices['Desktop Firefox'] },
-    },
+    },*/
 
-    {
+    /*{
       name: 'webkit',
       use: { ...devices['Desktop Safari'] },
-    },*/
+    },*
 
     /* Test against mobile viewports. */
      {
@@ -60,10 +60,10 @@ export default defineConfig({
     },*/
 
     /* Test against branded browsers. */
-     /*{
+     {
        name: 'Google Chrome',
       use: { ...devices['Desktop Chrome'], channel: 'chrome' },
-     },*/
+     },
   ],
 
   /* Run your local dev server before starting the tests */

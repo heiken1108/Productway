@@ -7,6 +7,8 @@ stages:
 before_script:
     - cd client
     - npm install
+    - npm install --save-dev jest@latest
+    - npm i --save-dev @types/jest
 
 build:
     stage: build
@@ -30,9 +32,10 @@ Eslint:
     script:
         - npm run lint
     retry: 1
-#Vitest:
-# stage: test
-# needs: [build]
-# script:
-#   - npm run test
-# retry: 1
+
+Vitest:
+    stage: test
+    needs: [build]
+    script:
+        - npm run test
+    retry: 1

@@ -17,8 +17,8 @@ export default function MyPageButton() {
 				variant="contained"
 				onClick={handleNavShopping}
 				size="medium"
-				sx={{ background: '#287094' }}
 				data-testid="MyPageButton"
+				sx={{ background: '#287094', '&:focus': { outline: 'none' } }}
 			>
 				Min side
 			</Button>

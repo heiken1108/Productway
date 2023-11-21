@@ -119,31 +119,6 @@ export const GET_COUNT_PRODUCTS_BY_FILTERS = gql`
 `;
 
 /*
- * Query to get a single user from the database, using userID to identify it
- */
-export const GET_USER_BY_USERID = gql`
-	query Query($userID: String!) {
-		getUserByID(userID: $userID) {
-			_id
-			userID
-			favorites {
-				_id
-				productID
-				name
-				brand
-				ean
-				image
-				category
-				description
-				currentPrice
-				weight
-				weightUnit
-				store
-			}
-		}
-	}
-`;
-/*
  * Query to get all ratings from the database, using userID to identify it
  */
 export const GET_RATINGS_BY_USER_ID = gql`
@@ -256,6 +231,14 @@ export const REMOVE_RATING = gql`
 				rating
 			}
 		}
+	}
+`;
+/*
+ * query to get the average rating by productID
+ */
+export const GET_AVERAGE_RATING_BY_PRODUCT_ID = gql`
+	query GetAverageRating($productID: Int!) {
+		getAverageProductRating(productID: $productID)
 	}
 `;
 

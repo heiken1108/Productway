@@ -1,0 +1,75 @@
+/* Existing styles */
+.RatingItem {
+}
+.RatingItemContainer {
+	top: 0;
+	align-items: center;
+	flex-wrap: nowrap;
+	height: auto;
+	position: relative;
+	margin: 0px;
+	margin-top: 30px;
+	overflow: hidden;
+	padding: 20px;
+	padding-bottom: 10px;
+	border: 1px solid #ccc;
+	border-radius: 30px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+	cursor: pointer;
+	background-color: rgb(255, 255, 255);
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: 10px;
+	width: 100%;
+	min-height: 80px;
+}
+
+.tittel {
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	color: black;
+	display: block;
+	font-size: 1em;
+	line-height: 1.2;
+	white-space: wrap;
+}
+.theSmileys {
+	position: absolute;
+	width: 100%;
+	top: 70px;
+	display: flex;
+	justify-content: center;
+	z-index: 1;
+}
+
+.prisParagraph {
+	font-size: 0.7em;
+}
+
+/* Enhanced media query for better responsiveness */
+@media screen and (max-width: 768px) {
+	.RatingItemContainer {
+		padding: 15px;
+		margin-top: 20px;
+	}
+
+	.tittel {
+		font-size: 0.9em;
+	}
+}
+
+@media screen and (max-width: 390px) {
+	.RatingItemContainer {
+		width: 85%;
+		padding: 10px;
+		margin-top: 15px;
+	}
+	.theSmileys {
+		top: 50px;
+	}
+
+	.tittel {
+		font-size: 0.8em;
+	}
+}
