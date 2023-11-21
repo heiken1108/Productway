@@ -2,28 +2,34 @@ import React from 'react';
 
 import { useQuery } from '@apollo/client';
 import { useMutation } from '@apollo/client';
-import Divider from '@mui/material/Divider';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
 
 import {
 	ADD_RATING,
 	GET_PRODUCT_BY_PRODUCT_ID,
 	REMOVE_RATING,
 } from '../../queries';
+import { navigateHistory } from '../../store/atoms';
 import ErrorMessage from '../Error/ErrorMessage';
 import LoadingAnimation from '../Loading/LoadingAnimation';
 import RatingComponent from '../RatingComponent/RatingComponent';
+
+import './MyRatingsItem.css';
 
 export default function MyRatingsItem({
 	productID,
 	rating,
 	userID,
+	handleRatingRemoved,
 }: {
 	productID: number;
 	rating: number;
 	userID: string;
+	handleRatingRemoved: () => void;
 }) {
+	const setPrevPage = useSetRecoilState(navigateHistory);
+	const location = useLocation();
 	const { data, loading, error } = useQuery(GET_PRODUCT_BY_PRODUCT_ID, {
 		variables: { productID: productID },
 	});
@@ -37,12 +43,12 @@ export default function MyRatingsItem({
 	 * @param _event
 	 * @param newValue
 	 */
-	const handleRatingChange = (
+	const handleRatingChange = async (
 		_event: React.SyntheticEvent<Element, Event>,
 		newValue: number | null,
 	) => {
 		if (newValue !== undefined && newValue !== null && newValue !== 0) {
-			setRatingByProductId({
+			await setRatingByProductId({
 				variables: {
 					rating: newValue,
 					productID: data.getProductByProductID.productID,
@@ -50,34 +56,41 @@ export default function MyRatingsItem({
 				},
 			});
 		} else {
-			removeRatingByProductId({
+			await removeRatingByProductId({
 				variables: {
 					productID: data.getProductByProductID.productID,
 					userID: userID,
 				},
 			});
+			handleRatingRemoved();
 		}
 	};
+	const navigate = useNavigate();
+
+	function handleNavigate() {
+		setPrevPage(location.pathname);
+		navigate('/project2/product/' + productID);
+	}
 
 	// If loading or error, display loading animation or loading container
 	if (loading) return <LoadingAnimation />;
 	if (error) return <ErrorMessage />;
 
 	return (
-		<ListItem button>
-			<ListItemText
-				primary={data.getProductByProductID.name || 'No name'}
-				primaryTypographyProps={{ style: { fontWeight: 'bold' } }}
-				secondary={
-					<React.Fragment>
-						<RatingComponent
-							rating={rating}
-							onRatingChange={handleRatingChange}
-						/>
-					</React.Fragment>
-				}
-			/>
-			<Divider />
-		</ListItem>
+		<div className="RatingItemContainer">
+			<div className="theSmileys">
+				<RatingComponent
+					rating={rating}
+					onRatingChange={handleRatingChange}
+				/>
+			</div>
+			<div className="RatingItem" onClick={() => handleNavigate()}>
+				<div className="tittel">
+					<strong>
+						{data.getProductByProductID.name || 'No name'}
+					</strong>
+				</div>
+			</div>
+		</div>
 	);
 }
