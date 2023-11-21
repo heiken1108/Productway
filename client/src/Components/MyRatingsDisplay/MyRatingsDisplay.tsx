@@ -4,10 +4,16 @@ import { useQuery } from '@apollo/client';
 
 import MyRatingsItem from './MyRatingsItem';
 import { IRating } from '../../data/types';
-import { GET_RATINGS_BY_USER_ID } from '../../queries';
+import { GET_RATINGS_BY_USER_ID } from '../../graphql/queries';
 import ErrorMessage from '../Error/ErrorMessage';
 import LoadingAnimation from '../Loading/LoadingAnimation';
+
 import './MyRatingsDisplay.css';
+
+/**
+ * This component is a container for the ratings cards.
+ * @param {string} userID - The user ID of the user
+ */
 
 export default function MyRatingsDisplay({ userID }: { userID: string }) {
 	const { data, loading, error, refetch } = useQuery(GET_RATINGS_BY_USER_ID, {

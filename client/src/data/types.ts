@@ -1,3 +1,6 @@
+/**
+ * Interface for the product object
+ */
 export interface IProduct {
 	productID: number;
 	name: string;
@@ -11,7 +14,9 @@ export interface IProduct {
 	weightUnit?: string;
 	store: string;
 }
-
+/**
+ * Interface for the rating object
+ */
 export interface IRating {
 	rating: number;
 	productID: number;

@@ -1,5 +1,8 @@
 import mongoose from 'mongoose';
 
+/**
+ * The RatingSchema defines the shape of the ratings that will be stored in the database.
+ */
 const RatingSchema = new mongoose.Schema({
     productID: {
         type: Number,

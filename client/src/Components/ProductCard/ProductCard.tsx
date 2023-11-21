@@ -6,6 +6,10 @@ import { navigateHistory } from '../../store/atoms';
 import AddToFavorite from '../AddToFavourite/AddToFavourite.tsx';
 import './ProductCard.css';
 
+/**
+ * This component is a card for the products.
+ * @param {IProduct} item - The product to be displayed
+ */
 export default function ProductCard({ item }: { item: IProduct }) {
 	const navigate = useNavigate();
 	const location = useLocation();

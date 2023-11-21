@@ -2,16 +2,27 @@ import ProductModel from "../models/Products.js";
 
 const productResolver = {
     Query: {
+        /**
+         * Function to find a random product
+         * @returns a random product from the database
+         */
         getRandomItem: async () => {
             const count = await ProductModel.count();
             const random = Math.floor(Math.random() * count);
             return await ProductModel.findOne().skip(random);
         },
-        
+        /**
+         * Gets a product by its id
+         * @param {*} productID the id of the product to get 
+         * @returns the product
+         */
         getProductByProductID: async (_, { productID }) => {
             return await ProductModel.findOne({ productID });
         },
-
+        /**
+         * Gets all products by a search term
+         * @returns all products which fits the search term
+         */
         getProductsBySearch: async (parent, { search }) => {
             const regex = new RegExp(search, 'i');
             return await ProductModel.aggregate([
@@ -29,7 +40,12 @@ const productResolver = {
                 }
             ]);
         },
-
+        /**
+         * Function to get all products by filters with limit
+         * @param {*} parent 
+         * @param {*} Filters with Limit 
+         * @returns all products that fits the filters with the given limits
+         */
         getProductsByFiltersWithLimit: async (parent, { searchTerm, categories, minPrice, maxPrice, limit, page, sortOrder }) => {
             const filters = {};
             if (searchTerm) {
@@ -55,7 +71,12 @@ const productResolver = {
             }
             return products;
         },
-
+        /**
+         * Function to get the count of products that fits the provided filters
+         * @param {*} parent 
+         * @param {*} Filters 
+         * @returns the count of products that fits the filters
+         */
         getCountProductsByFilters: async (parent, { searchTerm, categories, minPrice, maxPrice }) => {
             const filters = {};
             if (searchTerm) {

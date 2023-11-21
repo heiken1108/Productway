@@ -10,8 +10,8 @@ import {
 import { MemoryRouter } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 
-import { client } from '../../apolloClient';
 import Filterbar from '../../Components/Filterbar/Filterbar';
+import { client } from '../../graphql/apolloClient';
 
 describe('Header test', () => {
 	let filterbar: RenderResult;

@@ -11,11 +11,20 @@ import {
 	ADD_FAVORITE,
 	GET_FAVORITES_BY_USER_ID,
 	REMOVE_FAVORITE,
-} from '../../queries';
+} from '../../graphql/queries';
 
+/*
+ * Styling for MUI Alert
+ */
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
 	return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
+
+/**
+ * This component is to add or remove product from favorites
+ * @param {number} productID - ID of product
+ * @param {string} userID - ID of user
+ */
 
 export default function AddToFavourite({
 	productID,
@@ -38,11 +47,15 @@ export default function AddToFavourite({
 	const favoritesArray = favorites.map((item: IProduct) => {
 		return item.productID;
 	});
-
+	/*
+	 * useEffect to check if product is in favorites
+	 */
 	useEffect(() => {
 		setAddedToFavourite(favoritesArray.includes(productID));
 	}, [favoritesArray, productID]);
-
+	/*
+	 * Function to add or remove product from favorites
+	 */
 	async function handleAddToFavorite() {
 		if (!addedToFavourite) {
 			setOpenAddedSnackbar(true);
@@ -63,7 +76,9 @@ export default function AddToFavourite({
 		}
 		refetch();
 	}
-
+	/*
+	 * function to close snackbar
+	 */
 	const handleClose = () => {
 		setOpenAddedSnackbar(false);
 		setRemoveSnackbar(false);

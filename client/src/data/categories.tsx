@@ -1,3 +1,6 @@
+/**
+ * Categories for the different buttons on the frontpage
+ */
 const categories = [
 	{
 		key: 0,

@@ -1,5 +1,8 @@
 import mongoose from 'mongoose';
 
+/**
+ * The ProductSchema defines the shape of the products that will be stored in the database.
+ */
 const ProductSchema = new mongoose.Schema({
     productID: {
         type: Number,

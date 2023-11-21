@@ -15,11 +15,14 @@ import {
 	GET_PRODUCT_BY_PRODUCT_ID,
 	GET_RATING_BY_PRODUCT_ID_AND_USER_ID,
 	REMOVE_RATING,
-} from '../../queries';
+} from '../../graphql/queries';
 import { navigateHistory } from '../../store/atoms';
 
 import './Productpage.css';
 
+/**
+ * This component is the page for a specific product.
+ */
 export default function Productpage() {
 	const { id } = useParams() as { id: string };
 	const navigate = useNavigate();
