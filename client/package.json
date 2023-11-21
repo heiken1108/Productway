@@ -9,7 +9,8 @@
 		"lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
 		"preview": "vite preview",
 		"format-check": "prettier . --check",
-		"format": "npx prettier --write ."
+		"format": "npx prettier --write .",
+		"test": "vitest"
 	},
 	"dependencies": {
 		"@apollo/client": "^3.8.5",
@@ -20,7 +21,10 @@
 		"@mui/joy": "^5.0.0-beta.11",
 		"@mui/material": "^5.14.12",
 		"@tanstack/react-query": "^4.35.7",
+		"@testing-library/jest-dom": "^6.1.4",
+		"@testing-library/react": "^14.1.0",
 		"graphql": "^16.8.1",
+		"jest-mock": "^29.7.0",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"react-router-dom": "^6.16.0",
@@ -38,8 +42,10 @@
 		"eslint-plugin-import": "^2.29.0",
 		"eslint-plugin-react-hooks": "^4.6.0",
 		"eslint-plugin-react-refresh": "^0.4.3",
+		"jsdom": "^22.1.0",
 		"prettier": "^3.0.3",
 		"typescript": "^5.0.2",
-		"vite": "^4.4.5"
+		"vite": "^4.4.5",
+		"vitest": "^0.34.6"
 	}
 }
