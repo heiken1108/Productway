@@ -22,6 +22,11 @@ function IconContainer(props: IconContainerProps) {
 	const { value, ...other } = props;
 	return <span {...other}>{customIcons[value].icon}</span>;
 }
+/**
+ * This interface contains a rating and a function for handling the rating change
+ * @param {number} rating - The rating of the product
+ * @param {function} onRatingChange - The function that handles the rating change
+ */
 interface RatingComponentProps {
 	rating: number;
 	onRatingChange: (
@@ -29,7 +34,10 @@ interface RatingComponentProps {
 		newValue: number | null,
 	) => void;
 }
-
+/**
+ * This component is for displaying the rating icons
+ * @param {RatingComponentProps} props - The rating and the function for handling the rating change
+ */
 export default function RatingComponent(props: RatingComponentProps) {
 	const [rating, setRating] = useState(props.rating);
 	const [rated, setRated] = useState(false);

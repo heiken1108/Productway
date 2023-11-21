@@ -13,7 +13,6 @@ export default function Header() {
 	function handleNavHome() {
 		navigate('/project2/');
 	}
-
 	return (
 		<div className="Header">
 			<div className="desktopHeader">

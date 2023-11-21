@@ -166,6 +166,16 @@ export const GET_FAVORITES_BY_USER_ID = gql`
 		}
 	}
 `;
+
+/*
+ * query to get the average rating by productID
+ */
+export const GET_AVERAGE_RATING_BY_PRODUCT_ID = gql`
+	query Query($productID: Int!) {
+		getAverageProductRating(productID: $productID)
+	}
+`;
+
 /*
  * Mutation to add a user to the database
  */
@@ -231,14 +241,6 @@ export const REMOVE_RATING = gql`
 				rating
 			}
 		}
-	}
-`;
-/*
- * query to get the average rating by productID
- */
-export const GET_AVERAGE_RATING_BY_PRODUCT_ID = gql`
-	query GetAverageRating($productID: Int!) {
-		getAverageProductRating(productID: $productID)
 	}
 `;
 

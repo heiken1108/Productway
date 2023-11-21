@@ -14,8 +14,10 @@ import {
 	sliderFilterState,
 	sortingFilterState,
 } from '../../store/atoms';
-
-function Filterbar() {
+/**
+ * this component is the filterbar on the result page
+ */
+export default function Filterbar() {
 	// Local state for the filter bar components from session storage. To ensure that the filter bar is persistent when navigating between pages.
 	const searchTermFromSessionStorage = sessionStorage.getItem('searchTerm');
 	const storedPriceRangeValue = sessionStorage.getItem('sliderValue');
@@ -131,7 +133,6 @@ function Filterbar() {
 	const valuetext = (value: number) => {
 		return `${value}`;
 	};
-
 	return (
 		<div className="filterChips">
 			<h3>Kategori</h3>
@@ -222,5 +223,3 @@ function Filterbar() {
 		</div>
 	);
 }
-
-export default Filterbar;

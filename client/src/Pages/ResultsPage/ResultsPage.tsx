@@ -12,7 +12,7 @@ import { IProduct } from '../../data/types';
 import {
 	GET_COUNT_PRODUCTS_BY_FILTERS,
 	GET_PRODUCT_BY_FILTERS_WITH_LIMIT,
-} from '../../queries';
+} from '../../graphql/queries';
 import {
 	categoryFilterState,
 	serchTermForResultPageState,
@@ -22,6 +22,9 @@ import {
 
 import './ResultsPage.css';
 
+/**
+ * This component is the page for all the different products
+ */
 export default function ResultsPage() {
 	//Recoil state search variables
 	const searchTerm = useRecoilValue(serchTermForResultPageState);

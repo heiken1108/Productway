@@ -6,11 +6,11 @@ import { RecoilRoot } from 'recoil';
 import { v4 as uuidv4 } from 'uuid';
 
 import Header from './Components/Header/Header.tsx';
-import AllStores from './Pages/AllProducts/AllProducts';
+import { ADD_USER } from './graphql/queries.ts';
+import AllProducts from './Pages/AllProducts/AllProducts';
 import MyPage from './Pages/MyPage/MyPage.tsx';
 import Productpage from './Pages/Productpage/Productpage.tsx';
 import ResultsPage from './Pages/ResultsPage/ResultsPage.tsx';
-import { ADD_USER } from './queries.ts';
 
 function App() {
 	const [mutateFunctionUser] = useMutation(ADD_USER);
@@ -32,7 +32,7 @@ function App() {
 			<RecoilRoot>
 				<Header />
 				<Routes>
-					<Route path="/project2/" element={<AllStores />} />
+					<Route path="/project2/" element={<AllProducts />} />
 
 					<Route path="/project2/myPage" element={<MyPage />} />
 					<Route

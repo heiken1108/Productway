@@ -4,6 +4,9 @@ import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt
 import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
 import SentimentVerySatisfiedIcon from '@mui/icons-material/SentimentVerySatisfied';
 
+/**
+ * This object contains the rating icons
+ */
 const customIcons: {
 	[index: string]: {
 		icon: React.ReactElement;

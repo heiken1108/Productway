@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 
 import { IProduct } from '../../data/types';
-import { GET_PRODUCTS_BY_SEARCHTERM } from '../../queries';
+import { GET_PRODUCTS_BY_SEARCHTERM } from '../../graphql/queries';
 import {
 	resetSearchBarState,
 	searchTermState,

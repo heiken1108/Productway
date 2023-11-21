@@ -3,6 +3,12 @@ import UserModel from "../models/User.js";
 
 const ratingResolver = {
     Query: {
+        /**
+         * Finds the rating for a product by a user
+         * @param {*} productID the id of the product to get ratings for
+         * @param {*} userID the id of the user to get ratings for
+         * @returns 
+         */
         getRatingByProductIDandUserID: async (_, { productID, userID }) => {
             try {
                 const rating = await RatingModel.findOne({ productID: productID, userID: userID });
@@ -11,7 +17,11 @@ const ratingResolver = {
                 throw new Error(`Failed to get rating: ${error.message}`);
             }
         },
-
+        /**
+         * Finds the average rating for a product
+         * @param {*} productID the id of the product to get ratings for 
+         * @returns the average rating for the product
+         */
         getAverageProductRating: async (_, { productID }) => {
             try {
                 const ratings = await RatingModel.find({ productID: productID });
@@ -24,9 +34,34 @@ const ratingResolver = {
             } catch (error) {
                 return 0;
             }
+        },
+        /**
+         * Function to get all ratings for a user
+         * @param {*} userID the id of the user to get ratings for 
+         * @returns the ratings for the user
+         */
+
+        getRatingsByUserID: async (_, { userID }) => {
+            try {
+                const user = await UserModel.findOne({ userID: userID }).populate('ratings');
+                if (!user) {
+                  throw new Error('User not found');
+                }
+                
+                return user.ratings;
+            } catch (error) {
+                throw new Error(`Failed to get user ratings: ${error.message}`);
+            }
         }
     },
     Mutation: {
+        /**
+         * Function to rate a product
+         * @param {*} rating of a product
+         * @param {*} productID the id of the product to be rated
+         * @param {*} userID the id of the user that rates the product 
+         * @returns user, rating and userID
+         */
         addRating: async(_, {rating, productID, userID}) => {
             try {
                 const user = await UserModel.findOne({ userID: userID });
@@ -49,7 +84,12 @@ const ratingResolver = {
                 throw new Error (`Failed to add rating: ${error.message}`)
             }
         },
-
+        /**
+         * Function to remove a rating
+         * @param {*} productID the id of the product to be removed
+         * @param {*} userID the id of the user that removes the rating 
+         * @returns the removed rating
+         */
         removeRating: async (_, { productID, userID }) => {
             try {
                 const user = await UserModel.findOne({ userID: userID });

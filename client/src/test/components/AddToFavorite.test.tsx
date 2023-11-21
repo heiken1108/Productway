@@ -5,8 +5,8 @@ import { render, RenderResult, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 
-import { client } from '../../apolloClient';
 import AddToFavourite from '../../Components/AddToFavourite/AddToFavourite';
+import { client } from '../../graphql/apolloClient';
 
 describe('Header test', () => {
 	let addToFavourite: RenderResult;

@@ -7,11 +7,18 @@ import { categoryFilterState } from '../../store/atoms';
 
 import './AllProducts.css';
 
-export default function AllStores() {
+/**
+ * This component is the page for all products
+ */
+export default function AllProducts() {
 	const navigate = useNavigate();
 
 	const setCategoryData = useSetRecoilState(categoryFilterState);
 
+	/**
+	 * function for handling the click on a category
+	 * @param key - The key of the category that is clicked
+	 */
 	function handleCategoryClick(key: number) {
 		setCategoryData(prevChipData => {
 			const newChipData = prevChipData.map(chip =>

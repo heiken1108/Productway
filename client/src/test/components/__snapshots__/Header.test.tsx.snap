@@ -30,6 +30,7 @@ exports[`Header test > snapshottest header 1`] = `
             >
               <div
                 class="MuiAutocomplete-root MuiAutocomplete-variantOutlined MuiAutocomplete-colorNeutral MuiAutocomplete-sizeMd css-10cfyqz-JoyAutocomplete-root"
+                data-testid="SearchBar"
                 style="height: 3.5rem; background-color: white;"
               >
                 <div
@@ -59,6 +60,7 @@ exports[`Header test > snapshottest header 1`] = `
             >
               <button
                 class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-q85h0t-MuiButtonBase-root-MuiButton-root"
+                data-testid="MyPageButton"
                 tabindex="0"
                 type="button"
               >
@@ -81,6 +83,7 @@ exports[`Header test > snapshottest header 1`] = `
             >
               <div
                 class="MuiAutocomplete-root MuiAutocomplete-variantOutlined MuiAutocomplete-colorNeutral MuiAutocomplete-sizeMd css-10cfyqz-JoyAutocomplete-root"
+                data-testid="SearchBar"
                 style="height: 3.5rem; background-color: white;"
               >
                 <div
@@ -132,6 +135,7 @@ exports[`Header test > snapshottest header 1`] = `
           >
             <div
               class="MuiAutocomplete-root MuiAutocomplete-variantOutlined MuiAutocomplete-colorNeutral MuiAutocomplete-sizeMd css-10cfyqz-JoyAutocomplete-root"
+              data-testid="SearchBar"
               style="height: 3.5rem; background-color: white;"
             >
               <div
@@ -161,6 +165,7 @@ exports[`Header test > snapshottest header 1`] = `
           >
             <button
               class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-q85h0t-MuiButtonBase-root-MuiButton-root"
+              data-testid="MyPageButton"
               tabindex="0"
               type="button"
             >
@@ -183,267 +188,7 @@ exports[`Header test > snapshottest header 1`] = `
           >
             <div
               class="MuiAutocomplete-root MuiAutocomplete-variantOutlined MuiAutocomplete-colorNeutral MuiAutocomplete-sizeMd css-10cfyqz-JoyAutocomplete-root"
-              style="height: 3.5rem; background-color: white;"
-            >
-              <div
-                class="MuiAutocomplete-wrapper css-n43o-JoyAutocomplete-wrapper"
-              >
-                <input
-                  aria-autocomplete="list"
-                  aria-expanded="false"
-                  autocapitalize="none"
-                  autocomplete="off"
-                  class="MuiAutocomplete-input css-1epe1tr-JoyAutocomplete-input"
-                  id=":r3:"
-                  placeholder="Søk etter produkter..."
-                  role="combobox"
-                  spellcheck="false"
-                  value=""
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>,
-  "debug": [Function],
-  "findAllByAltText": [Function],
-  "findAllByDisplayValue": [Function],
-  "findAllByLabelText": [Function],
-  "findAllByPlaceholderText": [Function],
-  "findAllByRole": [Function],
-  "findAllByTestId": [Function],
-  "findAllByText": [Function],
-  "findAllByTitle": [Function],
-  "findByAltText": [Function],
-  "findByDisplayValue": [Function],
-  "findByLabelText": [Function],
-  "findByPlaceholderText": [Function],
-  "findByRole": [Function],
-  "findByTestId": [Function],
-  "findByText": [Function],
-  "findByTitle": [Function],
-  "getAllByAltText": [Function],
-  "getAllByDisplayValue": [Function],
-  "getAllByLabelText": [Function],
-  "getAllByPlaceholderText": [Function],
-  "getAllByRole": [Function],
-  "getAllByTestId": [Function],
-  "getAllByText": [Function],
-  "getAllByTitle": [Function],
-  "getByAltText": [Function],
-  "getByDisplayValue": [Function],
-  "getByLabelText": [Function],
-  "getByPlaceholderText": [Function],
-  "getByRole": [Function],
-  "getByTestId": [Function],
-  "getByText": [Function],
-  "getByTitle": [Function],
-  "queryAllByAltText": [Function],
-  "queryAllByDisplayValue": [Function],
-  "queryAllByLabelText": [Function],
-  "queryAllByPlaceholderText": [Function],
-  "queryAllByRole": [Function],
-  "queryAllByTestId": [Function],
-  "queryAllByText": [Function],
-  "queryAllByTitle": [Function],
-  "queryByAltText": [Function],
-  "queryByDisplayValue": [Function],
-  "queryByLabelText": [Function],
-  "queryByPlaceholderText": [Function],
-  "queryByRole": [Function],
-  "queryByTestId": [Function],
-  "queryByText": [Function],
-  "queryByTitle": [Function],
-  "rerender": [Function],
-  "unmount": [Function],
-}
-`;
-
-exports[`Header test > snapshottest seader 1`] = `
-{
-  "asFragment": [Function],
-  "baseElement": <body>
-    <div>
-      <div
-        class="Header"
-      >
-        <div
-          class="desktopHeader"
-        >
-          <img
-            alt="Header Icon"
-            class="header-icon"
-            src="/project2/src/assets/header-icon.svg"
-          />
-           
-          <h1
-            class="header-title"
-          >
-            PRODUCTWAY
-          </h1>
-          <div
-            class="header-spacer"
-          >
-            <div
-              class="searchBar"
-            >
-              <div
-                class="MuiAutocomplete-root MuiAutocomplete-variantOutlined MuiAutocomplete-colorNeutral MuiAutocomplete-sizeMd css-10cfyqz-JoyAutocomplete-root"
-                style="height: 3.5rem; background-color: white;"
-              >
-                <div
-                  class="MuiAutocomplete-wrapper css-n43o-JoyAutocomplete-wrapper"
-                >
-                  <input
-                    aria-autocomplete="list"
-                    aria-expanded="false"
-                    autocapitalize="none"
-                    autocomplete="off"
-                    class="MuiAutocomplete-input css-1epe1tr-JoyAutocomplete-input"
-                    id=":r1:"
-                    placeholder="Søk etter produkter..."
-                    role="combobox"
-                    spellcheck="false"
-                    value=""
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            class="search-and-button"
-          >
-            <div
-              class="MyPageButton"
-            >
-              <button
-                class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-q85h0t-MuiButtonBase-root-MuiButton-root"
-                tabindex="0"
-                type="button"
-              >
-                Min side
-                <span
-                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                />
-              </button>
-            </div>
-          </div>
-        </div>
-        <div
-          class="mobileSearchBar"
-        >
-          <div
-            class="mobileSpacer"
-          >
-            <div
-              class="searchBar"
-            >
-              <div
-                class="MuiAutocomplete-root MuiAutocomplete-variantOutlined MuiAutocomplete-colorNeutral MuiAutocomplete-sizeMd css-10cfyqz-JoyAutocomplete-root"
-                style="height: 3.5rem; background-color: white;"
-              >
-                <div
-                  class="MuiAutocomplete-wrapper css-n43o-JoyAutocomplete-wrapper"
-                >
-                  <input
-                    aria-autocomplete="list"
-                    aria-expanded="false"
-                    autocapitalize="none"
-                    autocomplete="off"
-                    class="MuiAutocomplete-input css-1epe1tr-JoyAutocomplete-input"
-                    id=":r3:"
-                    placeholder="Søk etter produkter..."
-                    role="combobox"
-                    spellcheck="false"
-                    value=""
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </body>,
-  "container": <div>
-    <div
-      class="Header"
-    >
-      <div
-        class="desktopHeader"
-      >
-        <img
-          alt="Header Icon"
-          class="header-icon"
-          src="/project2/src/assets/header-icon.svg"
-        />
-         
-        <h1
-          class="header-title"
-        >
-          PRODUCTWAY
-        </h1>
-        <div
-          class="header-spacer"
-        >
-          <div
-            class="searchBar"
-          >
-            <div
-              class="MuiAutocomplete-root MuiAutocomplete-variantOutlined MuiAutocomplete-colorNeutral MuiAutocomplete-sizeMd css-10cfyqz-JoyAutocomplete-root"
-              style="height: 3.5rem; background-color: white;"
-            >
-              <div
-                class="MuiAutocomplete-wrapper css-n43o-JoyAutocomplete-wrapper"
-              >
-                <input
-                  aria-autocomplete="list"
-                  aria-expanded="false"
-                  autocapitalize="none"
-                  autocomplete="off"
-                  class="MuiAutocomplete-input css-1epe1tr-JoyAutocomplete-input"
-                  id=":r1:"
-                  placeholder="Søk etter produkter..."
-                  role="combobox"
-                  spellcheck="false"
-                  value=""
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          class="search-and-button"
-        >
-          <div
-            class="MyPageButton"
-          >
-            <button
-              class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-q85h0t-MuiButtonBase-root-MuiButton-root"
-              tabindex="0"
-              type="button"
-            >
-              Min side
-              <span
-                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-              />
-            </button>
-          </div>
-        </div>
-      </div>
-      <div
-        class="mobileSearchBar"
-      >
-        <div
-          class="mobileSpacer"
-        >
-          <div
-            class="searchBar"
-          >
-            <div
-              class="MuiAutocomplete-root MuiAutocomplete-variantOutlined MuiAutocomplete-colorNeutral MuiAutocomplete-sizeMd css-10cfyqz-JoyAutocomplete-root"
+              data-testid="SearchBar"
               style="height: 3.5rem; background-color: white;"
             >
               <div

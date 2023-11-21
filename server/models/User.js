@@ -1,5 +1,8 @@
 import mongoose from 'mongoose';
 
+/**
+ * The UserSchema defines the shape of the users that will be stored in the database.
+ */
 const UserSchema = new mongoose.Schema({
     userID: {
         type: String,

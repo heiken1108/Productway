@@ -9,7 +9,7 @@ import {
 	ADD_RATING,
 	GET_PRODUCT_BY_PRODUCT_ID,
 	REMOVE_RATING,
-} from '../../queries';
+} from '../../graphql/queries';
 import { navigateHistory } from '../../store/atoms';
 import ErrorMessage from '../Error/ErrorMessage';
 import LoadingAnimation from '../Loading/LoadingAnimation';
@@ -17,6 +17,12 @@ import RatingComponent from '../RatingComponent/RatingComponent';
 
 import './MyRatingsItem.css';
 
+/**
+ * This component contains the rating card for a product
+ * @param {number} productID - ID of product
+ * @param {number} rating - Rating of product
+ * @param {string} userID - ID of user
+ */
 export default function MyRatingsItem({
 	productID,
 	rating,
