@@ -2,18 +2,18 @@ import { test, expect } from '@playwright/test';
 import { getProducts } from '../support/support';
 
 test.beforeEach(async ({ page }) => {
-    await page.goto('http://localhost:5173/project2/results');
+    await page.goto('./results');
 });
 
 test.describe('Test favorite-functionality', () => {
     test('Test favorisering', async ({ page }) => {
-        
         /**
          * Clicks on a product, Byggryn
          * Checks that is hasn´t been favorited
          */
         await page.getByText('Byggryn Hele 550g boks Møllerens').click();
         await expect(page.getByLabel('like')).toHaveAttribute('style', 'background-color: grey;');
+
         /**
          * Favorites the product, Byggryn
          * Checks that the color on the button changes to appear as "favorited"
@@ -22,6 +22,7 @@ test.describe('Test favorite-functionality', () => {
         await page.getByLabel('like').click();
         await expect(page.getByLabel('like')).toHaveAttribute('style', 'background-color: rgb(40, 112, 148);');
         await expect(page.getByText('Lagt til i favoritter!')).toBeVisible();
+
         /**
          * Goes to Min side
          * Checks that the product is under Mine Favoritter

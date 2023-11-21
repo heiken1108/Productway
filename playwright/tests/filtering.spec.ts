@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { getPriser } from '../support/support';
 
 test.beforeEach(async ({ page }) => {
-    await page.goto('http://localhost:5173/project2/results');
+    await page.goto('./results');
 });
 
 test.describe('Test filtering-functionliaty', () => {
@@ -54,7 +54,11 @@ test.describe('Test filtering-functionliaty', () => {
     });
 
     test('Test filtering by price-range', async ({ page }) => {
-        expect(page.getByText('Pris: 53.9 kr @ Joker')).toBeVisible();
+        /**
+         * Checks that an item with the price 53.9kr is shown
+         */
+        expect(page.getByText(/Pris: 53.9 kr/)).toBeVisible();
+
         /**
          * Changes the price-range to be 0kr-51kr
          * Checks that the products on the page are within the price-range

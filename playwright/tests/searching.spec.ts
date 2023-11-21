@@ -2,25 +2,20 @@ import { test, expect } from '@playwright/test';
 import { getProducts, getProductsWithName } from '../support/support';
 
 test.beforeEach(async ({ page }) => {
-    await page.goto('http://localhost:5173/project2');
+    await page.goto('/');
 });
 
 test.describe('Test searching-functionality', () => {
     test('Test searching', async ({ page }) => {
         /**
          * Writes "pastasaus med pa" in the search-bar
-         * Checks that it gets the suggestion "Pastasaus med Parmigiano Reggiano 400 g"
-         */
-        await page.getByRole('combobox', { name: 'Søk etter produkter...' }).click();
-        await page.getByRole('combobox', { name: 'Søk etter produkter...' }).fill('pastasaus med pa');
-        //expect(page.getByRole('option', { name: 'Pastasaus med Parmigiano Reggiano 400 g' })).toBeVisible();
-    
-        /**
-         * Clicks on the suggestion to fill the search-bar with the text
+         * Clicks the suggestion "Pastasaus med Parmigiano Reggiano 400 g"
          * Presses enter to search
          * Checks that it gets only one product
          * Checks that the product is "Pastasaus med Parmigiano Reggiano 400 g"
          */
+        await page.getByRole('combobox', { name: 'Søk etter produkter...' }).click();
+        await page.getByRole('combobox', { name: 'Søk etter produkter...' }).fill('pastasaus med pa');
         await page.getByRole('option', { name: 'Pastasaus med Parmigiano Reggiano 400 g' }).click();  
         await page.getByRole('combobox', { name: 'Søk etter produkter...' }).press('Enter');
         expect((await getProducts(page)).length).toBe(1);

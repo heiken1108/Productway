@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { getPriser } from '../support/support';
 
 test.beforeEach(async ({ page }) => {
-    await page.goto('http://localhost:5173/project2/results');
+    await page.goto('./results');
 });
 
 test.describe('Test sorting-functionliaty', () => {

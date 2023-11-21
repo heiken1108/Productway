@@ -6,7 +6,7 @@ test.describe('Test general', () => {
         /**
          * Go to the front page and check that the URL is correct
          */
-        await page.goto('http://localhost:5173/project2');
+        await page.goto('/');
         expect(page.url()).toBe("http://localhost:5173/project2")
         page.waitForLoadState('load');
     
@@ -40,7 +40,7 @@ test.describe('Test general', () => {
     });
 
     test('Test results-page', async ({ page }) => {
-        await page.goto('http://localhost:5173/project2/results');
+        await page.goto('./results');
         /**
          * Checks that it is on page 1 (then the page-button with label="page 1" has the class Mui-selected), while page 2 does not have it
          */
