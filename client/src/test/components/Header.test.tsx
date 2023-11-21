@@ -24,7 +24,7 @@ describe('Header test', () => {
 		);
 	});
 
-	it('snapshottest seader', () => {
+	it('snapshottest header', () => {
 		expect(header).toMatchSnapshot();
 	});
 
