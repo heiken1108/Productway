@@ -2,7 +2,9 @@ image: node:18
 
 stages:
     - build
-    - test
+    - codequality
+    - clienttest
+    - backendtest
 
 before_script:
     - cd client
@@ -20,22 +22,23 @@ build:
     retry: 1
 
 Prettier check:
-    stage: test
-    needs: [build]
+    stage: codequality
     script:
         - npm run format-check
     retry: 1
 
 Eslint:
-    stage: test
-    needs: [build]
+    stage: codequality
     script:
         - npm run lint
     retry: 1
 
-Vitest:
-    stage: test
-    needs: [build]
-    script:
+Unittest:
+    stage: clienttest
+    script: 
         - npm run test
     retry: 1
+    dependencies:
+        - build
+        - Prettier check
+        - Eslint

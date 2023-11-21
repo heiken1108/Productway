@@ -16,12 +16,25 @@ const userResolver = {
                 throw new Error(`Failed to get user favorites: ${error.message}`);
             }
         },
+
+        getRatingsByUserID: async (_, { userID }) => {
+            try {
+                const user = await UserModel.findOne({ userID: userID }).populate('ratings');
+                if (!user) {
+                  throw new Error('User not found');
+                }
+                
+                return user.ratings;
+            } catch (error) {
+                throw new Error(`Failed to get user ratings: ${error.message}`);
+            }
+        }
     },
     Mutation: {
         addUser: async (_, { userID }) => {
             const user = new UserModel({ userID, favorites: [], ratings: [] });
             return await user.save();
-        },   
+        },
 
         addFavorite: async (_, { userID, productID }) => {
             try {

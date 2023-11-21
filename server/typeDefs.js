@@ -42,7 +42,6 @@ const typeDefs = gql`
         getRandomItem: ProductModel
         getProductByProductID(productID: Int!): ProductModel
         getProductsBySearch(search: String!): [ProductModel]
-        getProductsByFilters(name: String, categories: [String], minPrice: Float, maxPrice: Float, sortOrder: Int): [ProductModel]
         getProductsByFiltersWithLimit(searchTerm: String, categories: [String], minPrice: Float, maxPrice: Float, limit: Int!, page: Int!, sortOrder: Int): [ProductModel]
         getCountProductsByFilters(searchTerm: String, categories: [String], minPrice: Float, maxPrice: Float): Int
         getRatingsByUserID(userID: String!): [RatingModel]

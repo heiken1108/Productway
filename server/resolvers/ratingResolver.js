@@ -24,19 +24,6 @@ const ratingResolver = {
             } catch (error) {
                 return 0;
             }
-        },
-
-        getRatingsByUserID: async (_, { userID }) => {
-            try {
-                const user = await UserModel.findOne({ userID: userID }).populate('ratings');
-                if (!user) {
-                  throw new Error('User not found');
-                }
-                
-                return user.ratings;
-            } catch (error) {
-                throw new Error(`Failed to get user ratings: ${error.message}`);
-            }
         }
     },
     Mutation: {
@@ -73,6 +60,8 @@ const ratingResolver = {
                 if (!rating) {
                     throw new Error("Rating not found");
                 }
+
+                console.log(rating._id)
                 const indexOfRating = user.ratings.indexOf(rating._id);
                 if (indexOfRating === -1) {
                     throw new Error("Rating is not in ratings");
@@ -82,6 +71,7 @@ const ratingResolver = {
                 await RatingModel.deleteOne({ productID: productID, userID: userID });
                 return rating;
             } catch (error) {
+                console.log(error)
                 throw new Error(`Failed to remove rating: ${error.message}`);
             }
         },
