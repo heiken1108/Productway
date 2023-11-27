@@ -1,0 +1,28 @@
+{
+	"name": "prosjekt-2",
+	"version": "1.0.0",
+	"description": "The application allows a user to search for groceryproducts in order to look up information, such as price, rate the product or favorite it. It uses a pre-populated database of products and their information to present the information and perform searches. The user is able to search by name, filter by one or more categories, include a price range, and order the presented items by price",
+	"main": "index.js",
+	"scripts": {
+		"setup": "npm install --save-dev concurrently && concurrently \"npm install\" \"cd ./client && npm install && npm install --save-dev jest@latest && npm i --save-dev @types/jest\" \"cd ./server && npm install\" \"cd ./playwright && npx playwright install\"",
+		"setup:ci": "npm ci && cd ./client && npm ci && npm install --save-dev jest@latest && npm i --save-dev @types/jest && cd ../server && npm ci",
+		"dev": "npm install --save-dev concurrently && concurrently \"cd ./client && npm run dev\" \"cd ./server && npm run dev\" ",
+		"dev:client": "cd ./client && npm run dev",
+		"dev:server": "cd ./server && npm run dev",
+		"test": "npm install --save-dev concurrently && concurrently \"cd ./client && npm run test\" \"cd ./server && npm run test\"",
+		"test:client": "cd ./client && npm run test",
+		"test:server": "cd ./server && npm run test",
+		"test:e2e": "concurrently \"npm run dev\" \"cd ./playwright && npm run test\"",
+		"build": "cd ./client && npm run build",
+		"lint": "cd ./client && npm run lint",
+		"lint:fix": "cd ./client && npm run lint:fix",
+		"format": "npx prettier --write .",
+		"format:check": "npx prettier --check ."
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"concurrently": "^8.2.2"
+	}
+}

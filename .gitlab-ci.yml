@@ -4,13 +4,10 @@ stages:
     - build
     - codequality
     - clienttest
-    - backendtest
+#    - servertest
 
 before_script:
-    - cd client
-    - npm install
-    - npm install --save-dev jest@latest
-    - npm i --save-dev @types/jest
+    - npm run setup:ci
 
 build:
     stage: build
@@ -24,7 +21,7 @@ build:
 Prettier check:
     stage: codequality
     script:
-        - npm run format-check
+        - npm run format:check
     retry: 1
 
 Eslint:
@@ -33,12 +30,22 @@ Eslint:
         - npm run lint
     retry: 1
 
-Unittest:
+Unit test:
     stage: clienttest
-    script: 
-        - npm run test
+    script:
+        - npm run test:client
     retry: 1
     dependencies:
         - build
         - Prettier check
         - Eslint
+# Skipping since "libcrypto.so.1.1" is missing in image node:20
+# Server test:
+#     stage: servertest
+#     script:
+#         - npm run test:server
+#     retry: 1
+#     dependencies:
+#         - build
+#         - Prettier check
+#         - Eslint
