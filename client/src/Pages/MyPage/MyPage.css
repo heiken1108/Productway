@@ -14,21 +14,21 @@
 	justify-content: center;
 	justify-content: space-evenly;
 	margin: 10px;
+	gap: 25px;
 }
 
 .MyFavourites {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
-	min-width: 342px;
-	margin-right: 20px;
+	min-width: 400px;
 }
+
 .MyRatings {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
-	min-width: 342px;
-	margin-left: 20px;
+	min-width: 400px;
 }
 
 .MyFavourites .FavouriteContainer {
@@ -71,10 +71,14 @@
 }
 
 .MyFavourites .FavouriteContainer .productCardContainer .textDiv .tittel {
-	white-space: wrap;
+	white-space: nowrap;
+	width: 90%;
 }
 
-@media screen and (max-width: 974px) {
+@media screen and (max-width: 900px) {
+	.content-container h1 {
+		font-size: 30px;
+	}
 }
 
 @media screen and (max-width: 500px) {

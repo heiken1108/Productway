@@ -105,6 +105,7 @@ export default function SearchBar(): JSX.Element {
 				style={{
 					height: '3.5rem',
 					backgroundColor: 'white',
+					borderRadius: '15px',
 				}}
 				onKeyDown={event => {
 					if (event.key === 'Enter') {

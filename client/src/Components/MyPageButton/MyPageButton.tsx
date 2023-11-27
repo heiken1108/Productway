@@ -19,7 +19,11 @@ export default function MyPageButton() {
 				onClick={handleNavShopping}
 				size="medium"
 				data-testid="MyPageButton"
-				sx={{ background: '#287094', '&:focus': { outline: 'none' } }}
+				sx={{
+					background: '#287094',
+					borderRadius: '15px', // Add this line for border radius
+					'&:focus': { outline: 'none' },
+				}}
 			>
 				Min side
 			</Button>

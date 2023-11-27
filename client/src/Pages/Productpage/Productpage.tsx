@@ -111,7 +111,7 @@ export default function Productpage() {
 	if (productError || ratingError || averageRatingError)
 		return <ErrorContainer />;
 	return (
-		<div>
+		<div className="productMain">
 			<button
 				aria-label="Navigate back"
 				onClick={() => handleNavigateBack()}
