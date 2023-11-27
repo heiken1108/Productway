@@ -84,12 +84,6 @@ export default function MyRatingsItem({
 
 	return (
 		<div className="RatingItemContainer">
-			<div className="theSmileys">
-				<RatingComponent
-					rating={rating}
-					onRatingChange={handleRatingChange}
-				/>
-			</div>
 			<div
 				className="RatingItem"
 				aria-label={'Navigate to ' + data.getProductByProductID.name}
@@ -100,6 +94,12 @@ export default function MyRatingsItem({
 						{data.getProductByProductID.name || 'No name'}
 					</strong>
 				</div>
+			</div>
+			<div className="theSmileys">
+				<RatingComponent
+					rating={rating}
+					onRatingChange={handleRatingChange}
+				/>
 			</div>
 		</div>
 	);

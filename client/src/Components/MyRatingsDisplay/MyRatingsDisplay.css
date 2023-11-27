@@ -3,11 +3,9 @@
 	width: 100%;
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-around;
 	align-items: flex-start;
 	margin: 0px;
 	height: auto;
-	gap: 10px;
 	width: 342px;
 }
 @media screen and (max-width: 390px) {
