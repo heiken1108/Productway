@@ -12,6 +12,6 @@
 }
 @media screen and (max-width: 390px) {
 	.RatingContainer {
-		width: 85%;
+		width: 100%;
 	}
 }
