@@ -21,6 +21,7 @@ exports[`Header test > snapshottest header 1`] = `
           <h1
             aria-label="Home"
             class="header-title"
+            data-testid="Productway-logo"
           >
             PRODUCTWAY
           </h1>
@@ -131,6 +132,7 @@ exports[`Header test > snapshottest header 1`] = `
         <h1
           aria-label="Home"
           class="header-title"
+          data-testid="Productway-logo"
         >
           PRODUCTWAY
         </h1>

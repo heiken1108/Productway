@@ -15,19 +15,19 @@ test.describe('Test searching-functionality', () => {
 		 * Checks that the product is "Pastasaus med Parmigiano Reggiano 400 g"
 		 */
 		await page
-			.getByRole('combobox', { name: 'Søk etter produkter...' })
+			.getByRole('combobox', {
+				name: /searchbar/i,
+			})
 			.click();
 		await page
-			.getByRole('combobox', { name: 'Søk etter produkter...' })
+			.getByRole('combobox', { name: /searchbar/i })
 			.fill('pastasaus med pa');
 		await page
 			.getByRole('option', {
 				name: 'Pastasaus med Parmigiano Reggiano 400 g',
 			})
 			.click();
-		await page
-			.getByRole('combobox', { name: 'Søk etter produkter...' })
-			.press('Enter');
+		await page.getByRole('combobox', { name: /searchbar/i }).press('Enter');
 		expect((await getProducts(page)).length).toBe(1);
 		await expect(
 			page.getByRole('heading', {
@@ -43,15 +43,9 @@ test.describe('Test searching-functionality', () => {
 		 * Checks that it gets as many products as there are products with "saus" in the name (also 12)
 		 */
 		await page.getByRole('button', { name: 'Clear' }).click();
-		await page
-			.getByRole('combobox', { name: 'Søk etter produkter...' })
-			.click();
-		await page
-			.getByRole('combobox', { name: 'Søk etter produkter...' })
-			.fill('saus');
-		await page
-			.getByRole('combobox', { name: 'Søk etter produkter...' })
-			.press('Enter');
+		await page.getByRole('combobox', { name: /searchbar/i }).click();
+		await page.getByRole('combobox', { name: /searchbar/i }).fill('saus');
+		await page.getByRole('combobox', { name: /searchbar/i }).press('Enter');
 		expect((await getProducts(page)).length).toBe(12);
 		expect((await getProducts(page)).length).toBe(
 			(await getProductsWithName(page, 'saus')).length - 1,
@@ -64,11 +58,9 @@ test.describe('Test searching-functionality', () => {
 		 */
 		await page.getByRole('button', { name: 'Clear' }).click();
 		await page
-			.getByRole('combobox', { name: 'Søk etter produkter...' })
+			.getByRole('combobox', { name: /searchbar/i })
 			.fill('dededede');
-		await page
-			.getByRole('combobox', { name: 'Søk etter produkter...' })
-			.press('Enter');
+		await page.getByRole('combobox', { name: /searchbar/i }).press('Enter');
 		expect((await getProducts(page)).length).toBe(0);
 		expect(
 			page.getByText('Ingen produkter matcher søket ditt :('),
@@ -82,23 +74,17 @@ test.describe('Test searching-functionality', () => {
 		 * Checks that there are no products shown
 		 */
 		await page.getByLabel('delete').click();
-		await page
-			.getByRole('combobox', { name: 'Søk etter produkter...' })
-			.click();
-		await page
-			.getByRole('combobox', { name: 'Søk etter produkter...' })
-			.fill('saus');
-		await page
-			.getByRole('combobox', { name: 'Søk etter produkter...' })
-			.press('Enter');
-		await page.getByRole('button', { name: ' Snacks & godteri' }).click();
+		await page.getByRole('combobox', { name: /searchbar/i }).click();
+		await page.getByRole('combobox', { name: /searchbar/i }).fill('saus');
+		await page.getByRole('combobox', { name: /searchbar/i }).press('Enter');
+		await page.getByTestId('Snacks & godteri').click();
 		expect((await getProducts(page)).length).toBe(0);
 
 		/**
 		 * Clicks on the chip Middagstilbehør to activate it. Now there should be some products with the "saus" in the name
 		 * Checks that there now are products
 		 */
-		await page.getByRole('button', { name: ' Middagstilbehør' }).click();
+		await page.getByTestId('Middagstilbehør').click();
 		expect((await getProducts(page)).length).toBeGreaterThan(0);
 	});
 });

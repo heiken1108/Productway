@@ -12,14 +12,12 @@ test.describe('Test sorting-functionliaty', () => {
 		 * Checks that the price is descending
 		 * Checks that the styling is changed to show that the "Synkende pris"-button is selected
 		 */
-		await page.getByRole('button', { name: ' Synkende pris' }).click();
+		await page.getByTestId('Synkende pris').click();
 		const tallListe2 = await getPriser(page);
 		for (let i = 0; i < tallListe2.length - 1; i++) {
 			expect(tallListe2[i]).toBeGreaterThanOrEqual(tallListe2[i + 1]);
 		}
-		await expect(
-			page.getByRole('button', { name: ' Synkende pris' }),
-		).toHaveAttribute(
+		await expect(page.getByTestId('Synkende pris')).toHaveAttribute(
 			'style',
 			'background-color: rgb(40, 112, 148); color: white;',
 		);
@@ -29,31 +27,32 @@ test.describe('Test sorting-functionliaty', () => {
 		 * Checks that the price is ascending
 		 * Checks that the styling is changed to show that the "Stigende pris"-button is selected and the "Synkende pris"-button is not selected
 		 */
-		await page.getByRole('button', { name: ' Stigende pris' }).click();
+		await page.getByTestId('Stigende pris').click();
 		const tallListe3 = await getPriser(page);
 		for (let i = 0; i < tallListe3.length - 1; i++) {
 			expect(tallListe3[i]).toBeLessThanOrEqual(tallListe3[i + 1]);
 		}
-		await expect(
-			page.getByRole('button', { name: ' Stigende pris' }),
-		).toHaveAttribute(
+		await expect(page.getByTestId('Stigende pris')).toHaveAttribute(
 			'style',
 			'background-color: rgb(40, 112, 148); color: white;',
 		);
-		await expect(
-			page.getByRole('button', { name: ' Synkende pris' }),
-		).toHaveAttribute('style', '');
+		await expect(page.getByTestId('Synkende pris')).toHaveAttribute(
+			'style',
+			'',
+		);
 
 		/**
 		 * Clicks on "Stigende pris" to remove the sorting
 		 * Checks that none of the buttons are selected
 		 */
-		await page.getByRole('button', { name: ' Stigende pris' }).click();
-		await expect(
-			page.getByRole('button', { name: ' Stigende pris' }),
-		).toHaveAttribute('style', '');
-		await expect(
-			page.getByRole('button', { name: ' Synkende pris' }),
-		).toHaveAttribute('style', '');
+		await page.getByTestId('Stigende pris').click();
+		await expect(page.getByTestId('Stigende pris')).toHaveAttribute(
+			'style',
+			'',
+		);
+		await expect(page.getByTestId('Synkende pris')).toHaveAttribute(
+			'style',
+			'',
+		);
 	});
 });

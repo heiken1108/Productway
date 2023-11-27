@@ -76,7 +76,7 @@ npm setup
 npm run test
 ```
 
-#### Unit tests
+### Unit tests
 
 We've conducted testing using Vitest and React Testing Library. The unit tests and snapshot tests guarantee accurate rendering and expected behavior of the components.
 
@@ -88,7 +88,7 @@ npm run setup
 npm run test:client
 ```
 
-#### End-to-end tests
+### End-to-end tests
 
 For end-to-end testing, we employed Playwright. These tests verify that the application behaves appropriately in response to user actions. The tests are written in a way that they can be run on any browser.
 
@@ -100,7 +100,9 @@ npm run setup
 npm run test:e2e
 ```
 
-#### Resolver tests
+**Note**: Some of the sometimes needs several tries. When this happens the test is regarded as "flaky", which is represented by yellow warning-sign. When this happens the test was successfull, but needed more than one try.
+
+### Resolver tests
 
 The resolvers are tested using Vitest. These tests verify that the resolvers behave appropriately in response to user actions. The resolvers are tested by mocking the database and testing the resolvers against these mock database. This ensures that the resolvers behave as expected. To mock the database we use an in-memory database provided by mongo.
 
