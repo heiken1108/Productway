@@ -4,10 +4,10 @@ import { useApolloClient, useMutation, useQuery } from '@apollo/client';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 
-import AddToFavourite from '../../Components/AddToFavourite/AddToFavourite';
-import ErrorContainer from '../../Components/Error/ErrorContainer';
-import LoadingContainer from '../../Components/Loading/LoadingContainer';
-import RatingComponent from '../../Components/RatingComponent/RatingComponent';
+import AddToFavourite from '../../components/AddToFavourite/AddToFavourite';
+import ErrorContainer from '../../components/Error/ErrorContainer';
+import LoadingContainer from '../../components/Loading/LoadingContainer';
+import RatingComponent from '../../components/RatingComponent/RatingComponent';
 import customIcons from '../../data/ratingIcons';
 import {
 	ADD_RATING,

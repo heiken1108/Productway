@@ -4,10 +4,10 @@ import { useQuery } from '@apollo/client';
 import { Pagination, Stack } from '@mui/material';
 import { useRecoilValue } from 'recoil';
 
-import ErrorContainer from '../../Components/Error/ErrorContainer';
-import Filterbar from '../../Components/Filterbar/Filterbar';
-import LoadingContainer from '../../Components/Loading/LoadingContainer';
-import ProductCard from '../../Components/ProductCard/ProductCard';
+import ErrorContainer from '../../components/Error/ErrorContainer';
+import Filterbar from '../../components/Filterbar/Filterbar';
+import LoadingContainer from '../../components/Loading/LoadingContainer';
+import ProductCard from '../../components/ProductCard/ProductCard';
 import { IProduct } from '../../data/types';
 import {
 	GET_COUNT_PRODUCTS_BY_FILTERS,

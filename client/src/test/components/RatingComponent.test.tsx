@@ -1,7 +1,7 @@
 import { render, RenderResult, screen } from '@testing-library/react';
 import jest from 'jest-mock';
 
-import RatingComponent from '../../Components/RatingComponent/RatingComponent';
+import RatingComponent from '../../components/RatingComponent/RatingComponent';
 
 describe('RatingComponent test', () => {
 	let ratingComponent: RenderResult;

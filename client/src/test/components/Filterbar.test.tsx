@@ -10,7 +10,7 @@ import {
 import { MemoryRouter } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 
-import Filterbar from '../../Components/Filterbar/Filterbar';
+import Filterbar from '../../components/Filterbar/Filterbar';
 import { client } from '../../graphql/apolloClient';
 
 describe('Header test', () => {

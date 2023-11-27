@@ -5,7 +5,7 @@ import { render, RenderResult } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 
-import ProductCard from '../../Components/ProductCard/ProductCard';
+import ProductCard from '../../components/ProductCard/ProductCard';
 import { client } from '../../graphql/apolloClient';
 
 describe('Header test', () => {
