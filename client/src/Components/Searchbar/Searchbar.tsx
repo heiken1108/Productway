@@ -72,6 +72,7 @@ export default function SearchBar(): JSX.Element {
 	return (
 		<div className="searchBar">
 			<Autocomplete
+				aria-label="Searchbar"
 				open={open}
 				onOpen={() => {
 					setOpen(true);

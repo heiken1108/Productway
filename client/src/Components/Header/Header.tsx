@@ -19,10 +19,15 @@ export default function Header() {
 				<img
 					src={headerIcon}
 					alt="Header Icon"
+					aria-label="Home"
 					className="header-icon"
 					onClick={() => handleNavHome()}
 				/>{' '}
-				<h1 className="header-title" onClick={() => handleNavHome()}>
+				<h1
+					className="header-title"
+					aria-label="Home"
+					onClick={() => handleNavHome()}
+				>
 					PRODUCTWAY
 				</h1>
 				<div className="header-spacer">

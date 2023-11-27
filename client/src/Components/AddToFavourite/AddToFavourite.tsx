@@ -90,7 +90,7 @@ export default function AddToFavourite({
 				<Box sx={{ '& > :not(style)': { m: 1 } }}>
 					<Fab
 						data-testid="favoriteIcon"
-						aria-label="like"
+						aria-label="Like"
 						style={{
 							backgroundColor: addedToFavourite
 								? '#287094'

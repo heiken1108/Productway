@@ -53,6 +53,7 @@ export default function TodaysItem() {
 			className="todaysItem"
 			onClick={() => handleNavigate()}
 			data-testid="TodaysItem"
+			aria-label="Todays Item"
 		>
 			<div className="todayImgContainer">
 				<img loading="lazy" src={data.getRandomItem.image}></img>

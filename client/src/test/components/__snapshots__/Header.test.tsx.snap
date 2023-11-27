@@ -13,11 +13,13 @@ exports[`Header test > snapshottest header 1`] = `
         >
           <img
             alt="Header Icon"
+            aria-label="Home"
             class="header-icon"
             src="/project2/src/assets/header-icon.svg"
           />
            
           <h1
+            aria-label="Home"
             class="header-title"
           >
             PRODUCTWAY
@@ -39,6 +41,7 @@ exports[`Header test > snapshottest header 1`] = `
                   <input
                     aria-autocomplete="list"
                     aria-expanded="false"
+                    aria-label="Searchbar"
                     autocapitalize="none"
                     autocomplete="off"
                     class="MuiAutocomplete-input css-1epe1tr-JoyAutocomplete-input"
@@ -59,6 +62,7 @@ exports[`Header test > snapshottest header 1`] = `
               class="MyPageButton"
             >
               <button
+                aria-label="My Page"
                 class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-q85h0t-MuiButtonBase-root-MuiButton-root"
                 data-testid="MyPageButton"
                 tabindex="0"
@@ -92,6 +96,7 @@ exports[`Header test > snapshottest header 1`] = `
                   <input
                     aria-autocomplete="list"
                     aria-expanded="false"
+                    aria-label="Searchbar"
                     autocapitalize="none"
                     autocomplete="off"
                     class="MuiAutocomplete-input css-1epe1tr-JoyAutocomplete-input"
@@ -118,11 +123,13 @@ exports[`Header test > snapshottest header 1`] = `
       >
         <img
           alt="Header Icon"
+          aria-label="Home"
           class="header-icon"
           src="/project2/src/assets/header-icon.svg"
         />
          
         <h1
+          aria-label="Home"
           class="header-title"
         >
           PRODUCTWAY
@@ -144,6 +151,7 @@ exports[`Header test > snapshottest header 1`] = `
                 <input
                   aria-autocomplete="list"
                   aria-expanded="false"
+                  aria-label="Searchbar"
                   autocapitalize="none"
                   autocomplete="off"
                   class="MuiAutocomplete-input css-1epe1tr-JoyAutocomplete-input"
@@ -164,6 +172,7 @@ exports[`Header test > snapshottest header 1`] = `
             class="MyPageButton"
           >
             <button
+              aria-label="My Page"
               class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-q85h0t-MuiButtonBase-root-MuiButton-root"
               data-testid="MyPageButton"
               tabindex="0"
@@ -197,6 +206,7 @@ exports[`Header test > snapshottest header 1`] = `
                 <input
                   aria-autocomplete="list"
                   aria-expanded="false"
+                  aria-label="Searchbar"
                   autocapitalize="none"
                   autocomplete="off"
                   class="MuiAutocomplete-input css-1epe1tr-JoyAutocomplete-input"

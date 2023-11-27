@@ -50,6 +50,7 @@ export default function AllProducts() {
 							key={keycounter++}
 							className="categoryCard"
 							onClick={() => handleCategoryClick(category.key)}
+							aria-label={'Category: ' + category.name}
 						>
 							<i className={category.icon}></i>
 							<p> {category.name} </p>

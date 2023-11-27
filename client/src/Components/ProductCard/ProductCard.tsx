@@ -30,7 +30,11 @@ export default function ProductCard({ item }: { item: IProduct }) {
 					key={item.productID}
 				/>
 			</div>
-			<div className="productCard" onClick={() => handleNavigate()}>
+			<div
+				className="productCard"
+				aria-label={'Navigate to ' + item.name}
+				onClick={() => handleNavigate()}
+			>
 				<div className="imgDiv">
 					<img src={item.image} alt={item.name} loading="lazy" />
 				</div>
