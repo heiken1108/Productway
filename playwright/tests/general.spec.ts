@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, devices } from '@playwright/test';
 import { getPriser, getProducts } from '../support/support';
 
 test.describe('Test general', () => {
@@ -16,7 +16,9 @@ test.describe('Test general', () => {
 		await expect(page.getByTestId('TodaysItem')).toBeVisible();
 		await expect(page.getByTestId('MyPageButton')).toBeVisible();
 		await expect(
-			page.getByRole('combobox', { name: 'Søk etter produkter...' }),
+			page.getByRole('combobox', {
+				name: /searchbar/i,
+			}),
 		).toBeVisible();
 
 		/**
@@ -41,7 +43,7 @@ test.describe('Test general', () => {
 		/**
 		 * Clicks on the logo to go back to the front page. Checks that the URL is correct
 		 */
-		await page.getByRole('heading', { name: 'PRODUCTWAY' }).click();
+		await page.getByTestId('Productway-logo').click();
 		expect(page.url()).toBe('http://localhost:5173/project2/'); //Gjør at disse url-ene ikke er statiske
 	});
 

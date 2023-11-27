@@ -35,7 +35,7 @@ test.describe('Test favorite-functionality', () => {
 		 * Checks that there is only one favorite
 		 * Checks that this is Byggryn
 		 */
-		await page.getByRole('button', { name: 'Min side' }).click();
+		await page.getByTestId('MyPageButton').click();
 		await expect(
 			page.getByText('Byggryn Hele 550g boks Møllerens'),
 		).toBeVisible();
@@ -63,7 +63,7 @@ test.describe('Test favorite-functionality', () => {
 		 * Goes to Min Side
 		 * Checks that Byggryn no longer is a favorite
 		 */
-		await page.getByRole('button', { name: 'Min side' }).click();
+		await page.getByTestId('MyPageButton').click();
 		await expect(
 			page.getByText('Byggryn Hele 550g boks Møllerens'),
 		).toBeHidden();

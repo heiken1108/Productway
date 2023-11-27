@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 
 import headerIcon from '../../assets/header-icon.svg';
-import MyPageButton from '../MyPageButton/MyPageButton.tsx';
-import Searchbar from '../Searchbar/Searchbar.tsx';
+import MyPageButton from '../MyPageButton/MyPageButton';
+import Searchbar from '../Searchbar/Searchbar';
 
 import './Header.css';
 /*
@@ -26,6 +26,7 @@ export default function Header() {
 				<h1
 					className="header-title"
 					aria-label="Home"
+					data-testid="Productway-logo"
 					onClick={() => handleNavHome()}
 				>
 					PRODUCTWAY

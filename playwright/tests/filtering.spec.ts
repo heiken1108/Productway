@@ -11,9 +11,10 @@ test.describe('Test filtering-functionliaty', () => {
 		 * Checks that the chip Snacks & godteri is not activated
 		 * Checks that Byggryn is visible, but not Krokanrull
 		 */
-		await expect(
-			page.getByRole('button', { name: ' Snacks & godteri' }),
-		).not.toHaveAttribute('style');
+		await expect(page.getByTestId('Snacks & godteri')).not.toHaveAttribute(
+			'style',
+		);
+
 		await expect(
 			page.getByText('Byggryn Hele 550g boks Møllerens'),
 		).toBeVisible();
@@ -24,10 +25,8 @@ test.describe('Test filtering-functionliaty', () => {
 		 * Checks that it is activated. When it is activated it gets styling with color and background-color
 		 * Checks that the products that are shown are Krokanrull, but not Byggryn, according to the filtering
 		 */
-		await page.getByRole('button', { name: ' Snacks & godteri' }).click();
-		await expect(
-			page.getByRole('button', { name: ' Snacks & godteri' }),
-		).toHaveAttribute(
+		await page.getByTestId('Snacks & godteri').click();
+		await expect(page.getByTestId('Snacks & godteri')).toHaveAttribute(
 			'style',
 			'background-color: rgb(40, 112, 148); color: white;',
 		);
@@ -41,7 +40,7 @@ test.describe('Test filtering-functionliaty', () => {
 		 * Checks that Paracet is not shown
 		 */
 		await expect(
-			page.getByRole('button', { name: ' Personlige artikler' }),
+			page.getByTestId('Personlige artikler'),
 		).not.toHaveAttribute('style');
 		await expect(
 			page.getByText('Paracet Avlang Drasjert 500mg, 20 stk'),
@@ -51,10 +50,11 @@ test.describe('Test filtering-functionliaty', () => {
 		 * Clicks on the chip Snacks & godteri again to deactivate it
 		 * Checks that the styling is changed back to not have color and background-color. But now that it is activated it has empty styling
 		 */
-		await page.getByRole('button', { name: ' Snacks & godteri' }).click();
-		await expect(
-			page.getByRole('button', { name: ' Snacks & godteri' }),
-		).toHaveAttribute('style', '');
+		await page.getByTestId('Snacks & godteri').click();
+		await expect(page.getByTestId('Snacks & godteri')).toHaveAttribute(
+			'style',
+			'',
+		);
 
 		/**
 		 * Clicks on the chip Personlige artikler to activate it
@@ -62,19 +62,13 @@ test.describe('Test filtering-functionliaty', () => {
 		 * Checks that both chips have gotten styling for an activated chip
 		 * Checks that both Krokanrull and Paracet are shown
 		 */
-		await page.getByRole('button', { name: ' Snacks & godteri' }).click();
-		await page
-			.getByRole('button', { name: ' Personlige artikler' })
-			.click();
-		await expect(
-			page.getByRole('button', { name: ' Snacks & godteri' }),
-		).toHaveAttribute(
+		await page.getByTestId('Snacks & godteri').click();
+		await page.getByTestId('Personlige artikler').click();
+		await expect(page.getByTestId('Snacks & godteri')).toHaveAttribute(
 			'style',
 			'background-color: rgb(40, 112, 148); color: white;',
 		);
-		await expect(
-			page.getByRole('button', { name: ' Personlige artikler' }),
-		).toHaveAttribute(
+		await expect(page.getByTestId('Personlige artikler')).toHaveAttribute(
 			'style',
 			'background-color: rgb(40, 112, 148); color: white;',
 		);

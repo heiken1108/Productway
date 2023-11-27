@@ -142,6 +142,7 @@ export default function Filterbar() {
 						key={filter.key}
 						label={filter.name}
 						aria-label={filter.name}
+						data-testid={filter.name}
 						icon={
 							<i
 								className={filter.icon}
@@ -170,6 +171,7 @@ export default function Filterbar() {
 							key={filter.key}
 							label={filter.name}
 							aria-label={filter.name}
+							data-testid={filter.name}
 							icon={
 								<i
 									className={filter.icon}
