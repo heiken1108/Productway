@@ -1,5 +1,5 @@
-import FavouriteContainer from '../../Components/FavouriteContainer/FavouriteContainer';
-import MyRatingsDisplay from '../../Components/MyRatingsDisplay/MyRatingsDisplay';
+import FavouriteContainer from '../../components/FavouriteContainer/FavouriteContainer';
+import MyRatingsDisplay from '../../components/MyRatingsDisplay/MyRatingsDisplay';
 
 import './MyPage.css';
 /*

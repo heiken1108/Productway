@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 
-import TodaysItem from '../../Components/TodaysItem/TodaysItem';
+import TodaysItem from '../../components/TodaysItem/TodaysItem';
 import categories from '../../data/categories';
 import { categoryFilterState } from '../../store/atoms';
 

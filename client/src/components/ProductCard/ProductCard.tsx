@@ -1,8 +1,8 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 
-import { IProduct } from '../../data/types';
-import { navigateHistory } from '../../store/atoms';
+import { IProduct } from '../../data/types.ts';
+import { navigateHistory } from '../../store/atoms.tsx';
 import AddToFavorite from '../AddToFavourite/AddToFavourite.tsx';
 import './ProductCard.css';
 

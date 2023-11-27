@@ -1,6 +1,6 @@
 import { render, RenderResult, screen } from '@testing-library/react';
 
-import ErrorContainer from '../../Components/Error/ErrorContainer';
+import ErrorContainer from '../../components/Error/ErrorContainer';
 
 describe('ErrorContainer test', () => {
 	let errorcontainer: RenderResult;

@@ -5,12 +5,12 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 import { v4 as uuidv4 } from 'uuid';
 
-import Header from './Components/Header/Header.tsx';
+import Header from './components/Header/Header.tsx';
 import { ADD_USER } from './graphql/queries.ts';
-import AllProducts from './Pages/AllProducts/AllProducts';
-import MyPage from './Pages/MyPage/MyPage.tsx';
-import Productpage from './Pages/Productpage/Productpage.tsx';
-import ResultsPage from './Pages/ResultsPage/ResultsPage.tsx';
+import AllProducts from './pages/AllProducts/AllProducts.tsx';
+import MyPage from './pages/MyPage/MyPage.tsx';
+import Productpage from './pages/Productpage/Productpage.tsx';
+import ResultsPage from './pages/ResultsPage/ResultsPage.tsx';
 
 function App() {
 	const [mutateFunctionUser] = useMutation(ADD_USER);

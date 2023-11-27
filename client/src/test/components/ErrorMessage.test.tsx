@@ -1,6 +1,6 @@
 import { render, RenderResult, screen } from '@testing-library/react';
 
-import ErrorMessage from '../../Components/Error/ErrorMessage';
+import ErrorMessage from '../../components/Error/ErrorMessage';
 
 describe('ErrorMessage test', () => {
 	let errormessage: RenderResult;
