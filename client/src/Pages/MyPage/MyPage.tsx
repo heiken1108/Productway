@@ -10,11 +10,11 @@ export default function MyPage() {
 	return (
 		<div className="MyPage">
 			<div className="content-container">
-				<div className="MyFavourites">
+				<div className="MyFavourites" aria-description="My Favorites">
 					<h1>Mine favoritter</h1>
 					<FavouriteContainer userID={userID} />
 				</div>
-				<div className="MyRatings">
+				<div className="MyRatings" aria-description="My Ratings">
 					<h1>Mine vurderinger</h1>
 					<div className="ratingsContainer">
 						<MyRatingsDisplay userID={userID || ''} />

@@ -127,7 +127,10 @@ export default function ResultsPage() {
 							)}
 						</div>
 					</div>
-					<div className="buttonContainer">
+					<div
+						className="buttonContainer"
+						aria-description="Pagination"
+					>
 						{countLoading ? (
 							<p>Loading...</p>
 						) : countError ? (

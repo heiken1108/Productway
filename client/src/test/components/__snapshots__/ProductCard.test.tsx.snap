@@ -19,7 +19,7 @@ exports[`Header test > snapshottest productCard 1`] = `
                 class="MuiBox-root css-1b0ve20"
               >
                 <button
-                  aria-label="like"
+                  aria-label="Like"
                   class="MuiButtonBase-root MuiFab-root MuiFab-circular MuiFab-sizeLarge MuiFab-default MuiFab-root MuiFab-circular MuiFab-sizeLarge MuiFab-default css-mm42gz-MuiButtonBase-root-MuiFab-root"
                   data-testid="favoriteIcon"
                   style="background-color: grey; outline: none;"
@@ -47,6 +47,7 @@ exports[`Header test > snapshottest productCard 1`] = `
           </div>
         </div>
         <div
+          aria-label="Navigate to Byggryn Hele 550g boks Møllerens"
           class="productCard"
         >
           <div
@@ -98,7 +99,7 @@ exports[`Header test > snapshottest productCard 1`] = `
               class="MuiBox-root css-1b0ve20"
             >
               <button
-                aria-label="like"
+                aria-label="Like"
                 class="MuiButtonBase-root MuiFab-root MuiFab-circular MuiFab-sizeLarge MuiFab-default MuiFab-root MuiFab-circular MuiFab-sizeLarge MuiFab-default css-mm42gz-MuiButtonBase-root-MuiFab-root"
                 data-testid="favoriteIcon"
                 style="background-color: grey; outline: none;"
@@ -126,6 +127,7 @@ exports[`Header test > snapshottest productCard 1`] = `
         </div>
       </div>
       <div
+        aria-label="Navigate to Byggryn Hele 550g boks Møllerens"
         class="productCard"
       >
         <div

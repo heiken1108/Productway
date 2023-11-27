@@ -14,6 +14,7 @@ export default function MyPageButton() {
 	return (
 		<div className="MyPageButton">
 			<Button
+				aria-label="My Page"
 				variant="contained"
 				onClick={handleNavShopping}
 				size="medium"

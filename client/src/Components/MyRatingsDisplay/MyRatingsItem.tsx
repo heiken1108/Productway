@@ -90,7 +90,11 @@ export default function MyRatingsItem({
 					onRatingChange={handleRatingChange}
 				/>
 			</div>
-			<div className="RatingItem" onClick={() => handleNavigate()}>
+			<div
+				className="RatingItem"
+				aria-label={'Navigate to ' + data.getProductByProductID.name}
+				onClick={() => handleNavigate()}
+			>
 				<div className="tittel">
 					<strong>
 						{data.getProductByProductID.name || 'No name'}

@@ -5,7 +5,10 @@ export default function ErrorMessage() {
 		//<div className="ErrorPage">
 		<div id="apiErrorMessage" className="errorMessage">
 			<div className="errorIcon">❌</div>
-			<div className="errorText">
+			<div
+				className="errorText"
+				aria-description="Noe gikk galt. Dataen kunne ikke lastes"
+			>
 				Noe gikk galt. Dataen kunne ikke lastes.
 			</div>
 		</div>

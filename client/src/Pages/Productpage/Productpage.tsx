@@ -112,7 +112,10 @@ export default function Productpage() {
 		return <ErrorContainer />;
 	return (
 		<div>
-			<button onClick={() => handleNavigateBack()}>
+			<button
+				aria-label="Navigate back"
+				onClick={() => handleNavigateBack()}
+			>
 				&#x2190; Tilbake
 			</button>
 			<div className="productContainer">
@@ -120,7 +123,7 @@ export default function Productpage() {
 					<div className="productImage">
 						<img
 							src={productData.getProductByProductID.image}
-							alt="Image not found"
+							alt={productData.getProductByProductID.name}
 						/>
 					</div>
 					<div className="productInfo">

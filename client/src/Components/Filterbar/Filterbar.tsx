@@ -141,6 +141,7 @@ export default function Filterbar() {
 					<Chip
 						key={filter.key}
 						label={filter.name}
+						aria-label={filter.name}
 						icon={
 							<i
 								className={filter.icon}
@@ -168,6 +169,7 @@ export default function Filterbar() {
 						<Chip
 							key={filter.key}
 							label={filter.name}
+							aria-label={filter.name}
 							icon={
 								<i
 									className={filter.icon}
@@ -213,7 +215,7 @@ export default function Filterbar() {
 						Resultater for søkeord: <strong> {searchTerm} </strong>
 					</p>
 					<IconButton
-						aria-label="delete"
+						aria-label="Delete search"
 						onClick={handleDeleteSearch}
 					>
 						<DeleteIcon />
