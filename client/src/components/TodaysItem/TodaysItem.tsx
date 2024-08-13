@@ -21,8 +21,8 @@ export default function TodaysItem() {
 	 * page so that the backbutton on productpage will redirect to the right page
 	 */
 	function handleNavigate() {
-		setPrevPage('/project2/');
-		navigate('/project2/product/' + data.getRandomItem.productID);
+		setPrevPage('/');
+		navigate('/product/' + data.getRandomItem.productID);
 	}
 
 	if (loading)

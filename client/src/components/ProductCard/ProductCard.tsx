@@ -18,7 +18,7 @@ export default function ProductCard({ item }: { item: IProduct }) {
 
 	function handleNavigate() {
 		setPrevPage(location.pathname);
-		navigate('/project2/product/' + item.productID);
+		navigate('/product/' + item.productID);
 	}
 
 	return (

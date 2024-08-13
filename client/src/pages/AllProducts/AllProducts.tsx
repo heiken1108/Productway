@@ -29,7 +29,7 @@ export default function AllProducts() {
 			sessionStorage.setItem('categoryData', JSON.stringify(newChipData));
 			return newChipData;
 		});
-		navigate('/project2/results');
+		navigate('/results');
 	}
 
 	let keycounter = 1;

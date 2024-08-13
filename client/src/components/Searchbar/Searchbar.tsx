@@ -99,7 +99,7 @@ export default function SearchBar(): JSX.Element {
 				}}
 				onChange={(_event, newValue) => {
 					if (newValue) {
-						navigate('/project2/results');
+						navigate('/results');
 					}
 				}}
 				style={{
@@ -111,7 +111,7 @@ export default function SearchBar(): JSX.Element {
 					if (event.key === 'Enter') {
 						setSerchTermForResultPage(searchTerm);
 						sessionStorage.setItem('searchTerm', searchTerm);
-						navigate('/project2/results');
+						navigate('/results');
 					}
 				}}
 			/>

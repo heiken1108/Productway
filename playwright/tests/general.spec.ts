@@ -7,7 +7,7 @@ test.describe('Test general', () => {
 		 * Go to the front page and check that the URL is correct
 		 */
 		await page.goto('/');
-		expect(page.url()).toBe('http://localhost:5173/project2');
+		expect(page.url()).toBe('http://localhost:5173');
 		page.waitForLoadState('load');
 
 		/**
@@ -31,20 +31,20 @@ test.describe('Test general', () => {
 			.filter({ hasText: 'Snacks & godteri' })
 			.nth(4)
 			.click();
-		expect(page.url()).toBe('http://localhost:5173/project2/results');
+		expect(page.url()).toBe('http://localhost:5173/results');
 		expect((await getProducts(page)).length).toBe(12);
 
 		/**
 		 * Clicks on a product to go to the product-page. Checks that the URL for the product is correct
 		 */
 		await page.getByText('Freia Krokanrull 71g').first().click();
-		expect(page.url()).toBe('http://localhost:5173/project2/product/1817');
+		expect(page.url()).toBe('http://localhost:5173/product/1817');
 
 		/**
 		 * Clicks on the logo to go back to the front page. Checks that the URL is correct
 		 */
 		await page.getByTestId('Productway-logo').click();
-		expect(page.url()).toBe('http://localhost:5173/project2/'); //Gjør at disse url-ene ikke er statiske
+		expect(page.url()).toBe('http://localhost:5173/'); //Gjør at disse url-ene ikke er statiske
 	});
 
 	test('Test results-page', async ({ page }) => {

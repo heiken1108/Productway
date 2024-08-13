@@ -75,7 +75,7 @@ export default function MyRatingsItem({
 
 	function handleNavigate() {
 		setPrevPage(location.pathname);
-		navigate('/project2/product/' + productID);
+		navigate('/product/' + productID);
 	}
 
 	// If loading or error, display loading animation or loading container

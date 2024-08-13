@@ -85,5 +85,5 @@ export const resetSearchBarState = atom({
 
 export const navigateHistory = atom({
 	key: 'navigateHistory',
-	default: '/project2/',
+	default: '/',
 });

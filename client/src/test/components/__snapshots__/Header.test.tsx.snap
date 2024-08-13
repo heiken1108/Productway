@@ -15,7 +15,7 @@ exports[`Header test > snapshottest header 1`] = `
             alt="Header Icon"
             aria-label="Home"
             class="header-icon"
-            src="/project2/src/assets/header-icon.svg"
+            src="/src/assets/header-icon.svg"
           />
            
           <h1
@@ -126,7 +126,7 @@ exports[`Header test > snapshottest header 1`] = `
           alt="Header Icon"
           aria-label="Home"
           class="header-icon"
-          src="/project2/src/assets/header-icon.svg"
+          src="/src/assets/header-icon.svg"
         />
          
         <h1

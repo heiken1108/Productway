@@ -11,7 +11,7 @@ import './Header.css';
 export default function Header() {
 	const navigate = useNavigate();
 	function handleNavHome() {
-		navigate('/project2/');
+		navigate('/');
 	}
 	return (
 		<div className="Header">
